@@ -1,9 +1,19 @@
 import React, { useEffect } from 'react';
-import Navigation from './Navigation.js';
 import './HomePage.css';
-import MusicBox from './MusicBox.js';
-import PostGenerator from './PostGenerator.js';
-import Post from './Posts';
+
+import Navbar from '../Navbar/Navbar';
+import Post from './Post';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faHome,
+  faUserCircle,
+  faSearch,
+  faSignInAlt,
+  faUserPlus,
+  faListOl,
+  faSignOutAlt,
+} from '@fortawesome/free-solid-svg-icons';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const HomePage = ({ playLists = [], findPlayLists }) => {
   useEffect(() => {
@@ -14,37 +24,40 @@ const HomePage = ({ playLists = [], findPlayLists }) => {
   }, []);
 
   return (
-    <div className="scroll_Here row" style={{ background: '#657786' }}>
-      {console.log(playLists)}
-      <div style={{ float: 'left', marginLeft: '30px', width: '20%' }}>
-        <Navigation />
-      </div>
-      <div style={{ width: '50%', overflow: 'auto', scrollBehavior: 'smooth' }}>
-        <PostGenerator />
-        <Post />
-        <Post />
-      </div>
-      <div style={{ position: 'absolute', float: 'right', marginTop: '50px', right: '20px' }}>
-        <input
-          className="input_s form-control"
-          placeholder="Search for Posts/Music here!"
-          style={{
-            position: 'relative',
-            marginTop: '50px',
-            marginRight: '100px',
-            marginBottom: '100px',
-          }}
-        />
-        <div className="search">
-          <h5 style={{ textAlign: 'center' }}> Top Tracks USA </h5>
-          <MusicBox />
-          <MusicBox />
-          <MusicBox />
-          <MusicBox />
-          <MusicBox />
+    <React.Fragment>
+      <Navbar />
+      <div className="container animate__animated animate__fadeIn">
+        <div className="row">
+          <div className="col-2">
+            <div className="d-flex flex-column align-self-center">
+              <Link class="btn btn-lg btn-dark mt-5" to="/Profile">
+                <FontAwesomeIcon icon={faUserCircle} />
+                {/* &nbsp; My profile */}
+              </Link>
+              <Link class="btn btn-lg btn-info mt-2" to="/Search">
+                <FontAwesomeIcon icon={faSearch} />
+                {/* &nbsp; Search playlists */}
+              </Link>
+              <Link class="btn btn-lg btn-danger mt-2" to="/Home">
+                <FontAwesomeIcon icon={faSignOutAlt} />
+                {/* &nbsp; Logout */}
+              </Link>
+            </div>
+          </div>
+          <div className="col-7 mt-3">
+            <h4 className="text-right font-weight-light">Your feed</h4>
+            <Post />
+            <Post />
+            <Post />
+          </div>
+          <div className="col-3 mt-3">
+            <h4 className="text-right font-weight-light">Trending music</h4>
+            <Post />
+            <Post />
+          </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

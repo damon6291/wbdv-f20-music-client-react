@@ -2,7 +2,6 @@ import React from 'react';
 import { Nav, NavLink } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUserCircle, faSearch, faDna } from '@fortawesome/free-solid-svg-icons';
-import './Navigation.css';
 
 const Navigation = (login = false) => (
   <div style={{ padding: '20px' }}>

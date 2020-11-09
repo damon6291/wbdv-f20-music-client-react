@@ -21,12 +21,12 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Link to="/Details">Details</Link>
+        {/* <Link to="/Details">Details</Link>
         <Link to="/Home">Home</Link>
         <Link to="/Login">Login</Link>
         <Link to="/Register">Register</Link>
         <Link to="/Profile">Profile</Link>
-        <Link to="/Search">Search</Link>
+        <Link to="/Search">Search</Link> */}
         <Route
           path="/Details/:playlistId"
           render={(props) => (
