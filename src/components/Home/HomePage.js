@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import "./HomePage.css";
+import React, { useEffect } from 'react';
+import './HomePage.css';
 
-import Navbar from "../Navbar/Navbar";
-import Post from "./Post";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Navbar from '../Navbar/Navbar';
+import Post from './Post';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHome,
   faUserCircle,
@@ -12,13 +12,13 @@ import {
   faUserPlus,
   faListOl,
   faSignOutAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+} from '@fortawesome/free-solid-svg-icons';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const HomePage = ({ playLists = [], findPlayLists }) => {
   useEffect(() => {
     const getData = async () => {
-      await findPlayLists({ searchParams: "top" });
+      await findPlayLists({ searchParams: 'top' });
     };
     getData();
   }, []);

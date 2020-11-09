@@ -1,17 +1,13 @@
-import React, { useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faShareSquare,
-  faStar,
-  faMusic,
-} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShareSquare, faStar, faMusic } from '@fortawesome/free-solid-svg-icons';
 
-import PlaylistItem from "./PlaylistItem.js";
-import Navbar from "../Navbar/Navbar";
-import "animate.css";
-import Utils from "../../utils/utils";
+import PlaylistItem from './PlaylistItem.js';
+import Navbar from '../Navbar/Navbar';
+import 'animate.css';
+import Utils from '../../utils/utils';
 
 const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
   const getData = async () => {
@@ -36,20 +32,15 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
                 <FontAwesomeIcon icon={faMusic} />
                 &nbsp;{details.name} &nbsp;
                 <small>
-                  by{" "}
-                  {JSON.stringify(details).length > 2
-                    ? details.owner.display_name
-                    : null}
+                  by {JSON.stringify(details).length > 2 ? details.owner.display_name : null}
                 </small>
               </h2>
               <h5 className="text-muted">{details.description}</h5>
-              <h6 className="text-muted">
-                total runtime - {Utils.msToHMS(totalRuntime)}
-              </h6>
+              <h6 className="text-muted">total runtime - {Utils.msToHMS(totalRuntime)}</h6>
               <hr
                 style={{
-                  width: "100%",
-                  border: "2px dashed #C9E4D1",
+                  width: '100%',
+                  border: '2px dashed #C9E4D1',
                 }}
               />
             </div>

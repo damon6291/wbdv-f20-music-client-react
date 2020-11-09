@@ -1,19 +1,18 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHome,
   faUserCircle,
   faSearch,
   faSignInAlt,
   faUserPlus,
-  faListOl,
-} from "@fortawesome/free-solid-svg-icons";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+} from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 // Import in this order for responsive nav toggle to work!
-import "../../../node_modules/jquery/dist/jquery.min.js";
-import "../../../node_modules/bootstrap/dist/js/bootstrap.min.js";
+import '../../../node_modules/jquery/dist/jquery.min.js';
+import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
-import exampleImg from "../../assets/damon.jpg";
+import exampleImg from '../../assets/damon.jpg';
 
 const Navbar = () => {
   return (
@@ -27,8 +26,7 @@ const Navbar = () => {
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -64,20 +62,16 @@ const Navbar = () => {
               &nbsp; Register
             </Link>
           </li>
-          <li class="nav-item">
+          {/* <li class="nav-item">
             <Link class="nav-link" to="/Details">
               <FontAwesomeIcon icon={faListOl} />
               &nbsp; Details
             </Link>
-          </li>
+          </li> */}
         </ul>
 
         <span className="float-right text-white">
-          <img
-            style={{ height: "35px" }}
-            className="rounded-circle mr-2"
-            src={exampleImg}
-          />
+          <img style={{ height: '35px' }} className="rounded-circle mr-2" src={exampleImg} />
           (username)
         </span>
       </div>
