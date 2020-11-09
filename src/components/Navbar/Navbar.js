@@ -6,9 +6,8 @@ import {
   faSearch,
   faSignInAlt,
   faUserPlus,
-  faListOl,
 } from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // Import in this order for responsive nav toggle to work!
 import '../../../node_modules/jquery/dist/jquery.min.js';
 import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
@@ -63,12 +62,12 @@ const Navbar = () => {
               &nbsp; Register
             </Link>
           </li>
-          <li class="nav-item">
+          {/* <li class="nav-item">
             <Link class="nav-link" to="/Details">
               <FontAwesomeIcon icon={faListOl} />
               &nbsp; Details
             </Link>
-          </li>
+          </li> */}
         </ul>
 
         <span className="float-right text-white">
