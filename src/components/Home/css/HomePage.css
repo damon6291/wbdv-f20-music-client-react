@@ -1,0 +1,19 @@
+div {
+    backgroundImage: url('https://codetheweb.blog/assets/img/posts/style-a-navigation-bar-css/background.jpg')
+}
+
+.hide::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 100em) {
+    .search {
+        display: none;
+    }
+}
+
+@media (max-width: 70em) {
+    .input_s {
+        display: none;
+    }
+}
