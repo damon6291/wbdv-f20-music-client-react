@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
-import {Navbar, Playlist, User} from '../index';
+import { Navbar, Playlist, User } from '../index';
 import backgroundImg from '../../assets/background.jpg';
 import exampleImg from '../../assets/damon.jpg';
 
@@ -27,8 +27,6 @@ const Profile = () => {
             <div className="col-8">
               <div className="w-75">
                 <h3 className="border-bottom pl-4 pb-3">Playlists</h3>
-                <Playlist />
-                <Playlist />
               </div>
             </div>
             <div className="col-4">
