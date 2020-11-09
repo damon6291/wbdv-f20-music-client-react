@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Search from '../components/Search/Search';
+import { Search, Home } from '../components';
 import { findPlayLists } from '../actions/playListAction';
 import Service from '../services/Services';
 
@@ -14,4 +14,7 @@ const propertyToDispatchMapper = (dispatch) => ({
     }),
 });
 
-export default connect(stateToPropertyMapper, propertyToDispatchMapper)(Search);
+export default {
+  Search: connect(stateToPropertyMapper, propertyToDispatchMapper)(Search),
+  Home: connect(stateToPropertyMapper, propertyToDispatchMapper)(Home),
+};

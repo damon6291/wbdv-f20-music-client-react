@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Details, Home, Login, Register, Profile, Search, Playlist } from './components/index';
+import { Login, Register, Profile } from './components/index';
 import { SearchContainer, DetailsContainer } from './containers/index';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { createStore, combineReducers } from 'redux';
@@ -29,13 +29,15 @@ function App() {
         <Link to="/Search">Search</Link>
         <Route
           path="/Details/:playlistId"
-          render={(props) => <DetailsContainer {...props} playlistId={props.match.params.playlistId} />}
+          render={(props) => (
+            <DetailsContainer {...props} playlistId={props.match.params.playlistId} />
+          )}
         />
-        <Route path="/Home" component={Home} />
+        <Route path="/Home" component={SearchContainer.Home} />
         <Route path="/Login" component={Login} />
         <Route path="/Register" component={Register} />
         <Route path="/Profile" component={Profile} />
-        <Route path="/Search" component={SearchContainer} />
+        <Route path="/Search" component={SearchContainer.Search} />
       </Router>
     </Provider>
   );

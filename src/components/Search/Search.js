@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, User, Playlist } from '../index';
 
 const Search = ({ playLists = [], findPlayLists }) => {
   const [query, setQuery] = useState('');
-
-  useEffect(() => {}, [playLists]);
 
   const onSearchHandler = (e) => {
     if (e.key === 'Enter') {

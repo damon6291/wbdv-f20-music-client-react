@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,7 +11,7 @@ import Utils from '../../utils/utils';
 const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
   const getData = async () => {
     const json = { playlistId: playlistId };
-    const data = await findDetails(json);
+    await findDetails(json);
   };
 
   useEffect(() => {

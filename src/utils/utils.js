@@ -17,7 +17,12 @@ export const msToHMS = (duration) => {
   return hours + ':' + minutes + ':' + seconds;
 };
 
+const cutWord = (word, index) => {
+  return word.slice(0, index) + '...';
+};
+
 export default {
   msToMin,
   msToHMS,
+  cutWord,
 };

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Utils from '../../utils/utils';
 // import { bounceIn } from "animate.css";
 //import "animate.css";
@@ -16,6 +16,7 @@ const PlaylistItem = ({ title, artist, runtime, coverImg }) => {
             border: 'solid 1px black',
             borderRadius: '5px',
           }}
+          alt="playlist"
         />
         <div className="d-flex flex-column ml-2">
           <h5>{title}</h5>
