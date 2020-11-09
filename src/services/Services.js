@@ -1,23 +1,24 @@
+const url = 'http://localhost:8080/';
+
 export const searchForPlaylists = (query) =>
-  fetch('/searchForPlaylists', {
+  fetch(`${url}searchForPlaylists`, {
     method: 'POST',
     body: JSON.stringify(query),
     headers: {
       'content-type': 'application/json',
     },
     json: true,
-  }).then((response) => console.log(response));
-
-// .then((response) => response.json())
-// .then((results) => results.results)
-// .then((string) => JSON.parse(string))
-// .then((json) => json.playlists.items);
+  })
+    .then((response) => response.json())
+    .then((results) => results.results)
+    .then((string) => JSON.parse(string))
+    .then((json) => json.playlists.items);
 
 // export const searchForSongs = (query) =>
 //   fetch('/playlistTracks')
 
 export const getPlaylistInformation = (query) =>
-  fetch('/getPlaylistInformation', {
+  fetch(`${url}getPlaylistInformation`, {
     method: 'POST',
     body: JSON.stringify(query),
     headers: {
