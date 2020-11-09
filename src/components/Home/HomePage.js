@@ -4,16 +4,8 @@ import './HomePage.css';
 import Navbar from '../Navbar/Navbar';
 import Post from './Post';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faHome,
-  faUserCircle,
-  faSearch,
-  faSignInAlt,
-  faUserPlus,
-  faListOl,
-  faSignOutAlt,
-} from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { faUserCircle, faSearch, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const HomePage = ({ playLists = [], findPlayLists }) => {
   useEffect(() => {
