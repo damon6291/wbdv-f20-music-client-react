@@ -6,11 +6,12 @@ export const searchForPlaylists = (query) =>
       'content-type': 'application/json',
     },
     json: true,
-  })
-    .then((response) => response.json())
-    .then((results) => results.results)
-    .then((string) => JSON.parse(string))
-    .then((json) => json.playlists.items);
+  }).then((response) => console.log(response));
+
+// .then((response) => response.json())
+// .then((results) => results.results)
+// .then((string) => JSON.parse(string))
+// .then((json) => json.playlists.items);
 
 // export const searchForSongs = (query) =>
 //   fetch('/playlistTracks')
@@ -24,9 +25,9 @@ export const getPlaylistInformation = (query) =>
     },
     json: true,
   })
-  .then((response) => response.json())
-  .then((result) => result.results)
-  .then((string) => JSON.parse(string));
+    .then((response) => response.json())
+    .then((result) => result.results)
+    .then((string) => JSON.parse(string));
 
 export default {
   searchForPlaylists,
