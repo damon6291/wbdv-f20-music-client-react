@@ -1,9 +1,0 @@
-h5 {
-  transition-property: font-size;
-  transition-duration: 3s;
-}
-
-h5:hover {
-  color: purple;
-  font-size: 28px;
-}
