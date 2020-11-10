@@ -39,7 +39,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/Profile/user">
+            <Link className="nav-link" to="/Profile/myprofile">
               <FontAwesomeIcon icon={faUserCircle} />
               &nbsp; Profile
             </Link>

@@ -20,8 +20,11 @@ const cutWord = (word, index) => {
   return word.slice(0, index) + '...';
 };
 
+const exist = (item) => JSON.stringify(item).length > 2;
+
 export default {
   msToMin,
   msToHMS,
   cutWord,
+  exist,
 };

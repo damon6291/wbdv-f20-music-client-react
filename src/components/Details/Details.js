@@ -13,11 +13,10 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
   const images = details.images;
   const externalUrl = details.external_urls;
 
-  const exist = (item) => JSON.stringify(item).length > 2;
+  const exist = (item) => Utils.exist(item);
 
   const getData = async () => {
-    const json = { playlistId: playlistId };
-    await findDetails(json);
+    await findDetails(playlistId);
   };
 
   useEffect(() => {

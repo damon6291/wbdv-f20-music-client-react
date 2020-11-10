@@ -7,8 +7,7 @@ const Search = ({ playLists = [], findPlayLists }) => {
 
   const onSearchHandler = (e) => {
     if (e.key === 'Enter') {
-      const json = { searchParams: query };
-      findPlayLists(json);
+      findPlayLists(query);
     }
   };
 
@@ -38,8 +37,6 @@ const Search = ({ playLists = [], findPlayLists }) => {
             <div className="col-4">
               <div className="w-100">
                 <h3 className="border-bottom pl-4 pb-3">Users</h3>
-                <User />
-                <User />
               </div>
             </div>
           </div>

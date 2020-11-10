@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const HomePage = ({ playLists = [], findPlayLists }) => {
   useEffect(() => {
     const getData = async () => {
-      await findPlayLists({ searchParams: 'top' });
+      await findPlayLists('top');
     };
     getData();
   }, []);
