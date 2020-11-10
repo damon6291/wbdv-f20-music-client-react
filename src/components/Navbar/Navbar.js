@@ -39,11 +39,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-<<<<<<< HEAD
-            <Link className="nav-link" to="/Profile">
-=======
             <Link className="nav-link" to="/Profile/user">
->>>>>>> damon
               <FontAwesomeIcon icon={faUserCircle} />
               &nbsp; Profile
             </Link>
