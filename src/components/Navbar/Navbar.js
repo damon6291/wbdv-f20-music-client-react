@@ -16,48 +16,48 @@ import exampleImg from '../../assets/damon.jpg';
 
 const Navbar = () => {
   return (
-    <nav class="navbar sticky-top navbar-dark bg-dark navbar-expand-md shadow-lg ">
-      <span class="navbar-brand font-weight-bold">(logo)</span>
+    <nav className="navbar sticky-top navbar-dark bg-dark navbar-expand-md shadow-lg ">
+      <span className="navbar-brand font-weight-bold">(logo)</span>
 
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto ">
-          <li class="nav-item">
-            <Link class="nav-link" to="/Home">
+      <div className="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul className="navbar-nav mr-auto ">
+          <li className="nav-item">
+            <Link className="nav-link" to="/Home">
               <FontAwesomeIcon icon={faHome} />
               &nbsp; Home
             </Link>
           </li>
-          <li class="nav-item">
-            <Link class="nav-link" to="/Profile">
+          <li className="nav-item">
+            <Link className="nav-link" to="/Profile/user">
               <FontAwesomeIcon icon={faUserCircle} />
               &nbsp; Profile
             </Link>
           </li>
-          <li class="nav-item">
-            <Link class="nav-link" to="/Search">
+          <li className="nav-item">
+            <Link className="nav-link" to="/Search">
               <FontAwesomeIcon icon={faSearch} />
               &nbsp; Search
             </Link>
           </li>
-          <li class="nav-item">
-            <Link class="nav-link" to="/Login">
+          <li className="nav-item">
+            <Link className="nav-link" to="/Login">
               <FontAwesomeIcon icon={faSignInAlt} />
               &nbsp; Login
             </Link>
           </li>
-          <li class="nav-item">
-            <Link class="nav-link" to="/Register">
+          <li className="nav-item">
+            <Link className="nav-link" to="/Register">
               <FontAwesomeIcon icon={faUserPlus} />
               &nbsp; Register
             </Link>
@@ -71,7 +71,12 @@ const Navbar = () => {
         </ul>
 
         <span className="float-right text-white">
-          <img style={{ height: '35px' }} className="rounded-circle mr-2" src={exampleImg} />
+          <img
+            style={{ height: '35px' }}
+            alt="user"
+            className="rounded-circle mr-2"
+            src={exampleImg}
+          />
           (username)
         </span>
       </div>

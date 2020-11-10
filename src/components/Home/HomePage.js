@@ -4,16 +4,8 @@ import './HomePage.css';
 import Navbar from '../Navbar/Navbar';
 import Post from './Post';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faHome,
-  faUserCircle,
-  faSearch,
-  faSignInAlt,
-  faUserPlus,
-  faListOl,
-  faSignOutAlt,
-} from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { faUserCircle, faSearch, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const HomePage = ({ playLists = [], findPlayLists }) => {
   useEffect(() => {
@@ -30,15 +22,15 @@ const HomePage = ({ playLists = [], findPlayLists }) => {
         <div className="row">
           <div className="col-2">
             <div className="d-flex flex-column align-self-center">
-              <Link class="btn btn-lg btn-dark mt-5" to="/Profile">
+              <Link className="btn btn-lg btn-dark mt-5" to="/Profile">
                 <FontAwesomeIcon icon={faUserCircle} />
                 {/* &nbsp; My profile */}
               </Link>
-              <Link class="btn btn-lg btn-info mt-2" to="/Search">
+              <Link className="btn btn-lg btn-info mt-2" to="/Search">
                 <FontAwesomeIcon icon={faSearch} />
                 {/* &nbsp; Search playlists */}
               </Link>
-              <Link class="btn btn-lg btn-danger mt-2" to="/Home">
+              <Link className="btn btn-lg btn-danger mt-2" to="/Home">
                 <FontAwesomeIcon icon={faSignOutAlt} />
                 {/* &nbsp; Logout */}
               </Link>

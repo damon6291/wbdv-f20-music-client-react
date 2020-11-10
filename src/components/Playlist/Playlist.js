@@ -20,8 +20,10 @@ const Playlist = ({ playList: { id, name, description, images, owner } }) => {
           <span>
             <small>{description.length < 55 ? description : Utils.cutWord(description, 55)}</small>
           </span>
-          <span className="text-secondary">
-            <small>Created by {owner.display_name}</small>
+          <span>
+            <Link to={`/Profile/${owner.id}`} className="text-secondary">
+              <small>Created by {owner.display_name}</small>
+            </Link>
           </span>
         </div>
       </div>

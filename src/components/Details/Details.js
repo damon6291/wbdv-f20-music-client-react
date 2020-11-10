@@ -10,6 +10,11 @@ import 'animate.css';
 import Utils from '../../utils/utils';
 
 const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
+  const images = details.images;
+  const externalUrl = details.external_urls;
+
+  const exist = (item) => JSON.stringify(item).length > 2;
+
   const getData = async () => {
     const json = { playlistId: playlistId };
     await findDetails(json);
@@ -22,21 +27,33 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
     <React.Fragment>
       <Navbar />
       <div className="container mt-4">
-        {/* <div className="row">
-          <div className="col"></div>
-        </div> */}
+        {console.log(details)}
         <div className="row">
           <div className="col-8 shadow-lg webdv-playlist-style animate__animated animate__slideInLeft">
-            <div className="d-flex flex-column align-items-end animate__animated animate__fadeIn animate__slow">
-              <h2 className="mt-3 font-weight-bold">
-                <FontAwesomeIcon icon={faMusic} />
-                &nbsp;{details.name} &nbsp;
-                <small>
-                  by {JSON.stringify(details).length > 2 ? details.owner.display_name : null}
-                </small>
-              </h2>
-              <h5 className="text-muted">{details.description}</h5>
-              <h6 className="text-muted">total runtime - {Utils.msToHMS(totalRuntime)}</h6>
+            <div className="d-flex flex-column animate__animated animate__fadeIn animate__slow">
+              <div className="d-flex justify-content-between align-items-center">
+                <a href={exist(details) && exist(externalUrl) ? externalUrl.spotify : null}>
+                  <img
+                    style={{
+                      height: '90px',
+                      width: '90px',
+                      border: 'solid 1px black',
+                      borderRadius: '5px',
+                    }}
+                    src={exist(details) && exist(images) ? images[0].url : null}
+                    alt="playlist"
+                  />
+                </a>
+                <div className="d-flex flex-column align-items-end">
+                  <h2 className="mt-3 font-weight-bold">
+                    <FontAwesomeIcon icon={faMusic} />
+                    &nbsp;{details.name} &nbsp;
+                    <small>by {exist(details) ? details.owner.display_name : null}</small>
+                  </h2>
+                  <h5 className="text-muted">{details.description}</h5>
+                  <h6 className="text-muted">total runtime - {Utils.msToHMS(totalRuntime)}</h6>
+                </div>
+              </div>
               <hr
                 style={{
                   width: '100%',
@@ -45,7 +62,7 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
               />
             </div>
 
-            {JSON.stringify(details).length > 2
+            {exist(details)
               ? details.tracks.items.map((item, id) => {
                   return (
                     <span key={id}>
@@ -54,6 +71,7 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
                         artist={item.track.artists[0].name}
                         runtime={item.track.duration_ms}
                         coverImg={item.track.album.images[0].url}
+                        externalUrl={item.track.external_urls.spotify}
                       />
                       <hr />
                     </span>

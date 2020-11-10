@@ -1,18 +1,20 @@
 import React from 'react';
 import './App.css';
-import { Login, Register, Profile } from './components/index';
-import { SearchContainer, DetailsContainer } from './containers/index';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Login, Register } from './components/index';
+import { SearchContainer, DetailsContainer, ProfileContainer } from './containers/index';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 // for small Playlist widget || used on User Profile page
 import playListReducer from './reducers/playListReducer';
 // for large Playlist display || used on PlaylistDetails page || includes inner track details
 import DetailsReducer from './reducers/DetailsReducer';
+import ProfileReducer from './reducers/ProfileReducer';
 
 const allReducer = combineReducers({
   playListReducer,
   DetailsReducer,
+  ProfileReducer,
 });
 
 const store = createStore(allReducer);
@@ -36,7 +38,10 @@ function App() {
         <Route path="/Home" component={SearchContainer.Home} />
         <Route path="/Login" component={Login} />
         <Route path="/Register" component={Register} />
-        <Route path="/Profile" component={Profile} />
+        <Route
+          path="/Profile/:ownerId"
+          render={(props) => <ProfileContainer ownerId={props.match.params.ownerId} />}
+        />
         <Route path="/Search" component={SearchContainer.Search} />
       </Router>
     </Provider>
