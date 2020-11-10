@@ -22,15 +22,15 @@ const HomePage = ({ playLists = [], findPlayLists }) => {
         <div className="row">
           <div className="col-2">
             <div className="d-flex flex-column align-self-center">
-              <Link class="btn btn-lg btn-dark mt-5" to="/Profile">
+              <Link className="btn btn-lg btn-dark mt-5" to="/Profile">
                 <FontAwesomeIcon icon={faUserCircle} />
                 {/* &nbsp; My profile */}
               </Link>
-              <Link class="btn btn-lg btn-info mt-2" to="/Search">
+              <Link className="btn btn-lg btn-info mt-2" to="/Search">
                 <FontAwesomeIcon icon={faSearch} />
                 {/* &nbsp; Search playlists */}
               </Link>
-              <Link class="btn btn-lg btn-danger mt-2" to="/Home">
+              <Link className="btn btn-lg btn-danger mt-2" to="/Home">
                 <FontAwesomeIcon icon={faSignOutAlt} />
                 {/* &nbsp; Logout */}
               </Link>

@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
 import { Navbar, Playlist, User } from '../index';
 import backgroundImg from '../../assets/background.jpg';
 import exampleImg from '../../assets/damon.jpg';
 
-const Profile = () => {
+const Profile = ({ ownerId, profile = [], findProfile }) => {
+  const getData = async () => {
+    await findProfile({ ownerId: ownerId });
+  };
+
+  useEffect(() => {
+    //getData();
+  }, []);
+
   return (
     <React.Fragment>
       <Navbar />
@@ -15,7 +23,7 @@ const Profile = () => {
           <div className="d-flex align-items-end px-5">
             <img src={exampleImg} alt="profile" className="profile-image border mr-4 shadow" />
             <div className="d-flex flex-column">
-              <h4 className="mb-2">Damon Joung</h4>
+              <h4 className="mb-2">Damon Joung {ownerId}</h4>
               <span className="text-secondary mb-2">
                 <small>5 Followers</small>
               </span>

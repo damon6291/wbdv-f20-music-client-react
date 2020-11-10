@@ -30,9 +30,23 @@ export const getPlaylistInformation = (query) =>
     .then((result) => result.results)
     .then((string) => JSON.parse(string));
 
+export const findProfile = (query) =>
+  fetch(`${url}`, {
+    method: 'POST',
+    body: JSON.stringify(query),
+    headers: {
+      'content-type': 'application/json',
+    },
+    json: true,
+  })
+    .then((response) => response.json())
+    .then((result) => result.results)
+    .then((string) => console.log(string));
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
+  findProfile,
 };
 
 // .then((response) => response.json())

@@ -39,7 +39,11 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
+<<<<<<< HEAD
             <Link className="nav-link" to="/Profile">
+=======
+            <Link className="nav-link" to="/Profile/user">
+>>>>>>> damon
               <FontAwesomeIcon icon={faUserCircle} />
               &nbsp; Profile
             </Link>
@@ -71,7 +75,12 @@ const Navbar = () => {
         </ul>
 
         <span className="float-right text-white">
-          <img style={{ height: '35px' }} className="rounded-circle mr-2" src={exampleImg} />
+          <img
+            style={{ height: '35px' }}
+            alt="user"
+            className="rounded-circle mr-2"
+            src={exampleImg}
+          />
           (username)
         </span>
       </div>
