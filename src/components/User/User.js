@@ -1,7 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
-import sampleImg from '../../assets/damon.jpg';
 
 const User = ({ img, name, followers }) => {
   return (

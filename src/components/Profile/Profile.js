@@ -71,7 +71,7 @@ const Profile = ({
                     return (
                       <User
                         key={id}
-                        img={exist(artist.images) && artist.images[0].url}
+                        img={exist(artist.images) ? artist.images[0].url : null}
                         name={artist.name}
                         followers={artist.followers.total}
                       />

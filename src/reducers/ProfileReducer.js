@@ -16,6 +16,7 @@ const ProfileReducer = (state = initialState, action) => {
     case FIND_PROFILE:
       return {
         ...state,
+        following: [],
         profile: action.profile,
       };
     case FIND_PLAYLISTS:

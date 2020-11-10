@@ -8,6 +8,7 @@ import {
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import Services from '../../services/Services';
 // Import in this order for responsive nav toggle to work!
 import '../../../node_modules/jquery/dist/jquery.min.js';
 import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
