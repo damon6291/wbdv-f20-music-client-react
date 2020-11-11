@@ -10,7 +10,7 @@ const stateToPropertyMapper = (state) => ({
 const propertyToDispatchMapper = (dispatch) => ({
   findPlayLists: (json) =>
     Service.searchForPlaylists(json).then((playLists) => {
-      findPlayLists(dispatch, playLists);
+      findPlayLists(dispatch, playLists.playlists.items);
     }),
 });
 

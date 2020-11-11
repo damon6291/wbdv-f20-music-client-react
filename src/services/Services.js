@@ -5,8 +5,7 @@ export const searchForPlaylists = (query) =>
   fetch(`${url}playlists/${query}`)
     .then((response) => response.json())
     .then((results) => results.results)
-    .then((string) => JSON.parse(string))
-    .then((json) => json.playlists.items);
+    .then((string) => JSON.parse(string));
 
 export const getPlaylistInformation = (query) =>
   fetch(`${url}playlist/${query}/details`)

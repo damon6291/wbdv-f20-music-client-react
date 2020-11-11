@@ -71,7 +71,7 @@ const Navbar = () => {
           </li> */}
         </ul>
 
-        <span className="float-right text-white">
+        <a className="float-right text-white" href="http://localhost:8080/api/spotifylogin">
           <img
             style={{ height: '35px' }}
             alt="user"
@@ -79,7 +79,7 @@ const Navbar = () => {
             src={exampleImg}
           />
           (username)
-        </span>
+        </a>
       </div>
     </nav>
   );
