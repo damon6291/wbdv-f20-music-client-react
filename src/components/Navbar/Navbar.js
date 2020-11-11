@@ -71,7 +71,9 @@ const Navbar = () => {
           </li> */}
         </ul>
 
-        <a className="float-right text-white" href="http://localhost:8080/api/spotifylogin">
+        <a
+          className="float-right text-white"
+          href="https://wbdv-f20-music-server-spotify.herokuapp.com/api/spotifylogin">
           <img
             style={{ height: '35px' }}
             alt="user"
