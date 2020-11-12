@@ -8,7 +8,7 @@ import {
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import Services from '../../services/Services';
+import { url } from '../../utils/constant';
 // Import in this order for responsive nav toggle to work!
 import '../../../node_modules/jquery/dist/jquery.min.js';
 import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
@@ -71,9 +71,7 @@ const Navbar = () => {
           </li> */}
         </ul>
 
-        <a
-          className="float-right text-white"
-          href="https://wbdv-f20-music-server-spotify.herokuapp.com/api/spotifylogin">
+        <a className="float-right text-white" href={`${url}spotifylogin`}>
           <img
             style={{ height: '35px' }}
             alt="user"

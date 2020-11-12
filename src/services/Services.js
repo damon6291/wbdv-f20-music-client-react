@@ -1,5 +1,4 @@
-const url = 'https://wbdv-f20-music-server-spotify.herokuapp.com/api/';
-//const url = 'http://localhost:8080/api/';
+import { url } from '../utils/constant';
 
 export const searchForPlaylists = (query) =>
   fetch(`${url}playlists/${query}`)

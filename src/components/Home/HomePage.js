@@ -12,7 +12,7 @@ const HomePage = ({ playLists = [], findPlayLists }) => {
     const getData = async () => {
       await findPlayLists('top');
     };
-    getData();
+    // getData();
   }, []);
 
   return (
