@@ -9,6 +9,7 @@
   width: 65px;
   height: 65px;
   border-radius: 10px;
+  border: dashed 2px white;
   overflow: hidden;
 }
 
@@ -36,8 +37,16 @@ body {
 }
 
 .webdv-playlist-style {
-  background-color: #ebf5ee;
-  border-bottom: solid 6px #9ab6d6;
-  border-right: solid 3px #9ab6d6;
+  background-color: #ecf2f3;
+  border-bottom: solid 6px #d9e5e7;
+  border-right: solid 3px #d9e5e7;
+  border-radius: 13px;
+}
+
+.webdv-small-playlist-style {
+  background-color: #c4bcc8;
+  /* border: solid 2px #94849b; */
+  border-bottom: solid 4px #94849b;
+  /* border-right: solid 2px #94849b; */
   border-radius: 13px;
 }

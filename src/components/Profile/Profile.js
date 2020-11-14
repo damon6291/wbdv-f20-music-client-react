@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../App.css';
-import { Navbar, Playlist, User } from '../index';
-import backgroundImg from '../../assets/background.jpg';
-import Utils from '../../utils/utils';
+import React, { useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../../App.css";
+import { Navbar, Playlist, User } from "../index";
+import backgroundImg from "../../assets/background.jpg";
+import Utils from "../../utils/utils";
 
 const Profile = ({
   ownerId,
@@ -15,7 +15,7 @@ const Profile = ({
   following = [],
 }) => {
   const getData = async () => {
-    if (ownerId === 'myprofile') {
+    if (ownerId === "myprofile") {
       findMyProfile();
     } else {
       findProfile(ownerId);
@@ -33,9 +33,13 @@ const Profile = ({
   return (
     <React.Fragment>
       <Navbar />
-      <div>
+      <div className="animate__animated animate__fadeIn">
         {console.log(following)}
-        <img src={backgroundImg} alt="background" className="background-image shadow" />
+        <img
+          src={backgroundImg}
+          alt="background"
+          className="background-image shadow"
+        />
         <div className="container position-relative profile-position">
           <div className="d-flex align-items-end px-5">
             <img
@@ -46,10 +50,14 @@ const Profile = ({
             <div className="d-flex flex-column">
               <h4 className="mb-2">{profile.display_name}</h4>
               <span className="text-secondary mb-2">
-                <small>Followers: {exist(profile) && profile.followers.total}</small>
+                <small>
+                  Followers: {exist(profile) && profile.followers.total}
+                </small>
               </span>
             </div>
-            <button className="btn btn-danger h-25 ml-auto px-2 py-1 mb-4">Follow</button>
+            <button className="btn btn-danger h-25 ml-auto px-2 py-1 mb-4">
+              Follow
+            </button>
           </div>
 
           <div className="d-flex mt-5">

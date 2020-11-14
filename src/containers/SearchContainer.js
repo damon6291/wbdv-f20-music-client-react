@@ -1,10 +1,11 @@
-import { connect } from 'react-redux';
-import { Search, Home } from '../components';
-import { findPlayLists } from '../actions/playListAction';
-import Service from '../services/Services';
+import { connect } from "react-redux";
+import { Search, Home } from "../components";
+import { findPlayLists } from "../actions/playListAction";
+import Service from "../services/Services";
 
 const stateToPropertyMapper = (state) => ({
   playLists: state.playListReducer.playLists,
+  loggedIn: true, // dummy value, dynamically update with account system
 });
 
 const propertyToDispatchMapper = (dispatch) => ({

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, User, Playlist } from '../index';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Navbar, User, Playlist } from "../index";
 
 const Search = ({ playLists = [], findPlayLists }) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   const onSearchHandler = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       findPlayLists(query);
     }
   };
@@ -14,7 +14,7 @@ const Search = ({ playLists = [], findPlayLists }) => {
   return (
     <React.Fragment>
       <Navbar />
-      <div className="container">
+      <div className="container animate__animated animate__fadeIn">
         <div className="d-flex flex-column justify-content-center">
           <input
             type="text"
