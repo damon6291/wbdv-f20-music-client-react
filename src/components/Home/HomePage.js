@@ -76,8 +76,14 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn }) => {
             {loggedIn ? (
               <React.Fragment>
                 <h4 className="text-right font-weight-bold">
-                  <FontAwesomeIcon icon={faClipboard} />
-                  &nbsp;New post
+                  <span
+                    className="webdv-title-style"
+                    // style={{ borderRadius: "10px", border: "solid 1px black" }}
+                  >
+                    &nbsp;&nbsp;
+                    <FontAwesomeIcon icon={faClipboard} />
+                    &nbsp;New post&nbsp;
+                  </span>
                 </h4>
                 <PostCreator />
               </React.Fragment>
@@ -85,9 +91,12 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn }) => {
               <span></span>
             )}
 
-            <h4 className="text-right font-weight-bold">
-              <FontAwesomeIcon icon={faComments} />
-              &nbsp;Latest feed
+            <h4 className="mb-3 text-right font-weight-bold">
+              <span className="webdv-title-style">
+                &nbsp;
+                <FontAwesomeIcon icon={faComments} />
+                &nbsp;Latest feed&nbsp;
+              </span>
             </h4>
             <Post />
             <Post />
@@ -100,9 +109,12 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn }) => {
               borderRadius: "40px",
             }}
           >
-            <h4 className="text-center font-weight-light">
-              <FontAwesomeIcon icon={faArrowAltCircleUp} />
-              &nbsp; Trending music
+            <h4 className="text-center font-weight-bold">
+              <span className="webdv-title-style">
+                &nbsp;
+                <FontAwesomeIcon icon={faArrowAltCircleUp} />
+                &nbsp;Trending music&nbsp;
+              </span>
             </h4>
             <hr></hr>
             {/* Replace dummy objects with a mapping over Spotify API call w/ preset search phrase, then parse*/}
