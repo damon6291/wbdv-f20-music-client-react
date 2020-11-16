@@ -42,17 +42,17 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn }) => {
           >
             {loggedIn ? (
               <div className="d-flex flex-column align-self-center">
-                <Link className="shadow-lg btn-lg btn-dark mt-5" to="/Profile">
+                <Link style={{textDecoration: "none"}} className="shadow-lg btn-lg btn-dark mt-5" to="/Profile">
                   <FontAwesomeIcon icon={faUserCircle} />
                   <br />
                   My Profile
                 </Link>
-                <Link className="shadow-lg btn-lg btn-info mt-2" to="/Search">
+                <Link style={{textDecoration: "none"}} className="shadow-lg btn-lg btn-info mt-2" to="/Search">
                   <FontAwesomeIcon icon={faSearch} />
                   <br />
                   Search
                 </Link>
-                <Link className=" shadow-lg btn-lg btn-danger mt-2" to="/Home">
+                <Link style={{textDecoration: "none"}} className=" shadow-lg btn-lg btn-danger mt-2" to="/Home">
                   <FontAwesomeIcon icon={faSignOutAlt} />
                   <br />
                   Log out
@@ -60,13 +60,13 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn }) => {
               </div>
             ) : (
               <div className="d-flex flex-column align-self-center">
-                <Link className="btn btn-lg btn-primary mt-5" to="/Profile">
+                <Link style={{textDecoration: "none !important"}} className="btn btn-lg btn-primary mt-5" to="/Profile">
                   <FontAwesomeIcon icon={faUserCircle} />
                   <br />
                   Register
                 </Link>
 
-                <Link className="btn btn-lg btn-light mt-2" to="/Login">
+                <Link style={{textDecoration: "none !important"}} className="btn btn-lg btn-light mt-2" to="/Login">
                   <FontAwesomeIcon icon={faSignInAlt} />
                   <br />
                   Log in
