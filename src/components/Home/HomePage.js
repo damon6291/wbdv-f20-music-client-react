@@ -33,24 +33,26 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn }) => {
           <div
             className="col-2 mt-3"
             style={{
-              borderRight: "solid 1px black",
+              // borderRight: "solid 2px black",
               // borderLeft: "solid 1px black",
-              borderRadius: "40px",
+              // borderRadius: "40px",
+              // backgroundColor: "#D5C5C8",
+              // opacity: "85%"
             }}
           >
             {loggedIn ? (
               <div className="d-flex flex-column align-self-center">
-                <Link className="btn btn-lg btn-dark mt-5" to="/Profile">
+                <Link className="shadow-lg btn-lg btn-dark mt-5" to="/Profile">
                   <FontAwesomeIcon icon={faUserCircle} />
                   <br />
                   My Profile
                 </Link>
-                <Link className="btn btn-lg btn-info mt-2" to="/Search">
+                <Link className="shadow-lg btn-lg btn-info mt-2" to="/Search">
                   <FontAwesomeIcon icon={faSearch} />
                   <br />
                   Search
                 </Link>
-                <Link className="btn btn-lg btn-danger mt-2" to="/Home">
+                <Link className=" shadow-lg btn-lg btn-danger mt-2" to="/Home">
                   <FontAwesomeIcon icon={faSignOutAlt} />
                   <br />
                   Log out
@@ -104,48 +106,54 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn }) => {
           </div>
           <div
             className="col-3 mt-3"
-            style={{
-              borderLeft: "solid 1px black",
-              borderRadius: "40px",
-            }}
+            
           >
-            <h4 className="text-center font-weight-bold">
-              <span className="webdv-title-style">
-                &nbsp;
-                <FontAwesomeIcon icon={faArrowAltCircleUp} />
-                &nbsp;Trending music&nbsp;
-              </span>
-            </h4>
-            <hr></hr>
-            {/* Replace dummy objects with a mapping over Spotify API call w/ preset search phrase, then parse*/}
-            <Playlist
-              playList={{
-                id: "",
-                images: [
-                  {
-                    url:
-                      "https://upload.wikimedia.org/wikipedia/en/a/ae/Drake_-_Take_Care_cover.jpg",
-                  },
-                ],
-                name: "Playlist title",
-                description: "A description would be here",
-                owner: { display_name: "user1" },
-              }}
-            />
-            <Playlist
-              playList={{
-                id: "",
-                images: [
-                  {
-                    url:
-                      "https://upload.wikimedia.org/wikipedia/en/c/c8/CarterIII.jpg",
-                  },
-                ],
-                name: "Example",
-                description: "Something",
-                owner: { display_name: "anotherUser" },
-              }}
-            />
+            <div style={{
+              // borderLeft: "solid 2px black",
+              borderRadius: "40px",
+
+              backgroundColor: "#D5C5C8",
+              opacity: "85%"
+            }}>
+              <span>&nbsp;</span>
+              <h4 className=" text-center font-weight-bold">  
+                <span className="webdv-title-style">
+                  &nbsp;
+                  <FontAwesomeIcon icon={faArrowAltCircleUp} />
+                  &nbsp;Trending music&nbsp;
+                </span>
+              </h4>
+              <hr></hr>
+              {/* Replace dummy objects with a mapping over Spotify API call w/ preset search phrase, then parse*/}
+              <Playlist
+                playList={{
+                  id: "",
+                  images: [
+                    {
+                      url:
+                        "https://upload.wikimedia.org/wikipedia/en/a/ae/Drake_-_Take_Care_cover.jpg",
+                    },
+                  ],
+                  name: "Playlist title",
+                  description: "A description would be here",
+                  owner: { display_name: "user1" },
+                }}
+              />
+              <Playlist
+                playList={{
+                  id: "",
+                  images: [
+                    {
+                      url:
+                        "https://upload.wikimedia.org/wikipedia/en/c/c8/CarterIII.jpg",
+                    },
+                  ],
+                  name: "Example",
+                  description: "Something",
+                  owner: { display_name: "anotherUser" },
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
