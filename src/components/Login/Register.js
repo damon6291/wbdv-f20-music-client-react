@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import Navbar from '../Navbar/Navbar';
+import Services from '../../services/Services';
 
 const Register = () => {
+  const [displayName, setDisplayName] = useState('');
+  const [UserName, setUserName] = useState('');
+  const [Password, setPassword] = useState('');
+
+  const handleRegister = () => {
+    Services.registerUser({ username: UserName, password: Password, displayName: displayName });
+  };
+
   return (
     <React.Fragment>
       <Navbar />
@@ -26,6 +35,7 @@ const Register = () => {
               placeholder="Rob Smith"
               type="text"
               className="form-control shadow"
+              onChange={(e) => setDisplayName(e.target.value)}
             />
           </div>
         </div>
@@ -49,7 +59,13 @@ const Register = () => {
             Username
           </label>
           <div className="col-sm-10">
-            <input id="username" placeholder="..." type="text" className="form-control shadow" />
+            <input
+              id="username"
+              placeholder="..."
+              type="text"
+              className="form-control shadow"
+              onChange={(e) => setUserName(e.target.value)}
+            />
           </div>
         </div>
 
@@ -64,12 +80,15 @@ const Register = () => {
               className="form-control shadow"
               id="inputPassword"
               placeholder="123qwe!@#"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </div>
 
         <div className="form-group row">
-          <button className="m-2 btn btn-block btn-primary">Create my profile!</button>
+          <button className="m-2 btn btn-block btn-primary" onClick={() => handleRegister()}>
+            Create my profile!
+          </button>
         </div>
         <a className="m-2 float-right font-weight-bold">Already have an account?</a>
 

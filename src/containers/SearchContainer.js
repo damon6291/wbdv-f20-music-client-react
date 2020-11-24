@@ -1,7 +1,7 @@
-import { connect } from "react-redux";
-import { Search, Home } from "../components";
-import { findPlayLists } from "../actions/playListAction";
-import Service from "../services/Services";
+import { connect } from 'react-redux';
+import { Search, Home } from '../components';
+import { findPlayLists } from '../actions/playListAction';
+import Service from '../services/Services';
 
 const stateToPropertyMapper = (state) => ({
   playLists: state.playListReducer.playLists,
@@ -11,6 +11,7 @@ const stateToPropertyMapper = (state) => ({
 const propertyToDispatchMapper = (dispatch) => ({
   findPlayLists: (json) =>
     Service.searchForPlaylists(json).then((playLists) => {
+      console.log(playLists);
       findPlayLists(dispatch, playLists.playlists.items);
     }),
 });

@@ -1,19 +1,21 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHome,
   faUserCircle,
   faSearch,
   faSignInAlt,
   faUserPlus,
-} from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import { url } from "../../utils/constant";
-// Import in this order for responsive nav toggle to work!
-import "../../../node_modules/jquery/dist/jquery.min.js";
-import "../../../node_modules/bootstrap/dist/js/bootstrap.min.js";
+} from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import { url } from '../../utils/constant';
+import Services from '../../services/Services';
 
-import exampleImg from "../../assets/damon.jpg";
+// Import in this order for responsive nav toggle to work!
+import '../../../node_modules/jquery/dist/jquery.min.js';
+import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
+
+import exampleImg from '../../assets/damon.jpg';
 
 const Navbar = (loggedIn) => {
   return (
@@ -27,8 +29,7 @@ const Navbar = (loggedIn) => {
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+        aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
 
@@ -44,7 +45,7 @@ const Navbar = (loggedIn) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/Profile/myprofile">
+                <Link className="nav-link" to="/Profile/spotify">
                   <FontAwesomeIcon icon={faUserCircle} />
                   &nbsp; Profile
                 </Link>
@@ -81,12 +82,15 @@ const Navbar = (loggedIn) => {
           </li> */}
         </ul>
 
-        <a className="float-right text-white" href={`${url}spotifylogin`}>
+        <a className="float-right text-white" href="#">
           <img
-            style={{ height: "35px" }}
+            style={{ height: '35px' }}
             alt="user"
             className="rounded-circle mr-2"
             src={exampleImg}
+            onClick={() => {
+              Services.spotifyLogin(`${url}spotifylogin/username`);
+            }}
           />
           (username)
         </a>

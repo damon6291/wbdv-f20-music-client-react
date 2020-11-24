@@ -36,7 +36,16 @@ export const findFollowersForUser = () =>
     .then((result) => result.results)
     .then((string) => JSON.parse(string));
 
-export const spotifyLogin = () => fetch(`${url}spotifylogin`).then((response) => response.json());
+export const spotifyLogin = (link) => fetch(link).then((response) => response.json());
+
+export const registerUser = (json) =>
+  fetch(`${url}registerUser`, {
+    method: 'POST',
+    body: JSON.stringify(json),
+    headers: {
+      'content-type': 'application/json',
+    },
+  }).then((response) => console.log(response));
 
 export default {
   searchForPlaylists,
@@ -46,6 +55,7 @@ export default {
   findMyProfile,
   findFollowersForUser,
   spotifyLogin,
+  registerUser,
 };
 
 // .then((response) => response.json())
