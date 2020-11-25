@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Navbar, User, Playlist } from "../index";
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, User, Playlist } from '../index';
 
 const Search = ({ playLists = [], findPlayLists }) => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
 
   const onSearchHandler = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       findPlayLists(query);
     }
   };

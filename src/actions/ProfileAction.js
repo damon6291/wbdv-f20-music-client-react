@@ -2,6 +2,14 @@ export const FIND_PROFILE = 'FIND_PROFILE';
 export const FIND_PLAYLISTS = 'FIND_PLAYLISTS';
 export const FIND_MYPROFILE = 'FIND_MYPROFILE';
 export const FIND_FOLLOWING = 'FIND_FOLLOWING';
+export const ADD_USERNAME = 'ADD_USERNAME';
+
+export const addUserName = (dispatch, name) => {
+  dispatch({
+    type: ADD_USERNAME,
+    name,
+  });
+};
 
 export const findProfile = (dispatch, profile) => {
   dispatch({

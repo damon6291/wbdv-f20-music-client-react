@@ -3,9 +3,11 @@ import {
   FIND_PLAYLISTS,
   FIND_MYPROFILE,
   FIND_FOLLOWING,
+  ADD_USERNAME,
 } from '../actions/ProfileAction';
 
 const initialState = {
+  userName: '',
   profile: [],
   playlists: [],
   following: [],
@@ -13,6 +15,12 @@ const initialState = {
 
 const ProfileReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_USERNAME:
+      console.log(action.name);
+      return {
+        ...state,
+        userName: action.name,
+      };
     case FIND_PROFILE:
       return {
         ...state,

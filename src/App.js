@@ -37,11 +37,11 @@ function App() {
         />
         <Route path="/" exact component={SearchContainer.Home} />
         <Route path="/Home" exact component={SearchContainer.Home} />
-        <Route path="/Login" component={Login} />
+        <Route path="/Login" component={ProfileContainer.Login} />
         <Route path="/Register" component={Register} />
         <Route
           path="/Profile/:ownerId"
-          render={(props) => <ProfileContainer ownerId={props.match.params.ownerId} />}
+          render={(props) => <ProfileContainer.Profile ownerId={props.match.params.ownerId} />}
         />
         <Route path="/Search" component={SearchContainer.Search} />
       </Router>

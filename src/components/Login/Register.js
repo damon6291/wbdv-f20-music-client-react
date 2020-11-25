@@ -10,7 +10,17 @@ const Register = () => {
   const [Password, setPassword] = useState('');
 
   const handleRegister = () => {
-    Services.registerUser({ username: UserName, password: Password, displayName: displayName });
+    Services.registerUser({
+      userName: UserName,
+      password: Password,
+      displayName: displayName,
+    }).then((result) => {
+      if (result.message === 'success') {
+        window.location.replace('/Login');
+      } else {
+        window.location.replace('/Register');
+      }
+    });
   };
 
   return (

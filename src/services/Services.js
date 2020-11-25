@@ -39,13 +39,22 @@ export const findFollowersForUser = () =>
 export const spotifyLogin = (link) => fetch(link).then((response) => response.json());
 
 export const registerUser = (json) =>
-  fetch(`${url}registerUser`, {
+  fetch(`${url}create-user`, {
     method: 'POST',
     body: JSON.stringify(json),
     headers: {
       'content-type': 'application/json',
     },
-  }).then((response) => console.log(response));
+  }).then((response) => response.json());
+
+export const handleLogin = (json) =>
+  fetch(`${url}login`, {
+    method: 'POST',
+    body: JSON.stringify(json),
+    headers: {
+      'content-type': 'application/json',
+    },
+  }).then((response) => response.json());
 
 export default {
   searchForPlaylists,
@@ -56,6 +65,7 @@ export default {
   findFollowersForUser,
   spotifyLogin,
   registerUser,
+  handleLogin,
 };
 
 // .then((response) => response.json())

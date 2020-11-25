@@ -1,15 +1,25 @@
 import { connect } from 'react-redux';
 import Profile from '../components/Profile/Profile';
-import { findProfile, findPlaylists, findMyProfile, findFollowing } from '../actions/ProfileAction';
+import Navbar from '../components/Navbar/Navbar';
+import Login from '../components/Login/Login';
+import {
+  findProfile,
+  findPlaylists,
+  findMyProfile,
+  findFollowing,
+  addUserName,
+} from '../actions/ProfileAction';
 import Service from '../services/Services';
 
 const stateToPropertyMapper = (state) => ({
+  userName: state.ProfileReducer.userName,
   profile: state.ProfileReducer.profile,
   playlists: state.ProfileReducer.playlists,
   following: state.ProfileReducer.following,
 });
 
 const propertyToDispatchMapper = (dispatch) => ({
+  addUserName: (name) => addUserName(dispatch, name),
   findProfile: (json) =>
     Service.findProfile(json).then((profile) => {
       findProfile(dispatch, profile);
@@ -31,4 +41,7 @@ const propertyToDispatchMapper = (dispatch) => ({
     }),
 });
 
-export default connect(stateToPropertyMapper, propertyToDispatchMapper)(Profile);
+export default {
+  Profile: connect(stateToPropertyMapper, propertyToDispatchMapper)(Profile),
+  Login: connect(stateToPropertyMapper, propertyToDispatchMapper)(Login),
+};

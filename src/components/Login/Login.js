@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import Navbar from '../Navbar/Navbar';
+import Services from '../../services/Services';
 
-const Login = () => {
+const Login = ({ addUserName }) => {
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = () => {
+    Services.handleLogin({ userName: userName, password: password }).then((result) => {
+      if (result.message === 'success') {
+        addUserName(userName);
+        window.location.replace('/Home');
+      } else {
+        window.location.replace('/Login');
+      }
+    });
+  };
   return (
     <React.Fragment>
       <Navbar />
@@ -22,7 +36,13 @@ const Login = () => {
             Username
           </label>
           <div className="col-sm-10">
-            <input id="username" placeholder="..." type="text" className="form-control shadow" />
+            <input
+              id="username"
+              placeholder="..."
+              type="text"
+              className="form-control shadow"
+              onChange={(e) => setUserName(e.target.value)}
+            />
           </div>
         </div>
 
@@ -37,13 +57,17 @@ const Login = () => {
               className="form-control shadow"
               id="inputPassword"
               placeholder="123qwe!@#"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </div>
 
         <div className="form-group row">
-          <button className="m-2 btn btn-block btn-success">Sign In</button>
+          <button className="m-2 btn btn-block btn-success" onClick={() => handleLogin()}>
+            Sign in
+          </button>
         </div>
+
         <a className="mt-4 float-left font-weight-bold">I don't have an account!</a>
 
         <a href="#" className="float-right mt-4 font-weight-bold">

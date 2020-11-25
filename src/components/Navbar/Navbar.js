@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { url } from '../../utils/constant';
-import Services from '../../services/Services';
+import { connect } from 'react-redux';
 
 // Import in this order for responsive nav toggle to work!
 import '../../../node_modules/jquery/dist/jquery.min.js';
@@ -17,7 +17,7 @@ import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
 import exampleImg from '../../assets/damon.jpg';
 
-const Navbar = (loggedIn) => {
+const Navbar = ({ userName, loggedIn = true }) => {
   return (
     <nav className="navbar sticky-top navbar-dark bg-dark navbar-expand-md shadow-lg ">
       <span className="navbar-brand font-weight-bold">(logo)</span>
@@ -35,7 +35,6 @@ const Navbar = (loggedIn) => {
 
       <div className="collapse navbar-collapse " id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto ">
-          {console.log(loggedIn)}
           {loggedIn.loggedIn ? (
             <React.Fragment>
               <li className="nav-item">
@@ -82,21 +81,22 @@ const Navbar = (loggedIn) => {
           </li> */}
         </ul>
 
-        <a className="float-right text-white" href="#">
+        <a className="float-right text-white" href={`${url}spotifylogin/damon629`}>
           <img
             style={{ height: '35px' }}
             alt="user"
             className="rounded-circle mr-2"
             src={exampleImg}
-            onClick={() => {
-              Services.spotifyLogin(`${url}spotifylogin/username`);
-            }}
           />
-          (username)
+          {userName}
         </a>
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+const stateToPropertyMapper = (state) => ({
+  userName: state.ProfileReducer.userName,
+});
+
+export default connect(stateToPropertyMapper)(Navbar);
