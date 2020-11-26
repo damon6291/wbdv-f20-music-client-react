@@ -57,6 +57,12 @@ const Navbar = ({ userId, image, profile }) => {
           ) : (
             <React.Fragment>
               <li className="nav-item">
+                <Link className="nav-link" to="/Home">
+                  <FontAwesomeIcon icon={faHome} />
+                  &nbsp; Home
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to="/Login">
                   <FontAwesomeIcon icon={faSignInAlt} />
                   &nbsp; Login
@@ -68,15 +74,14 @@ const Navbar = ({ userId, image, profile }) => {
                   &nbsp; Register
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/Search">
+                  <FontAwesomeIcon icon={faSearch} />
+                  &nbsp; Search
+                </Link>
+              </li>
             </React.Fragment>
           )}
-
-          {/* <li className="nav-item">
-            <Link className="nav-link" to="/Details">
-              <FontAwesomeIcon icon={faListOl} />
-              &nbsp; Details
-            </Link>
-          </li> */}
         </ul>
 
         <a className="float-right text-white" href={`${url}spotifylogin/damon629`}>

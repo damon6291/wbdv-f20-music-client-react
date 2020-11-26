@@ -4,6 +4,7 @@ import 'animate.css';
 import Navbar from '../Navbar/Navbar';
 import Services from '../../services/Services';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = ({ addUserName }) => {
   const [userName, setUserName] = useState('');
@@ -71,7 +72,9 @@ const Login = ({ addUserName }) => {
           </button>
         </div>
 
-        <a className="mt-4 float-left font-weight-bold">I don't have an account!</a>
+        <Link to="/Register" className="mt-4 float-left font-weight-bold">
+          I don't have an account!
+        </Link>
 
         <a href="#" className="float-right mt-4 font-weight-bold">
           I forgot my password!

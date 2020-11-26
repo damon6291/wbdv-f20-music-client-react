@@ -1,7 +1,12 @@
 import React from 'react';
 import './App.css';
 import { Register, Home } from './components/index';
-import { SearchContainer, DetailsContainer, ProfileContainer } from './containers/index';
+import {
+  SearchContainer,
+  DetailsContainer,
+  ProfileContainer,
+  HomeContainer,
+} from './containers/index';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -10,11 +15,13 @@ import playListReducer from './reducers/playListReducer';
 // for large Playlist display || used on PlaylistDetails page || includes inner track details
 import DetailsReducer from './reducers/DetailsReducer';
 import ProfileReducer from './reducers/ProfileReducer';
+import HomeReducer from './reducers/HomeReducer';
 
 const allReducer = combineReducers({
   playListReducer,
   DetailsReducer,
   ProfileReducer,
+  HomeReducer,
 });
 
 const store = createStore(allReducer);
@@ -35,19 +42,19 @@ function App() {
             <DetailsContainer {...props} playlistId={props.match.params.playlistId} />
           )}
         />
-        <Route path="/" exact component={Home} />
-        <Route path="/Home" exact component={Home} />
+        <Route path="/" exact component={HomeContainer} />
+        <Route path="/Home" exact component={HomeContainer} />
         <Route path="/Login" component={ProfileContainer.Login} />
         <Route path="/Register" component={Register} />
         <Route
           path="/Profile/:ownerId"
           render={(props) => <ProfileContainer.Profile ownerId={props.match.params.ownerId} />}
         />
-        <Route path="/Search" exact component={SearchContainer.Search} />
+        <Route path="/Search" exact component={SearchContainer} />
         <Route
           path="/Search/:query"
           exact
-          render={(props) => <SearchContainer.Search input={props.match.params.query} />}
+          render={(props) => <SearchContainer input={props.match.params.query} />}
         />
       </Router>
     </Provider>

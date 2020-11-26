@@ -5,6 +5,7 @@ import Navbar from '../Navbar/Navbar';
 import Services from '../../services/Services';
 import { useHistory } from 'react-router-dom';
 import { url } from '../../utils/constant';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [displayName, setDisplayName] = useState('');
@@ -104,7 +105,9 @@ const Register = () => {
             Create my profile!
           </button>
         </div>
-        <a className="m-2 float-right font-weight-bold">Already have an account?</a>
+        <Link to="/Login" className="m-2 float-right font-weight-bold">
+          Already have an account?
+        </Link>
 
         {/* <a href="#" className="float-right mt-2">
 				I forgot my password!

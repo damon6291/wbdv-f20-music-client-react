@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { Search } from '../components';
+import Search from '../components/Search/Search';
 import { findPlayLists, findUsers } from '../actions/playListAction';
 import Service from '../services/Services';
 
@@ -12,7 +12,7 @@ const propertyToDispatchMapper = (dispatch) => ({
   findPlayLists: (json) =>
     Service.searchForPlaylists(json).then((playLists) => {
       console.log(playLists);
-      findPlayLists(dispatch, playLists.playlists.items);
+      findPlayLists(dispatch, playLists);
     }),
   findUsers: (query) =>
     Service.findUsers(query).then((users) => {
@@ -20,6 +20,4 @@ const propertyToDispatchMapper = (dispatch) => ({
     }),
 });
 
-export default {
-  Search: connect(stateToPropertyMapper, propertyToDispatchMapper)(Search),
-};
+export default connect(stateToPropertyMapper, propertyToDispatchMapper)(Search);

@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import './HomePage.css';
-import { connect } from 'react-redux';
-import Navbar from '../Navbar/Navbar';
 import Post from './Post';
-import Playlist from '../Playlist/Playlist';
+import { Playlist, Navbar } from '../index';
 import PostCreator from './PostCreator';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -16,21 +14,18 @@ import {
   faComments,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { findProfile, findImage } from '../../actions/ProfileAction';
-import Service from '../../services/Services';
 
-const HomePage = ({ playLists = [], findPlayLists, loggedIn, findProfile, userId }) => {
+const HomePage = ({ findProfile, userId, findPlaylist, playlist = [] }) => {
   useEffect(() => {
-    const getData = async () => {
-      await findPlayLists('top');
-    };
-    // getData();
-    findProfile(userId);
-  }, []);
+    if (userId !== '') {
+      findProfile(userId);
+    }
+    findPlaylist('top');
+  }, [userId]);
 
   return (
     <React.Fragment>
-      <Navbar loggedIn={loggedIn} />
+      <Navbar />
       <div className="container-fluid animate__animated animate__fadeIn">
         <div className="row">
           <div
@@ -142,33 +137,10 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn, findProfile, userId
               </h4>
               <hr></hr>
               {/* Replace dummy objects with a mapping over Spotify API call w/ preset search phrase, then parse*/}
-              <Playlist
-                playList={{
-                  id: '',
-                  images: [
-                    {
-                      url:
-                        'https://upload.wikimedia.org/wikipedia/en/a/ae/Drake_-_Take_Care_cover.jpg',
-                    },
-                  ],
-                  name: 'Playlist title',
-                  description: 'A description would be here',
-                  owner: { display_name: 'user1' },
-                }}
-              />
-              <Playlist
-                playList={{
-                  id: '',
-                  images: [
-                    {
-                      url: 'https://upload.wikimedia.org/wikipedia/en/c/c8/CarterIII.jpg',
-                    },
-                  ],
-                  name: 'Example',
-                  description: 'Something',
-                  owner: { display_name: 'anotherUser' },
-                }}
-              />
+              {playlist.map((item, id) => {
+                console.log(item);
+                return <Playlist key={id} playList={item} />;
+              })}
             </div>
           </div>
         </div>
@@ -177,21 +149,4 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn, findProfile, userId
   );
 };
 
-const stateToPropertyMapper = (state) => ({
-  userId: state.ProfileReducer.userId,
-  profile: state.ProfileReducer.profile,
-  image: state.ProfileReducer.image,
-});
-
-const propertyToDispatchMapper = (dispatch) => ({
-  findProfile: (json) => {
-    Service.findProfile(json).then((profile) => {
-      findProfile(dispatch, profile);
-    });
-    Service.findImage(json).then((sprofile) => {
-      findImage(dispatch, sprofile.images[0].url);
-    });
-  },
-});
-
-export default connect(stateToPropertyMapper, propertyToDispatchMapper)(HomePage);
+export default HomePage;

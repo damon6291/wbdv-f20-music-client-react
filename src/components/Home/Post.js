@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import exampleImg from "../../assets/damon.jpg";
-import Playlist from "../Playlist/Playlist";
+import exampleImg from '../../assets/damon.jpg';
+import { Playlist } from '../index';
 
 const Post = ({ postData }) => {
   return (
@@ -9,7 +9,7 @@ const Post = ({ postData }) => {
       <div className="row">
         <div className="col d-flex flex-row ">
           <img
-            style={{ height: "30px" }}
+            style={{ height: '30px' }}
             alt="user"
             className="rounded-circle mt-1 mr-2"
             src={exampleImg}
@@ -19,23 +19,19 @@ const Post = ({ postData }) => {
       </div>
       <div className="row">
         <div className="col">
-          <hr className="m-2" style={{ color: "black", size: "1px" }}></hr>
-          <p>
-            Check out some of my favorite songs on my new playlist. Let me know
-            if you like it!
-          </p>
+          <hr className="m-2" style={{ color: 'black', size: '1px' }}></hr>
+          <p>Check out some of my favorite songs on my new playlist. Let me know if you like it!</p>
           <Playlist
             playList={{
-              id: "",
+              id: '',
               images: [
                 {
-                  url:
-                    "https://upload.wikimedia.org/wikipedia/en/9/93/KendrickGKMC.jpg",
+                  url: 'https://upload.wikimedia.org/wikipedia/en/9/93/KendrickGKMC.jpg',
                 },
               ],
-              name: "Title goes here",
-              description: "Something",
-              owner: { display_name: "someUsername" },
+              name: 'Title goes here',
+              description: 'Something',
+              owner: { display_name: 'someUsername' },
             }}
           />
         </div>

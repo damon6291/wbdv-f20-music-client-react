@@ -47,7 +47,11 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
                   <h2 className="mt-3 font-weight-bold">
                     <FontAwesomeIcon icon={faMusic} />
                     &nbsp;{details.name} &nbsp;
-                    <small>by {exist(details) ? details.owner.display_name : null}</small>
+                    <a
+                      className="text-secondary"
+                      href={exist(details) ? details.owner.external_urls.spotify : ''}>
+                      <small>by {exist(details) ? details.owner.display_name : null}</small>
+                    </a>
                   </h2>
                   <h5 className="text-muted">{details.description}</h5>
                   <h6 className="text-muted">total runtime - {Utils.msToHMS(totalRuntime)}</h6>

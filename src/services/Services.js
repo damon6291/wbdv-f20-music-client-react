@@ -36,6 +36,12 @@ export const handleLogin = (json) =>
 export const findUsers = (query) =>
   fetch(`${url}find-users/${query}`).then((response) => response.json());
 
+export const findUserIdBySpotifyId = (id) => {
+  fetch(`${url}find-user/spotifyId/${id}`)
+    .then((response) => response.json())
+    .then((result) => result._id);
+};
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
@@ -45,6 +51,7 @@ export default {
   registerUser,
   handleLogin,
   findUsers,
+  findUserIdBySpotifyId,
 };
 
 // .then((response) => response.json())

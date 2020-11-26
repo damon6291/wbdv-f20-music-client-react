@@ -6,16 +6,15 @@ import backgroundImg from '../../assets/background.jpg';
 import Utils from '../../utils/utils';
 
 const Profile = ({ ownerId, profile = [], findProfile, playlists = [], findPlaylists, image }) => {
-  const getData = async () => {
-    findProfile(ownerId);
-    findPlaylists(ownerId);
-  };
-
   const exist = (item) => Utils.exist(item);
 
   useEffect(() => {
+    const getData = async () => {
+      findProfile(ownerId);
+      findPlaylists(ownerId);
+    };
     getData();
-  }, []);
+  }, [ownerId]);
 
   return (
     <React.Fragment>
@@ -39,7 +38,8 @@ const Profile = ({ ownerId, profile = [], findProfile, playlists = [], findPlayl
               <div className="w-75">
                 <h3 className="border-bottom pl-4 pb-3">Playlists</h3>
                 {exist(playlists) &&
-                  playlists.items.map((playList, id) => {
+                  playlists.map((playList, id) => {
+                    console.log(playList);
                     return <Playlist key={id} playList={playList} />;
                   })}
               </div>

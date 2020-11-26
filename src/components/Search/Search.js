@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, User, Playlist } from '../index';
-import { clienturl } from '../../utils/constant';
+import { useHistory } from 'react-router-dom';
 
 const Search = ({ playLists = [], findPlayLists, findUsers, users = [], input }) => {
   const [query, setQuery] = useState(input);
+  const history = useHistory();
 
   const onSearchHandler = (e) => {
     if (e.key === 'Enter') {
-      window.location.assign(`${clienturl}search/${query}`);
+      history.push(`/Search/${query}`);
     }
   };
 
@@ -38,6 +39,7 @@ const Search = ({ playLists = [], findPlayLists, findUsers, users = [], input })
                 <h3 className="border-bottom pl-4 pb-3">Playlists</h3>
 
                 {playLists.map((playList, id) => {
+                  console.log(playList);
                   return <Playlist key={id} playList={playList} />;
                 })}
               </div>
