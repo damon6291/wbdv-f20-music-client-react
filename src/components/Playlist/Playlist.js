@@ -1,8 +1,8 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../../App.css";
-import Utils from "../../utils/utils";
-import { Link } from "react-router-dom";
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../App.css';
+import Utils from '../../utils/utils';
+import { Link } from 'react-router-dom';
 
 const Playlist = ({ playList: { id, name, description, images, owner } }) => {
   return (
@@ -15,19 +15,13 @@ const Playlist = ({ playList: { id, name, description, images, owner } }) => {
         />
         <div className="d-flex flex-column">
           <Link to={`/Details/${id}`} className="text-dark">
-            {name ? name : "Null Name"}
+            {name ? name : 'Null Name'}
           </Link>
           <span>
-            <small>
-              {description.length < 55
-                ? description
-                : Utils.cutWord(description, 55)}
-            </small>
+            <small>{description.length < 55 ? description : Utils.cutWord(description, 55)}</small>
           </span>
-          <span>
-            <Link to={`/Profile/${owner.id}`} className="text-secondary">
-              <small>Created by {owner.display_name}</small>
-            </Link>
+          <span className="text-secondary">
+            <small>Created by {owner.display_name}</small>
           </span>
         </div>
       </div>

@@ -34,13 +34,13 @@
 
 body {
   /* background-color: #bfd1e5 !important; */
-  background: repeating-linear-gradient(
+  /* background: repeating-linear-gradient(
     70deg,
     #647aa3,
     #647aa3 30px,
     #7e91b4 30px,
     #7e91b4 60px
-  );
+  ); */
 }
 
 .webdv-playlist-style {

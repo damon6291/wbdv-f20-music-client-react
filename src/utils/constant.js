@@ -3,6 +3,7 @@
 
 //For test server
 export const url = 'http://localhost:8080/api/';
+export const clienturl = 'http://localhost:3000/';
 
 //Damon test server
 //export const url = 'http://localhost:8888/api/';

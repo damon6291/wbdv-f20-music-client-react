@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import { Search, Home } from '../components';
-import { findPlayLists } from '../actions/playListAction';
+import { Search } from '../components';
+import { findPlayLists, findUsers } from '../actions/playListAction';
 import Service from '../services/Services';
 
 const stateToPropertyMapper = (state) => ({
   playLists: state.playListReducer.playLists,
-  loggedIn: true, // dummy value, dynamically update with account system
+  users: state.playListReducer.users,
 });
 
 const propertyToDispatchMapper = (dispatch) => ({
@@ -14,9 +14,12 @@ const propertyToDispatchMapper = (dispatch) => ({
       console.log(playLists);
       findPlayLists(dispatch, playLists.playlists.items);
     }),
+  findUsers: (query) =>
+    Service.findUsers(query).then((users) => {
+      findUsers(dispatch, users);
+    }),
 });
 
 export default {
   Search: connect(stateToPropertyMapper, propertyToDispatchMapper)(Search),
-  Home: connect(stateToPropertyMapper, propertyToDispatchMapper)(Home),
 };

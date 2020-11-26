@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, User, Playlist } from '../index';
+import { clienturl } from '../../utils/constant';
 
-const Search = ({ playLists = [], findPlayLists }) => {
-  const [query, setQuery] = useState('');
+const Search = ({ playLists = [], findPlayLists, findUsers, users = [], input }) => {
+  const [query, setQuery] = useState(input);
 
   const onSearchHandler = (e) => {
     if (e.key === 'Enter') {
-      findPlayLists(query);
+      window.location.assign(`${clienturl}search/${query}`);
     }
   };
+
+  useEffect(() => {
+    if (input !== undefined) {
+      findPlayLists(query);
+      findUsers(query);
+    }
+  }, [input]);
 
   return (
     <React.Fragment>
       <Navbar />
+      {console.log(users)}
       <div className="container animate__animated animate__fadeIn">
         <div className="d-flex flex-column justify-content-center">
           <input
@@ -29,7 +38,6 @@ const Search = ({ playLists = [], findPlayLists }) => {
                 <h3 className="border-bottom pl-4 pb-3">Playlists</h3>
 
                 {playLists.map((playList, id) => {
-                  console.log(playList);
                   return <Playlist key={id} playList={playList} />;
                 })}
               </div>
@@ -37,6 +45,10 @@ const Search = ({ playLists = [], findPlayLists }) => {
             <div className="col-4">
               <div className="w-100">
                 <h3 className="border-bottom pl-4 pb-3">Users</h3>
+                {users.map((user, id) => {
+                  console.log(user);
+                  return <User key={id} userId={user} />;
+                })}
               </div>
             </div>
           </div>

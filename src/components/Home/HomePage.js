@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './HomePage.css';
-
+import { connect } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 import Post from './Post';
 import Playlist from '../Playlist/Playlist';
@@ -16,13 +16,16 @@ import {
   faComments,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { findProfile, findImage } from '../../actions/ProfileAction';
+import Service from '../../services/Services';
 
-const HomePage = ({ playLists = [], findPlayLists, loggedIn }) => {
+const HomePage = ({ playLists = [], findPlayLists, loggedIn, findProfile, userId }) => {
   useEffect(() => {
     const getData = async () => {
       await findPlayLists('top');
     };
     // getData();
+    findProfile(userId);
   }, []);
 
   return (
@@ -41,7 +44,7 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn }) => {
                 // opacity: "85%"
               }
             }>
-            {loggedIn ? (
+            {userId !== '' ? (
               <div className="d-flex flex-column align-self-center">
                 <Link
                   style={{ textDecoration: 'none' }}
@@ -91,7 +94,7 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn }) => {
             )}
           </div>
           <div className="col-7 mt-3">
-            {loggedIn ? (
+            {userId !== '' ? (
               <React.Fragment>
                 <h4 className="text-right font-weight-bold">
                   <span
@@ -174,4 +177,21 @@ const HomePage = ({ playLists = [], findPlayLists, loggedIn }) => {
   );
 };
 
-export default HomePage;
+const stateToPropertyMapper = (state) => ({
+  userId: state.ProfileReducer.userId,
+  profile: state.ProfileReducer.profile,
+  image: state.ProfileReducer.image,
+});
+
+const propertyToDispatchMapper = (dispatch) => ({
+  findProfile: (json) => {
+    Service.findProfile(json).then((profile) => {
+      findProfile(dispatch, profile);
+    });
+    Service.findImage(json).then((sprofile) => {
+      findImage(dispatch, sprofile.images[0].url);
+    });
+  },
+});
+
+export default connect(stateToPropertyMapper, propertyToDispatchMapper)(HomePage);

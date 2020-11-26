@@ -15,9 +15,7 @@ import { connect } from 'react-redux';
 import '../../../node_modules/jquery/dist/jquery.min.js';
 import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
-import exampleImg from '../../assets/damon.jpg';
-
-const Navbar = ({ userName, loggedIn = true }) => {
+const Navbar = ({ userId, image, profile }) => {
   return (
     <nav className="navbar sticky-top navbar-dark bg-dark navbar-expand-md shadow-lg ">
       <span className="navbar-brand font-weight-bold">(logo)</span>
@@ -35,7 +33,7 @@ const Navbar = ({ userName, loggedIn = true }) => {
 
       <div className="collapse navbar-collapse " id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto ">
-          {loggedIn.loggedIn ? (
+          {userId !== '' ? (
             <React.Fragment>
               <li className="nav-item">
                 <Link className="nav-link" to="/Home">
@@ -44,7 +42,7 @@ const Navbar = ({ userName, loggedIn = true }) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/Profile/spotify">
+                <Link className="nav-link" to={`/Profile/${userId}`}>
                   <FontAwesomeIcon icon={faUserCircle} />
                   &nbsp; Profile
                 </Link>
@@ -82,13 +80,8 @@ const Navbar = ({ userName, loggedIn = true }) => {
         </ul>
 
         <a className="float-right text-white" href={`${url}spotifylogin/damon629`}>
-          <img
-            style={{ height: '35px' }}
-            alt="user"
-            className="rounded-circle mr-2"
-            src={exampleImg}
-          />
-          {userName}
+          <img style={{ height: '35px' }} alt="user" className="rounded-circle mr-2" src={image} />
+          {profile.displayName}
         </a>
       </div>
     </nav>
@@ -96,7 +89,9 @@ const Navbar = ({ userName, loggedIn = true }) => {
 };
 
 const stateToPropertyMapper = (state) => ({
-  userName: state.ProfileReducer.userName,
+  userId: state.ProfileReducer.userId,
+  image: state.ProfileReducer.image,
+  profile: state.ProfileReducer.profile,
 });
 
 export default connect(stateToPropertyMapper)(Navbar);

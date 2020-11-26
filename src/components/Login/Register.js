@@ -3,11 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import Navbar from '../Navbar/Navbar';
 import Services from '../../services/Services';
+import { useHistory } from 'react-router-dom';
+import { url } from '../../utils/constant';
 
 const Register = () => {
   const [displayName, setDisplayName] = useState('');
   const [UserName, setUserName] = useState('');
   const [Password, setPassword] = useState('');
+  const history = useHistory();
 
   const handleRegister = () => {
     Services.registerUser({
@@ -16,9 +19,10 @@ const Register = () => {
       displayName: displayName,
     }).then((result) => {
       if (result.message === 'success') {
-        window.location.replace('/Login');
+        window.location.assign(`${url}spotifylogin/${UserName}`);
+        //history.push('/Login');
       } else {
-        window.location.replace('/Register');
+        history.push('/Register');
       }
     });
   };

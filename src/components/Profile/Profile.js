@@ -5,26 +5,13 @@ import { Navbar, Playlist, User } from '../index';
 import backgroundImg from '../../assets/background.jpg';
 import Utils from '../../utils/utils';
 
-const Profile = ({
-  ownerId,
-  profile = [],
-  findProfile,
-  playlists = [],
-  findPlaylists,
-  findMyProfile,
-  following = [],
-}) => {
+const Profile = ({ ownerId, profile = [], findProfile, playlists = [], findPlaylists, image }) => {
   const getData = async () => {
-    if (ownerId === 'myprofile') {
-      findMyProfile();
-    } else {
-      findProfile(ownerId);
-      findPlaylists(ownerId);
-    }
+    findProfile(ownerId);
+    findPlaylists(ownerId);
   };
 
   const exist = (item) => Utils.exist(item);
-  const images = profile.images;
 
   useEffect(() => {
     getData();
@@ -34,19 +21,14 @@ const Profile = ({
     <React.Fragment>
       <Navbar />
       <div className="animate__animated animate__fadeIn">
-        {console.log(following)}
         <img src={backgroundImg} alt="background" className="background-image shadow" />
         <div className="container position-relative profile-position">
           <div className="d-flex align-items-end px-5">
-            <img
-              src={exist(profile) && exist(images) ? images[0].url : null}
-              alt="profile"
-              className="profile-image border mr-4 shadow"
-            />
+            <img src={image} alt="profile" className="profile-image border mr-4 shadow" />
             <div className="d-flex flex-column">
-              <h4 className="mb-2">{profile.display_name}</h4>
+              <h4 className="mb-2">{profile.displayName}</h4>
               <span className="text-secondary mb-2">
-                <small>Followers: {exist(profile) && profile.followers.total}</small>
+                <small>Followers: {exist(profile) && profile.followers.length}</small>
               </span>
             </div>
             <button className="btn btn-danger h-25 ml-auto px-2 py-1 mb-4">Follow</button>
@@ -65,17 +47,9 @@ const Profile = ({
             <div className="col-4">
               <div className="w-100">
                 <h3 className="border-bottom pl-4 pb-3">Followers</h3>
-                {exist(following) &&
-                  following.artists.items.map((artist, id) => {
-                    console.log(artist);
-                    return (
-                      <User
-                        key={id}
-                        img={exist(artist.images) ? artist.images[0].url : null}
-                        name={artist.name}
-                        followers={artist.followers.total}
-                      />
-                    );
+                {exist(profile) &&
+                  profile.followers.map((userId, id) => {
+                    return <User key={id} userId={userId} />;
                   })}
               </div>
             </div>

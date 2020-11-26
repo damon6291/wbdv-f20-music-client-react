@@ -1,16 +1,10 @@
-import {
-  FIND_PROFILE,
-  FIND_PLAYLISTS,
-  FIND_MYPROFILE,
-  FIND_FOLLOWING,
-  ADD_USERNAME,
-} from '../actions/ProfileAction';
+import { FIND_PROFILE, FIND_PLAYLISTS, ADD_USERNAME, FIND_IMAGE } from '../actions/ProfileAction';
 
 const initialState = {
-  userName: '',
+  userId: '',
   profile: [],
   playlists: [],
-  following: [],
+  image: '',
 };
 
 const ProfileReducer = (state = initialState, action) => {
@@ -19,7 +13,7 @@ const ProfileReducer = (state = initialState, action) => {
       console.log(action.name);
       return {
         ...state,
-        userName: action.name,
+        userId: action.name,
       };
     case FIND_PROFILE:
       return {
@@ -32,16 +26,12 @@ const ProfileReducer = (state = initialState, action) => {
         ...state,
         playlists: action.playlists,
       };
-    case FIND_MYPROFILE:
-      return {
-        playlists: action.playlists,
-        profile: action.profile,
-      };
-    case FIND_FOLLOWING:
+    case FIND_IMAGE:
       return {
         ...state,
-        following: action.following,
+        image: action.image,
       };
+
     default:
       return state;
   }

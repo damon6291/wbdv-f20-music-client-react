@@ -1,8 +1,7 @@
 export const FIND_PROFILE = 'FIND_PROFILE';
 export const FIND_PLAYLISTS = 'FIND_PLAYLISTS';
-export const FIND_MYPROFILE = 'FIND_MYPROFILE';
-export const FIND_FOLLOWING = 'FIND_FOLLOWING';
 export const ADD_USERNAME = 'ADD_USERNAME';
+export const FIND_IMAGE = 'FIND_IMAGE';
 
 export const addUserName = (dispatch, name) => {
   dispatch({
@@ -25,16 +24,9 @@ export const findPlaylists = (dispatch, playlists) => {
   });
 };
 
-export const findMyProfile = (dispatch, profile) => {
+export const findImage = (dispatch, image) => {
   dispatch({
-    type: FIND_MYPROFILE,
-    profile,
-  });
-};
-
-export const findFollowing = (dispatch, following) => {
-  dispatch({
-    type: FIND_FOLLOWING,
-    following,
+    type: FIND_IMAGE,
+    image,
   });
 };

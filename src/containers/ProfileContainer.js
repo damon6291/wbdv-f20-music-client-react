@@ -1,43 +1,29 @@
 import { connect } from 'react-redux';
 import Profile from '../components/Profile/Profile';
-import Navbar from '../components/Navbar/Navbar';
 import Login from '../components/Login/Login';
-import {
-  findProfile,
-  findPlaylists,
-  findMyProfile,
-  findFollowing,
-  addUserName,
-} from '../actions/ProfileAction';
+import { findProfile, findPlaylists, addUserName, findImage } from '../actions/ProfileAction';
 import Service from '../services/Services';
 
 const stateToPropertyMapper = (state) => ({
-  userName: state.ProfileReducer.userName,
+  userId: state.ProfileReducer.userId,
   profile: state.ProfileReducer.profile,
   playlists: state.ProfileReducer.playlists,
-  following: state.ProfileReducer.following,
+  image: state.ProfileReducer.image,
 });
 
 const propertyToDispatchMapper = (dispatch) => ({
   addUserName: (name) => addUserName(dispatch, name),
-  findProfile: (json) =>
+  findProfile: (json) => {
     Service.findProfile(json).then((profile) => {
       findProfile(dispatch, profile);
-    }),
+    });
+    Service.findImage(json).then((sprofile) => {
+      findImage(dispatch, sprofile.images[0].url);
+    });
+  },
   findPlaylists: (query) =>
     Service.findPlaylistsForUser(query).then((playlists) => {
       findPlaylists(dispatch, playlists);
-    }),
-  findMyProfile: () =>
-    Service.findMyProfile().then((profile) => {
-      findMyProfile(dispatch, profile);
-      console.log(profile.id);
-      Service.findPlaylistsForUser(profile.id).then((playlists) => {
-        findPlaylists(dispatch, playlists);
-      });
-      Service.findFollowersForUser().then((following) => {
-        findFollowing(dispatch, following);
-      });
     }),
 });
 

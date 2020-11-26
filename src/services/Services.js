@@ -1,42 +1,19 @@
 import { url } from '../utils/constant';
 
 export const searchForPlaylists = (query) =>
-  fetch(`${url}playlists/${query}`)
-    .then((response) => response.json())
-    .then((results) => results.results)
-    .then((string) => JSON.parse(string));
+  fetch(`${url}playlists/${query}`).then((response) => response.json());
 
 export const getPlaylistInformation = (query) =>
-  fetch(`${url}playlist/${query}/details`)
-    .then((response) => response.json())
-    .then((result) => result.results)
-    .then((string) => JSON.parse(string));
+  fetch(`${url}playlist/${query}/details`).then((response) => response.json());
 
 export const findProfile = (query) =>
-  fetch(`${url}profile/${query}`)
-    .then((response) => response.json())
-    .then((result) => result.results)
-    .then((string) => JSON.parse(string));
-
-export const findMyProfile = () =>
-  fetch(`${url}myprofile`)
-    .then((response) => response.json())
-    .then((result) => result.results)
-    .then((string) => JSON.parse(string));
+  fetch(`${url}find-user/${query}`).then((response) => response.json());
 
 export const findPlaylistsForUser = (query) =>
-  fetch(`${url}profile/${query}/playlists`)
-    .then((response) => response.json())
-    .then((result) => result.results)
-    .then((string) => JSON.parse(string));
+  fetch(`${url}${query}/playlists`).then((response) => response.json());
 
-export const findFollowersForUser = () =>
-  fetch(`${url}myprofile/following`)
-    .then((response) => response.json())
-    .then((result) => result.results)
-    .then((string) => JSON.parse(string));
-
-export const spotifyLogin = (link) => fetch(link).then((response) => response.json());
+export const findImage = (query) =>
+  fetch(`${url}profile/${query}`).then((response) => response.json());
 
 export const registerUser = (json) =>
   fetch(`${url}create-user`, {
@@ -56,16 +33,18 @@ export const handleLogin = (json) =>
     },
   }).then((response) => response.json());
 
+export const findUsers = (query) =>
+  fetch(`${url}find-users/${query}`).then((response) => response.json());
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
   findProfile,
   findPlaylistsForUser,
-  findMyProfile,
-  findFollowersForUser,
-  spotifyLogin,
+  findImage,
   registerUser,
   handleLogin,
+  findUsers,
 };
 
 // .then((response) => response.json())

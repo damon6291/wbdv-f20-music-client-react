@@ -3,18 +3,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import Navbar from '../Navbar/Navbar';
 import Services from '../../services/Services';
+import { useHistory } from 'react-router-dom';
 
 const Login = ({ addUserName }) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const handleLogin = () => {
     Services.handleLogin({ userName: userName, password: password }).then((result) => {
-      if (result.message === 'success') {
-        addUserName(userName);
-        window.location.replace('/Home');
+      if (result.message !== 'error') {
+        console.log(result.message);
+        addUserName(result.message);
+        history.push('/Home');
       } else {
-        window.location.replace('/Login');
+        history.push('/Login');
       }
     });
   };
