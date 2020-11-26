@@ -94,9 +94,9 @@ const Navbar = ({ userId, image, profile }) => {
 };
 
 const stateToPropertyMapper = (state) => ({
-  userId: state.ProfileReducer.userId,
-  image: state.ProfileReducer.image,
-  profile: state.ProfileReducer.profile,
+  userId: state.LoginReducer.userId,
+  image: state.LoginReducer.image,
+  profile: state.LoginReducer.profile,
 });
 
 export default connect(stateToPropertyMapper)(Navbar);

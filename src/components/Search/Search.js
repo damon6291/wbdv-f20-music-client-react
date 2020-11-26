@@ -49,7 +49,7 @@ const Search = ({ playLists = [], findPlayLists, findUsers, users = [], input })
                 <h3 className="border-bottom pl-4 pb-3">Users</h3>
                 {users.map((user, id) => {
                   console.log(user);
-                  return <User key={id} userId={user} />;
+                  return <User key={id} ownerId={user} showFollower={true} />;
                 })}
               </div>
             </div>

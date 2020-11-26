@@ -5,7 +5,7 @@ import { findPlayListsForHome } from '../actions/HomeAction';
 import Service from '../services/Services';
 
 const stateToPropertyMapper = (state) => ({
-  userId: state.ProfileReducer.userId,
+  userId: state.LoginReducer.userId,
   playlist: state.HomeReducer.playlists,
 });
 

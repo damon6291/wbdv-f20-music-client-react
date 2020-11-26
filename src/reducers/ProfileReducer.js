@@ -1,7 +1,6 @@
-import { FIND_PROFILE, FIND_PLAYLISTS, ADD_USERNAME, FIND_IMAGE } from '../actions/ProfileAction';
+import { FIND_PROFILE, FIND_PLAYLISTS, FIND_IMAGE } from '../actions/ProfileAction';
 
 const initialState = {
-  userId: '',
   profile: [],
   playlists: [],
   image: '',
@@ -9,12 +8,6 @@ const initialState = {
 
 const ProfileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_USERNAME:
-      console.log(action.name);
-      return {
-        ...state,
-        userId: action.name,
-      };
     case FIND_PROFILE:
       return {
         ...state,

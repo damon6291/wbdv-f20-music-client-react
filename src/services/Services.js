@@ -42,6 +42,22 @@ export const findUserIdBySpotifyId = (id) => {
     .then((result) => result._id);
 };
 
+export const followUser = (from, to) =>
+  fetch(`${url}follow/${from}/${to}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+  }).then((response) => response.json());
+
+export const removeFollower = (from, to) =>
+  fetch(`${url}follow-remove/${from}/${to}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+  }).then((response) => response.json());
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
@@ -52,6 +68,8 @@ export default {
   handleLogin,
   findUsers,
   findUserIdBySpotifyId,
+  followUser,
+  removeFollower,
 };
 
 // .then((response) => response.json())

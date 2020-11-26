@@ -1,20 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
 import { Navbar, Playlist, User } from '../index';
 import backgroundImg from '../../assets/background.jpg';
 import Utils from '../../utils/utils';
+import { useHistory } from 'react-router-dom';
 
-const Profile = ({ ownerId, profile = [], findProfile, playlists = [], findPlaylists, image }) => {
+const Profile = ({
+  ownerId,
+  profile = [],
+  findProfile,
+  playlists = [],
+  findPlaylists,
+  image,
+  userId,
+  followUser,
+}) => {
   const exist = (item) => Utils.exist(item);
+  const history = useHistory();
+  const [showFollower, setShowFollower] = useState(true);
+
+  const getData = async () => {
+    findProfile(ownerId);
+    findPlaylists(ownerId);
+  };
 
   useEffect(() => {
-    const getData = async () => {
-      findProfile(ownerId);
-      findPlaylists(ownerId);
-    };
     getData();
-  }, [ownerId]);
+  }, [ownerId, showFollower]);
+
+  const onFollowHandler = async () => {
+    await followUser(userId, ownerId);
+    await findProfile(ownerId);
+    history.push(`/Profile/${ownerId}`);
+  };
 
   return (
     <React.Fragment>
@@ -30,27 +49,48 @@ const Profile = ({ ownerId, profile = [], findProfile, playlists = [], findPlayl
                 <small>Followers: {exist(profile) && profile.followers.length}</small>
               </span>
             </div>
-            <button className="btn btn-danger h-25 ml-auto px-2 py-1 mb-4">Follow</button>
+            {userId === '' || userId === ownerId ? (
+              ''
+            ) : (
+              <button
+                className="btn btn-danger h-25 ml-auto px-2 py-1 mb-4"
+                onClick={() => onFollowHandler()}>
+                Follow
+              </button>
+            )}
           </div>
 
           <div className="d-flex mt-5">
             <div className="col-8">
               <div className="w-75">
-                <h3 className="border-bottom pl-4 pb-3">Playlists</h3>
+                <div className="border-bottom pl-4 pb-3">
+                  <h3>Playlists</h3>
+                </div>
                 {exist(playlists) &&
                   playlists.map((playList, id) => {
-                    console.log(playList);
                     return <Playlist key={id} playList={playList} />;
                   })}
               </div>
             </div>
             <div className="col-4">
               <div className="w-100">
-                <h3 className="border-bottom pl-4 pb-3">Followers</h3>
-                {exist(profile) &&
-                  profile.followers.map((userId, id) => {
-                    return <User key={id} userId={userId} />;
-                  })}
+                <div
+                  className="border-bottom pl-4 pb-3 row"
+                  onClick={() => setShowFollower(!showFollower)}>
+                  <h3 className={showFollower ? '' : 'text-muted'}>Follower</h3> &nbsp; <h3>/</h3>{' '}
+                  &nbsp; <h3 className={showFollower ? 'text-muted' : ''}>Following</h3>
+                </div>
+                {showFollower
+                  ? exist(profile) &&
+                    exist(profile.followers) &&
+                    profile.followers.map((user, id) => {
+                      return <User key={id} ownerId={user} showFollower={true} />;
+                    })
+                  : exist(profile) &&
+                    exist(profile.followings) &&
+                    profile.followings.map((user, id) => {
+                      return <User key={id} ownerId={user} showFollower={false} />;
+                    })}
               </div>
             </div>
           </div>

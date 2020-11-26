@@ -14,7 +14,6 @@ const Login = ({ addUserName }) => {
   const handleLogin = () => {
     Services.handleLogin({ userName: userName, password: password }).then((result) => {
       if (result.message !== 'error') {
-        console.log(result.message);
         addUserName(result.message);
         history.push('/Home');
       } else {

@@ -6,6 +6,7 @@ import {
   DetailsContainer,
   ProfileContainer,
   HomeContainer,
+  LoginContainer,
 } from './containers/index';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { createStore, combineReducers } from 'redux';
@@ -16,12 +17,14 @@ import playListReducer from './reducers/playListReducer';
 import DetailsReducer from './reducers/DetailsReducer';
 import ProfileReducer from './reducers/ProfileReducer';
 import HomeReducer from './reducers/HomeReducer';
+import LoginReducer from './reducers/LoginReducer';
 
 const allReducer = combineReducers({
   playListReducer,
   DetailsReducer,
   ProfileReducer,
   HomeReducer,
+  LoginReducer,
 });
 
 const store = createStore(allReducer);
@@ -44,11 +47,11 @@ function App() {
         />
         <Route path="/" exact component={HomeContainer} />
         <Route path="/Home" exact component={HomeContainer} />
-        <Route path="/Login" component={ProfileContainer.Login} />
+        <Route path="/Login" component={LoginContainer} />
         <Route path="/Register" component={Register} />
         <Route
           path="/Profile/:ownerId"
-          render={(props) => <ProfileContainer.Profile ownerId={props.match.params.ownerId} />}
+          render={(props) => <ProfileContainer ownerId={props.match.params.ownerId} />}
         />
         <Route path="/Search" exact component={SearchContainer} />
         <Route

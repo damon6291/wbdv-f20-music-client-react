@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
-import Services from '../../services/Services';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Service from '../../services/Services';
 
-const User = ({ userId: { _id } }) => {
+const User = ({ ownerId: { _id }, userId, showFollower, followUser, removeUser }) => {
   const [name, setName] = useState('');
   const [followers, setFollowers] = useState([]);
   const [image, setImage] = useState('');
 
   useEffect(() => {
-    console.log(_id);
-    Services.findProfile(_id).then((result) => {
+    Service.findProfile(_id).then((result) => {
       setName(result.userName);
       setFollowers(result.followers);
     });
-    Services.findImage(_id).then((result) => {
-      console.log(result);
+    Service.findImage(_id).then((result) => {
       setImage(result.images[0].url);
     });
   }, [_id]);
+
+  const onFollowHandler = async () => {
+    await followUser(userId, _id);
+  };
+
+  const onRemoveHandler = async () => {
+    await removeUser(userId, _id);
+  };
 
   return (
     <div className="container mt-4">
@@ -33,10 +40,32 @@ const User = ({ userId: { _id } }) => {
             <small>{followers.length} followers</small>
           </span>
         </div>
-        <button className="btn btn-danger h-25 ml-auto px-2 py-1">Follow</button>
+        {userId === '' || userId === _id ? ( //user is not logged in or user is myself
+          ''
+        ) : showFollower ? (
+          <button
+            className="btn btn-danger h-25 ml-auto px-2 py-1"
+            onClick={() => onFollowHandler()}>
+            Follow
+          </button>
+        ) : (
+          <button
+            className="btn btn-danger h-25 ml-auto px-2 py-1"
+            onClick={() => onRemoveHandler()}>
+            Remove
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
-export default User;
+const stateToPropertyMapper = (state) => ({
+  userId: state.LoginReducer.userId,
+});
+const propertyToDispatchMapper = (dispatch) => ({
+  followUser: (from, to) => Service.followUser(from, to).then((result) => console.log(result)),
+  removeUser: (from, to) => Service.removeFollower(from, to).then((result) => console.log(result)),
+});
+
+export default connect(stateToPropertyMapper, propertyToDispatchMapper)(User);

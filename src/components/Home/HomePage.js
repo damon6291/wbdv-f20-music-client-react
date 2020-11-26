@@ -138,7 +138,6 @@ const HomePage = ({ findProfile, userId, findPlaylist, playlist = [] }) => {
               <hr></hr>
               {/* Replace dummy objects with a mapping over Spotify API call w/ preset search phrase, then parse*/}
               {playlist.map((item, id) => {
-                console.log(item);
                 return <Playlist key={id} playList={item} />;
               })}
             </div>
