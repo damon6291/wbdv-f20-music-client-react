@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Playlist } from '../index';
 import Service from '../../services/Services';
 
-const Post = ({ post }) => {
+const Post = ({ post, userId, refreshPost }) => {
   const [playlist, setPlaylist] = useState([]);
   const [profile, setProfile] = useState([]);
   const [image, setImage] = useState('');
@@ -16,6 +16,11 @@ const Post = ({ post }) => {
     getData();
   }, []);
 
+  const onRemoveHandler = async () => {
+    await Service.removePost(post._id).then((response) => console.log(response));
+    refreshPost();
+  };
+
   return (
     <div className="container m-2 webdv-playlist-style">
       <div className="row">
@@ -27,6 +32,13 @@ const Post = ({ post }) => {
             src={image}
           />
           <span className="mt-2 font-weight-bold">{profile.displayName}</span>
+          {userId === post.userId ? (
+            <button className="ml-auto" onClick={() => onRemoveHandler()}>
+              x
+            </button>
+          ) : (
+            ''
+          )}
         </div>
       </div>
       <div className="row">

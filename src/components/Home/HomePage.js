@@ -131,7 +131,7 @@ const HomePage = ({
               </span>
             </h4>
             {posts.map((post, id) => {
-              return <Post key={id} post={post} />;
+              return <Post key={id} post={post} userId={userId} refreshPost={refreshPost} />;
             })}
           </div>
           <div className="col-3 mt-3">

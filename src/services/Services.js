@@ -69,6 +69,11 @@ export const createPost = (json) =>
 
 export const findAllPosts = () => fetch(`${url}posts`).then((response) => response.json());
 
+export const removePost = (id) =>
+  fetch(`${url}remove-post/${id}`, {
+    method: 'DELETE',
+  }).then((response) => response.json());
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
@@ -83,6 +88,7 @@ export default {
   removeFollower,
   createPost,
   findAllPosts,
+  removePost,
 };
 
 // .then((response) => response.json())
