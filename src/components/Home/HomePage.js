@@ -13,15 +13,31 @@ import {
   faClipboard,
   faComments,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-const HomePage = ({ findProfile, userId, findPlaylist, playlist = [] }) => {
+const HomePage = ({
+  findProfile,
+  userId,
+  findPlaylist,
+  playlist = [],
+  playlistId,
+  posts = [],
+  findPosts,
+}) => {
+  const history = useHistory();
+
   useEffect(() => {
     if (userId !== '') {
       findProfile(userId);
     }
     findPlaylist('top');
+    findPosts();
   }, [userId]);
+
+  const refreshPost = async () => {
+    await findPosts();
+    history.push('/Home');
+  };
 
   return (
     <React.Fragment>
@@ -101,7 +117,7 @@ const HomePage = ({ findProfile, userId, findPlaylist, playlist = [] }) => {
                     &nbsp;New post&nbsp;
                   </span>
                 </h4>
-                <PostCreator />
+                <PostCreator userId={userId} playlistId={playlistId} refreshPost={refreshPost} />
               </React.Fragment>
             ) : (
               <span></span>
@@ -114,9 +130,9 @@ const HomePage = ({ findProfile, userId, findPlaylist, playlist = [] }) => {
                 &nbsp;Latest feed&nbsp;
               </span>
             </h4>
-            <Post />
-            <Post />
-            <Post />
+            {posts.map((post, id) => {
+              return <Post key={id} post={post} />;
+            })}
           </div>
           <div className="col-3 mt-3">
             <div

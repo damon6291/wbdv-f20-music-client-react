@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShareSquare, faStar, faMusic } from '@fortawesome/free-solid-svg-icons';
@@ -84,10 +85,12 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
           </div>
 
           <div className="col-4 d-flex flex-column mt-5">
-            <button className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">
+            <Link
+              to={`/Home/${playlistId}`}
+              className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">
               <FontAwesomeIcon icon={faShareSquare} />
-              &nbsp; Share to profile
-            </button>
+              &nbsp; Share
+            </Link>
             <button className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">
               <FontAwesomeIcon icon={faStar} />
               &nbsp; Import to library

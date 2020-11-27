@@ -47,6 +47,11 @@ function App() {
         />
         <Route path="/" exact component={HomeContainer} />
         <Route path="/Home" exact component={HomeContainer} />
+        <Route
+          path="/Home/:playlistId"
+          exact
+          render={(props) => <HomeContainer playlistId={props.match.params.playlistId} />}
+        />
         <Route path="/Login" component={LoginContainer} />
         <Route path="/Register" component={Register} />
         <Route

@@ -1,15 +1,21 @@
 import { connect } from 'react-redux';
 import HomePage from '../components/Home/HomePage';
 import { findProfile, findImage } from '../actions/ProfileAction';
-import { findPlayListsForHome } from '../actions/HomeAction';
+import { findPlayListsForHome, findPosts } from '../actions/HomeAction';
 import Service from '../services/Services';
 
 const stateToPropertyMapper = (state) => ({
   userId: state.LoginReducer.userId,
   playlist: state.HomeReducer.playlists,
+  posts: state.HomeReducer.posts,
 });
 
 const propertyToDispatchMapper = (dispatch) => ({
+  findPosts: () => {
+    Service.findAllPosts().then((response) => {
+      findPosts(dispatch, response);
+    });
+  },
   findProfile: (json) => {
     Service.findProfile(json).then((profile) => {
       findProfile(dispatch, profile);

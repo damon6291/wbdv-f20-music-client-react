@@ -58,6 +58,17 @@ export const removeFollower = (from, to) =>
     },
   }).then((response) => response.json());
 
+export const createPost = (json) =>
+  fetch(`${url}create-post`, {
+    method: 'POST',
+    body: JSON.stringify(json),
+    headers: {
+      'content-type': 'application/json',
+    },
+  }).then((response) => response.json());
+
+export const findAllPosts = () => fetch(`${url}posts`).then((response) => response.json());
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
@@ -70,6 +81,8 @@ export default {
   findUserIdBySpotifyId,
   followUser,
   removeFollower,
+  createPost,
+  findAllPosts,
 };
 
 // .then((response) => response.json())

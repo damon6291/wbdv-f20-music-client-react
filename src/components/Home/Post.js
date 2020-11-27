@@ -1,9 +1,21 @@
-import React from 'react';
-
-import exampleImg from '../../assets/damon.jpg';
+import React, { useState, useEffect } from 'react';
 import { Playlist } from '../index';
+import Service from '../../services/Services';
 
-const Post = ({ postData }) => {
+const Post = ({ post }) => {
+  const [playlist, setPlaylist] = useState([]);
+  const [profile, setProfile] = useState([]);
+  const [image, setImage] = useState('');
+
+  useEffect(() => {
+    const getData = async () => {
+      Service.getPlaylistInformation(post.playlistId).then((response) => setPlaylist(response));
+      Service.findProfile(post.userId).then((response) => setProfile(response));
+      await Service.findImage(post.userId).then((response) => setImage(response.images[0].url));
+    };
+    getData();
+  }, []);
+
   return (
     <div className="container m-2 webdv-playlist-style">
       <div className="row">
@@ -12,28 +24,17 @@ const Post = ({ postData }) => {
             style={{ height: '30px' }}
             alt="user"
             className="rounded-circle mt-1 mr-2"
-            src={exampleImg}
+            src={image}
           />
-          <span className="mt-2 font-weight-bold">@username</span>
+          <span className="mt-2 font-weight-bold">{profile.displayName}</span>
         </div>
       </div>
       <div className="row">
         <div className="col">
           <hr className="m-2" style={{ color: 'black', size: '1px' }}></hr>
-          <p>Check out some of my favorite songs on my new playlist. Let me know if you like it!</p>
-          <Playlist
-            playList={{
-              id: '',
-              images: [
-                {
-                  url: 'https://upload.wikimedia.org/wikipedia/en/9/93/KendrickGKMC.jpg',
-                },
-              ],
-              name: 'Title goes here',
-              description: 'Something',
-              owner: { display_name: 'someUsername' },
-            }}
-          />
+          <p>{post.text}</p>
+          {/* {console.log(playlist)} */}
+          <Playlist playList={playlist} />
         </div>
       </div>
     </div>
