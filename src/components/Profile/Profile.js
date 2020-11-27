@@ -35,6 +35,12 @@ const Profile = ({
     history.push(`/Profile/${ownerId}`);
   };
 
+  const refreshProfile = async () => {
+    await findProfile(ownerId);
+    console.log('refresh page');
+    history.push(`/Profile/${ownerId}`);
+  };
+
   return (
     <React.Fragment>
       <Navbar />
@@ -89,7 +95,14 @@ const Profile = ({
                   : exist(profile) &&
                     exist(profile.followings) &&
                     profile.followings.map((user, id) => {
-                      return <User key={id} ownerId={user} showFollower={false} />;
+                      return (
+                        <User
+                          key={id}
+                          ownerId={user}
+                          showFollower={false}
+                          refreshProfile={refreshProfile}
+                        />
+                      );
                     })}
               </div>
             </div>

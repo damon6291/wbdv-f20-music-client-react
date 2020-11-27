@@ -44,7 +44,7 @@ const HomePage = ({ findProfile, userId, findPlaylist, playlist = [] }) => {
                 <Link
                   style={{ textDecoration: 'none' }}
                   className="shadow-lg btn-lg btn-dark mt-5"
-                  to="/Profile">
+                  to={`/Profile/${userId}`}>
                   <FontAwesomeIcon icon={faUserCircle} />
                   <br />
                   My Profile

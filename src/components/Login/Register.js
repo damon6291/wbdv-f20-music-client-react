@@ -13,8 +13,9 @@ const Register = () => {
   const [Password, setPassword] = useState('');
   const history = useHistory();
 
-  const handleRegister = () => {
-    Services.registerUser({
+  const handleRegister = async () => {
+    console.log(UserName);
+    await Services.registerUser({
       userName: UserName,
       password: Password,
       displayName: displayName,

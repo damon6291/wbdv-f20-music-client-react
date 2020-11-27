@@ -5,7 +5,14 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Service from '../../services/Services';
 
-const User = ({ ownerId: { _id }, userId, showFollower, followUser, removeUser }) => {
+const User = ({
+  ownerId: { _id },
+  userId,
+  showFollower,
+  followUser,
+  removeUser,
+  refreshProfile,
+}) => {
   const [name, setName] = useState('');
   const [followers, setFollowers] = useState([]);
   const [image, setImage] = useState('');
@@ -26,6 +33,7 @@ const User = ({ ownerId: { _id }, userId, showFollower, followUser, removeUser }
 
   const onRemoveHandler = async () => {
     await removeUser(userId, _id);
+    refreshProfile();
   };
 
   return (

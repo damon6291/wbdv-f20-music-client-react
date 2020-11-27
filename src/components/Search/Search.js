@@ -39,7 +39,6 @@ const Search = ({ playLists = [], findPlayLists, findUsers, users = [], input })
                 <h3 className="border-bottom pl-4 pb-3">Playlists</h3>
 
                 {playLists.map((playList, id) => {
-                  console.log(playList);
                   return <Playlist key={id} playList={playList} />;
                 })}
               </div>
