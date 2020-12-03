@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { Register, Home } from './components/index';
 import {
@@ -18,6 +18,7 @@ import DetailsReducer from './reducers/DetailsReducer';
 import ProfileReducer from './reducers/ProfileReducer';
 import HomeReducer from './reducers/HomeReducer';
 import LoginReducer from './reducers/LoginReducer';
+import Service from './services/Services';
 
 const allReducer = combineReducers({
   playListReducer,
@@ -30,6 +31,9 @@ const allReducer = combineReducers({
 const store = createStore(allReducer);
 
 function App() {
+  useEffect(() => {
+    Service.findCurrentUser();
+  });
   return (
     <Provider store={store}>
       <Router>

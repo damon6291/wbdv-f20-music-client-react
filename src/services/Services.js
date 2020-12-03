@@ -74,6 +74,12 @@ export const removePost = (id) =>
     method: 'DELETE',
   }).then((response) => response.json());
 
+export const findCurrentUser = () => {
+  fetch(`${url}find-currentuser`)
+    .then((response) => response.json())
+    .then((result) => console.log(result));
+};
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
@@ -89,6 +95,7 @@ export default {
   createPost,
   findAllPosts,
   removePost,
+  findCurrentUser,
 };
 
 // .then((response) => response.json())
