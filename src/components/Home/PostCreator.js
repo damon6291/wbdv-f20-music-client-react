@@ -23,8 +23,9 @@ const PostCreator = ({ userId, playlistId, refreshPost }) => {
     <div
       // style={{ border: "solid 1px black", borderRadius: "15px" }}
       className="container webdv-postgen-style my-3">
-      <div className="d-flex">
-        {/* {console.log(playlistId)} */}
+        {userId !== '' ? 
+        <React.Fragment>
+          <div className="d-flex">
         <textarea
           placeholder="Attach playlist before typing..."
           className="form-control mt-2"
@@ -45,7 +46,34 @@ const PostCreator = ({ userId, playlistId, refreshPost }) => {
             Attach a playlist...
           </Link>
         )}
-      </div>
+      </div></React.Fragment> 
+      : 
+      <React.Fragment>
+        <div className="d-flex">
+          <textarea
+            placeholder="Sign up or log in to make new posts."
+            className="form-control mt-2"
+            style={{ outline: 'none' }}
+            onChange={(e) => setText(e.target.value)}
+            rows="2"
+            disabled></textarea>
+          <Link
+            className="ml-1 mt-2 btn btn-outline-dark  d-flex align-content-center justify-content-center align-items-center"
+            to="/Login">
+            <FontAwesomeIcon icon={faPlusSquare} />
+          </Link>
+        </div>
+        <div className="d-flex justify-content-end mt-1">
+          {playlistId !== undefined ? (
+            <h5>PlaylistId: {playlistId}</h5>
+          ) : (
+            <Link className="font-weight-bold mb-2" to="/Login">
+              Attach a playlist...
+            </Link>
+          )}
+        </div>
+      </React.Fragment>}
+      
     </div>
   );
 };

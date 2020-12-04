@@ -11,6 +11,7 @@ const Register = () => {
   const [displayName, setDisplayName] = useState('');
   const [UserName, setUserName] = useState('');
   const [Password, setPassword] = useState('');
+  const [Phone, setPhone] = useState('');
   const history = useHistory();
 
   const handleRegister = async () => {
@@ -19,6 +20,7 @@ const Register = () => {
       userName: UserName,
       password: Password,
       displayName: displayName,
+      phoneNum: Phone
     }).then((result) => {
       if (result.message === 'success') {
         window.location.assign(`${url}spotifylogin/${UserName}`);
@@ -71,13 +73,28 @@ const Register = () => {
         </div>
 
         <div className="form-group row">
+          <label htmlFor="phone" className="col-sm-2 col-form-label font-weight-bold">
+            Phone number
+          </label>
+          <div className="col-sm-10">
+            <input
+              id="phone"
+              placeholder="800-000-0000"
+              type="tel"
+              className="form-control shadow"
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="form-group row">
           <label htmlFor="username" className="col-sm-2 col-form-label font-weight-bold">
             Username
           </label>
           <div className="col-sm-10">
             <input
               id="username"
-              placeholder="..."
+              placeholder="me123"
               type="text"
               className="form-control shadow"
               onChange={(e) => setUserName(e.target.value)}

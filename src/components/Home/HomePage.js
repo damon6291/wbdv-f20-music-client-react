@@ -134,17 +134,39 @@ const HomePage = ({
               return <Post key={id} post={post} userId={userId} refreshPost={refreshPost} />;
             })}
           </div>
+
           <div className="col-3 mt-3">
+            {userId !== '' ? 
+            <div className="d-flex flex-column justify-content-start pb-2">
+              <h4 className="text-center font-weight-bold">
+                <span className="webdv-title-style">
+                  &nbsp;
+                  <FontAwesomeIcon icon={faSearch} />
+                  &nbsp;Your history&nbsp;
+                </span>
+              </h4>
+              <ul className="list-group">
+                <li className="list-group-item">
+                  <Link to="/Search/rihanna">rihanna</Link>
+                </li>
+                <li className="list-group-item">
+                <Link to="/Search/hip-hop">hip-hop</Link>
+                </li>
+                <li className="list-group-item">
+                <Link to="/Search/2000s%20R&B">2000s R&B</Link>
+                </li>
+              </ul>
+            </div> : <span></span>}
+            
+
             <div
               style={{
-                // borderLeft: "solid 2px black",
                 borderRadius: '40px',
-
                 backgroundColor: '#D5C5C8',
                 opacity: '85%',
               }}>
               <span>&nbsp;</span>
-              <h4 className=" text-center font-weight-bold">
+              <h4 className="text-center font-weight-bold">
                 <span className="webdv-title-style">
                   &nbsp;
                   <FontAwesomeIcon icon={faArrowAltCircleUp} />
