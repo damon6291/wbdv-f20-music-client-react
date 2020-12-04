@@ -7,6 +7,7 @@ import { faShareSquare, faStar, faMusic } from '@fortawesome/free-solid-svg-icon
 
 import PlaylistItem from './PlaylistItem.js';
 import Navbar from '../Navbar/Navbar';
+import Post from "../Home/Post"
 import 'animate.css';
 import Utils from '../../utils/utils';
 
@@ -32,7 +33,7 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
           <div className="col-8 shadow-lg webdv-playlist-style animate__animated animate__slideInLeft">
             <div className="d-flex flex-column animate__animated animate__fadeIn animate__slow">
               <div className="d-flex justify-content-between align-items-center">
-                <a href={exist(details) && exist(externalUrl) ? externalUrl.spotify : null}>
+                <a className="pr-2" href={exist(details) && exist(externalUrl) ? externalUrl.spotify : null}>
                   <img
                     style={{
                       height: '90px',
@@ -85,19 +86,27 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
           </div>
 
           <div className="col-4 d-flex flex-column mt-5">
+            <h4 className="d-flex align-self-center">Enjoying this playlist?</h4>
             <Link
               to={`/Home/${playlistId}`}
               className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">
               <FontAwesomeIcon icon={faShareSquare} />
-              &nbsp; Share
+              &nbsp; Share to my feed
             </Link>
-            <button className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">
+            <hr style={{
+                  width: '100%',
+                  border: '1px solid #C9E4D1',
+                }} />
+            <h4 className="d-flex align-self-center">Posts about this</h4>
+            {/* Need backend to be able to properly fetch posts, dummy posts will cause crash */}
+            {/* <Post></Post> */}
+            {/* <button className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">
               <FontAwesomeIcon icon={faStar} />
               &nbsp; Import to library
             </button>
             <button className="m-1 btn btn-light shadow font-weight-light animate__animated animate__flipInX">
               ...
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

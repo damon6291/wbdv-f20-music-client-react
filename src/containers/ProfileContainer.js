@@ -16,7 +16,7 @@ const propertyToDispatchMapper = (dispatch) => ({
       findProfile(dispatch, profile);
     });
     Service.findImage(json).then((sprofile) => {
-      findImage(dispatch, sprofile.images[0].url);
+      findImage(dispatch, sprofile.images ? sprofile.images[0].url : "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg");
     });
   },
   findPlaylists: (query) =>

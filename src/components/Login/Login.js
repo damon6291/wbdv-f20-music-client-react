@@ -17,6 +17,7 @@ const Login = ({ addUserName }) => {
         addUserName(result.message);
         history.push('/Home');
       } else {
+        alert("Your login information was incorrect. Please re-enter your username and/or password and try again.")
         history.push('/Login');
       }
     });
