@@ -7,11 +7,11 @@ import { faShareSquare, faStar, faMusic } from '@fortawesome/free-solid-svg-icon
 
 import PlaylistItem from './PlaylistItem.js';
 import Navbar from '../Navbar/Navbar';
-import Post from "../Home/Post"
+import Post from '../Home/Post';
 import 'animate.css';
 import Utils from '../../utils/utils';
 
-const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
+const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId }) => {
   const images = details.images;
   const externalUrl = details.external_urls;
 
@@ -33,7 +33,9 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
           <div className="col-8 shadow-lg webdv-playlist-style animate__animated animate__slideInLeft">
             <div className="d-flex flex-column animate__animated animate__fadeIn animate__slow">
               <div className="d-flex justify-content-between align-items-center">
-                <a className="pr-2" href={exist(details) && exist(externalUrl) ? externalUrl.spotify : null}>
+                <a
+                  className="pr-2"
+                  href={exist(details) && exist(externalUrl) ? externalUrl.spotify : null}>
                   <img
                     style={{
                       height: '90px',
@@ -93,10 +95,12 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime }) => {
               <FontAwesomeIcon icon={faShareSquare} />
               &nbsp; Share to my feed
             </Link>
-            <hr style={{
-                  width: '100%',
-                  border: '1px solid #C9E4D1',
-                }} />
+            <hr
+              style={{
+                width: '100%',
+                border: '1px solid #C9E4D1',
+              }}
+            />
             <h4 className="d-flex align-self-center">Posts about this</h4>
             {/* Need backend to be able to properly fetch posts, dummy posts will cause crash */}
             {/* <Post></Post> */}

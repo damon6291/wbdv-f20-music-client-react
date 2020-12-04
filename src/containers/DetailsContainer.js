@@ -6,6 +6,7 @@ import Service from '../services/Services';
 const stateToPropertyMapper = (state) => ({
   details: state.DetailsReducer.details,
   totalRuntime: state.DetailsReducer.totalRuntime,
+  userId: state.LoginReducer.userId,
 });
 
 const propertyToDispatchMapper = (dispatch) => ({
