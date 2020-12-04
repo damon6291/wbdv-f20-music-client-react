@@ -1,19 +1,29 @@
 import { url } from '../utils/constant';
 
 export const searchForPlaylists = (query) =>
-  fetch(`${url}playlists/${query}`).then((response) => response.json());
+  fetch(`${url}playlists/${query}`, {
+    credentials: 'include',
+  }).then((response) => response.json());
 
 export const getPlaylistInformation = (query) =>
-  fetch(`${url}playlist/${query}/details`).then((response) => response.json());
+  fetch(`${url}playlist/${query}/details`, {
+    credentials: 'include',
+  }).then((response) => response.json());
 
 export const findProfile = (query) =>
-  fetch(`${url}find-user/${query}`).then((response) => response.json());
+  fetch(`${url}find-user/${query}`, {
+    credentials: 'include',
+  }).then((response) => response.json());
 
 export const findPlaylistsForUser = (query) =>
-  fetch(`${url}${query}/playlists`).then((response) => response.json());
+  fetch(`${url}${query}/playlists`, {
+    credentials: 'include',
+  }).then((response) => response.json());
 
 export const findImage = (query) =>
-  fetch(`${url}profile/${query}`).then((response) => response.json());
+  fetch(`${url}profile/${query}`, {
+    credentials: 'include',
+  }).then((response) => response.json());
 
 export const registerUser = (json) =>
   fetch(`${url}create-user`, {
@@ -22,6 +32,7 @@ export const registerUser = (json) =>
     headers: {
       'content-type': 'application/json',
     },
+    credentials: 'include',
   }).then((response) => response.json());
 
 export const handleLogin = (json) =>
@@ -31,16 +42,13 @@ export const handleLogin = (json) =>
     headers: {
       'content-type': 'application/json',
     },
+    credentials: 'include',
   }).then((response) => response.json());
 
 export const findUsers = (query) =>
-  fetch(`${url}find-users/${query}`).then((response) => response.json());
-
-export const findUserIdBySpotifyId = (id) => {
-  fetch(`${url}find-user/spotifyId/${id}`)
-    .then((response) => response.json())
-    .then((result) => result._id);
-};
+  fetch(`${url}find-users/${query}`, { credentials: 'include' }).then((response) =>
+    response.json()
+  );
 
 export const followUser = (from, to) =>
   fetch(`${url}follow/${from}/${to}`, {
@@ -48,6 +56,7 @@ export const followUser = (from, to) =>
     headers: {
       'content-type': 'application/json',
     },
+    credentials: 'include',
   }).then((response) => response.json());
 
 export const removeFollower = (from, to) =>
@@ -56,6 +65,7 @@ export const removeFollower = (from, to) =>
     headers: {
       'content-type': 'application/json',
     },
+    credentials: 'include',
   }).then((response) => response.json());
 
 export const createPost = (json) =>
@@ -65,19 +75,22 @@ export const createPost = (json) =>
     headers: {
       'content-type': 'application/json',
     },
+    credentials: 'include',
   }).then((response) => response.json());
 
-export const findAllPosts = () => fetch(`${url}posts`).then((response) => response.json());
+export const findAllPosts = () =>
+  fetch(`${url}posts`, { credentials: 'include' }).then((response) => response.json());
 
 export const removePost = (id) =>
   fetch(`${url}remove-post/${id}`, {
     method: 'DELETE',
+    credentials: 'include',
   }).then((response) => response.json());
 
-export const findCurrentUser = () => {
-  fetch(`${url}find-currentuser`)
-    .then((response) => response.json())
-    .then((result) => console.log(result));
+export const findCurrent = () => {
+  fetch(`${url}find-currentuser`, {
+    credentials: 'include',
+  }).then((response) => response.json());
 };
 
 export default {
@@ -89,13 +102,12 @@ export default {
   registerUser,
   handleLogin,
   findUsers,
-  findUserIdBySpotifyId,
   followUser,
   removeFollower,
   createPost,
   findAllPosts,
   removePost,
-  findCurrentUser,
+  findCurrent,
 };
 
 // .then((response) => response.json())

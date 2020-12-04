@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHome,
@@ -10,16 +10,35 @@ import {
 import { Link } from 'react-router-dom';
 import { url } from '../../utils/constant';
 import { connect } from 'react-redux';
+import { addUserName, findImage, findProfile } from '../../actions/LoginAction';
+import Service from '../../services/Services';
 
 // Import in this order for responsive nav toggle to work!
 import '../../../node_modules/jquery/dist/jquery.min.js';
 import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
-const Navbar = ({ userId, image, profile }) => {
+const Navbar = ({ userId, image, profile, addUserName }) => {
+  // const getCurUser = async () => {
+  //   const id = await Service.findCurrent();
+  //   console.log(id);
+  // };
+
+  const findCurrent = () => {
+    fetch(`${url}find-currentuser`, {
+      credentials: 'include',
+    })
+      .then((response) => response.json())
+      .then((result) => addUserName(result));
+  };
+
+  useEffect(() => {
+    findCurrent();
+  }, []);
+
   return (
     <nav className="navbar sticky-top navbar-dark bg-dark navbar-expand-md shadow-lg ">
       <span className="navbar-brand font-weight-bold">(logo)</span>
-
+      {console.log(userId)}
       <button
         className="navbar-toggler"
         type="button"
@@ -99,4 +118,16 @@ const stateToPropertyMapper = (state) => ({
   profile: state.LoginReducer.profile,
 });
 
-export default connect(stateToPropertyMapper)(Navbar);
+const propertyToDispatchMapper = (dispatch) => ({
+  addUserName: (userId) => {
+    addUserName(dispatch, userId);
+    // Service.findProfile(userId).then((profile) => {
+    //   findProfile(dispatch, profile);
+    // });
+    // Service.findImage(userId).then((sprofile) => {
+    //   findImage(dispatch, sprofile.images[0].url);
+    // });
+  },
+});
+
+export default connect(stateToPropertyMapper, propertyToDispatchMapper)(Navbar);

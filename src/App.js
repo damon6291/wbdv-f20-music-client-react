@@ -32,7 +32,9 @@ const store = createStore(allReducer);
 
 function App() {
   useEffect(() => {
-    Service.findCurrentUser();
+    // if (Service.findCurrentUser() !== undefined) {
+    //   Service.findCurrentUser().then((result) => console.log(result));
+    // }
   });
   return (
     <Provider store={store}>

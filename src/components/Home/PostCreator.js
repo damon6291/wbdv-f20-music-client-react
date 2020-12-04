@@ -24,7 +24,7 @@ const PostCreator = ({ userId, playlistId, refreshPost }) => {
       // style={{ border: "solid 1px black", borderRadius: "15px" }}
       className="container webdv-postgen-style my-3">
       <div className="d-flex">
-        {console.log(playlistId)}
+        {/* {console.log(playlistId)} */}
         <textarea
           placeholder="Attach playlist before typing..."
           className="form-control mt-2"
