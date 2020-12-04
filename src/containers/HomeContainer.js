@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import HomePage from '../components/Home/HomePage';
 import { findProfile, findImage } from '../actions/ProfileAction';
 import { findPlayListsForHome, findPosts } from '../actions/HomeAction';
+import { reset } from '../actions/LoginAction';
 import Service from '../services/Services';
 
 const stateToPropertyMapper = (state) => ({
@@ -11,6 +12,10 @@ const stateToPropertyMapper = (state) => ({
 });
 
 const propertyToDispatchMapper = (dispatch) => ({
+  logOut: () => {
+    Service.logOut().then((response) => console.log(response));
+    reset(dispatch);
+  },
   findPosts: () => {
     Service.findAllPosts().then((response) => {
       findPosts(dispatch, response);
@@ -21,7 +26,12 @@ const propertyToDispatchMapper = (dispatch) => ({
       findProfile(dispatch, profile);
     });
     Service.findImage(json).then((sprofile) => {
-      findImage(dispatch, sprofile.images ? sprofile.images[0].url : "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg");
+      findImage(
+        dispatch,
+        sprofile.images
+          ? sprofile.images[0].url
+          : 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg'
+      );
     });
   },
   findPlaylist: (query) => {

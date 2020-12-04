@@ -87,11 +87,15 @@ export const removePost = (id) =>
     credentials: 'include',
   }).then((response) => response.json());
 
-export const findCurrent = () => {
+export const findCurrent = () =>
   fetch(`${url}find-currentuser`, {
     credentials: 'include',
   }).then((response) => response.json());
-};
+
+export const logOut = () =>
+  fetch(`${url}logout`, {
+    credentials: 'include',
+  }).then((response) => response.json());
 
 export default {
   searchForPlaylists,
@@ -108,6 +112,7 @@ export default {
   findAllPosts,
   removePost,
   findCurrent,
+  logOut,
 };
 
 // .then((response) => response.json())

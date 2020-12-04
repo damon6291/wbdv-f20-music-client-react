@@ -18,21 +18,10 @@ import '../../../node_modules/jquery/dist/jquery.min.js';
 import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
 const Navbar = ({ userId, image, profile, addUserName }) => {
-  // const getCurUser = async () => {
-  //   const id = await Service.findCurrent();
-  //   console.log(id);
-  // };
-
-  const findCurrent = () => {
-    fetch(`${url}find-currentuser`, {
-      credentials: 'include',
-    })
-      .then((response) => response.json())
-      .then((result) => addUserName(result));
-  };
-
   useEffect(() => {
-    findCurrent();
+    Service.findCurrent().then((result) =>
+      result.message !== 'error' ? addUserName(result.message) : null
+    );
   }, []);
 
   return (
@@ -121,12 +110,12 @@ const stateToPropertyMapper = (state) => ({
 const propertyToDispatchMapper = (dispatch) => ({
   addUserName: (userId) => {
     addUserName(dispatch, userId);
-    // Service.findProfile(userId).then((profile) => {
-    //   findProfile(dispatch, profile);
-    // });
-    // Service.findImage(userId).then((sprofile) => {
-    //   findImage(dispatch, sprofile.images[0].url);
-    // });
+    Service.findProfile(userId).then((profile) => {
+      findProfile(dispatch, profile);
+    });
+    Service.findImage(userId).then((sprofile) => {
+      findImage(dispatch, sprofile.images[0].url);
+    });
   },
 });
 

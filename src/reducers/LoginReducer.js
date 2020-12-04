@@ -1,4 +1,9 @@
-import { ADD_USERNAME, FIND_PROFILE_LOGGED_IN, FIND_IMAGE_LOGGED_IN } from '../actions/LoginAction';
+import {
+  ADD_USERNAME,
+  FIND_PROFILE_LOGGED_IN,
+  FIND_IMAGE_LOGGED_IN,
+  RESET,
+} from '../actions/LoginAction';
 
 const initialState = {
   userId: '',
@@ -23,7 +28,12 @@ const LoginReducer = (state = initialState, action) => {
         ...state,
         image: action.image,
       };
-
+    case RESET:
+      return {
+        userId: '',
+        profile: [],
+        image: '',
+      };
     default:
       return state;
   }

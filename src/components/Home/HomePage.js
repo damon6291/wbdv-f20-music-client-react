@@ -23,6 +23,7 @@ const HomePage = ({
   playlistId,
   posts = [],
   findPosts,
+  logOut,
 }) => {
   const history = useHistory();
 
@@ -36,6 +37,11 @@ const HomePage = ({
 
   const refreshPost = async () => {
     await findPosts();
+    history.push('/Home');
+  };
+
+  const logOutHandler = () => {
+    logOut();
     history.push('/Home');
   };
 
@@ -76,7 +82,8 @@ const HomePage = ({
                 <Link
                   style={{ textDecoration: 'none' }}
                   className=" shadow-lg btn-lg btn-danger mt-2"
-                  to="/Home">
+                  to="/Home"
+                  onClick={() => logOutHandler()}>
                   <FontAwesomeIcon icon={faSignOutAlt} />
                   <br />
                   Log out
@@ -136,28 +143,30 @@ const HomePage = ({
           </div>
 
           <div className="col-3 mt-3">
-            {userId !== '' ? 
-            <div className="d-flex flex-column justify-content-start pb-2">
-              <h4 className="text-center font-weight-bold">
-                <span className="webdv-title-style">
-                  &nbsp;
-                  <FontAwesomeIcon icon={faSearch} />
-                  &nbsp;Your history&nbsp;
-                </span>
-              </h4>
-              <ul className="list-group">
-                <li className="list-group-item">
-                  <Link to="/Search/rihanna">rihanna</Link>
-                </li>
-                <li className="list-group-item">
-                <Link to="/Search/hip-hop">hip-hop</Link>
-                </li>
-                <li className="list-group-item">
-                <Link to="/Search/2000s%20R&B">2000s R&B</Link>
-                </li>
-              </ul>
-            </div> : <span></span>}
-            
+            {userId !== '' ? (
+              <div className="d-flex flex-column justify-content-start pb-2">
+                <h4 className="text-center font-weight-bold">
+                  <span className="webdv-title-style">
+                    &nbsp;
+                    <FontAwesomeIcon icon={faSearch} />
+                    &nbsp;Your history&nbsp;
+                  </span>
+                </h4>
+                <ul className="list-group">
+                  <li className="list-group-item">
+                    <Link to="/Search/rihanna">rihanna</Link>
+                  </li>
+                  <li className="list-group-item">
+                    <Link to="/Search/hip-hop">hip-hop</Link>
+                  </li>
+                  <li className="list-group-item">
+                    <Link to="/Search/2000s%20R&B">2000s R&B</Link>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <span></span>
+            )}
 
             <div
               style={{
