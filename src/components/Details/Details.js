@@ -92,19 +92,28 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId }
 
           <div className="col-4 d-flex flex-column mt-5">
             <h4 className="d-flex align-self-center">Enjoying this playlist?</h4>
+            {userId !== '' ? 
             <Link
               to={`/Home/${playlistId}`}
               className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">
               <FontAwesomeIcon icon={faShareSquare} />
               &nbsp; Share to my feed
-            </Link>
+            </Link> 
+            :  
+            <Link
+              to={`/Login`}
+              className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">
+              <FontAwesomeIcon icon={faShareSquare} />
+              &nbsp; Share to my feed
+              </Link> }
+           
             <hr
               style={{
                 width: '100%',
                 border: '1px solid #C9E4D1',
               }}
-            />
-            <h4 className="d-flex align-self-center">Posts about this</h4>
+            />{userId !== '' ? <h4 className="d-flex align-self-center">Posts about this</h4> : <span />}
+            
             {/* Need backend to be able to properly fetch posts, dummy posts will cause crash */}
             {/* <Post></Post> */}
             {/* <button className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">

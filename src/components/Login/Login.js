@@ -72,13 +72,13 @@ const Login = ({ addUserName }) => {
           </button>
         </div>
 
-        <Link to="/Register" className="mt-4 float-left font-weight-bold">
+        <Link to="/Register" className="mt-4 float-right font-weight-bold">
           I don't have an account!
         </Link>
 
-        <a href="#" className="float-right mt-4 font-weight-bold">
+        {/* <a href="#" className="float-right mt-4 font-weight-bold">
           I forgot my password!
-        </a>
+        </a> */}
       </div>
     </React.Fragment>
   );

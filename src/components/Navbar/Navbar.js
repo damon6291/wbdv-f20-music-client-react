@@ -1,26 +1,26 @@
-import React, { useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
   faUserCircle,
   faSearch,
   faSignInAlt,
   faUserPlus,
-} from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import { url } from '../../utils/constant';
-import { connect } from 'react-redux';
-import { addUserName, findImage, findProfile } from '../../actions/LoginAction';
-import Service from '../../services/Services';
+} from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { url } from "../../utils/constant";
+import { connect } from "react-redux";
+import { addUserName, findImage, findProfile } from "../../actions/LoginAction";
+import Service from "../../services/Services";
 
 // Import in this order for responsive nav toggle to work!
-import '../../../node_modules/jquery/dist/jquery.min.js';
-import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
+import "../../../node_modules/jquery/dist/jquery.min.js";
+import "../../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 
 const Navbar = ({ userId, image, profile, addUserName }) => {
   useEffect(() => {
     Service.findCurrent().then((result) =>
-      result.message !== 'error' ? addUserName(result.message) : null
+      result.message !== "error" ? addUserName(result.message) : null
     );
   }, []);
 
@@ -34,13 +34,14 @@ const Navbar = ({ userId, image, profile, addUserName }) => {
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
-        aria-label="Toggle navigation">
+        aria-label="Toggle navigation"
+      >
         <span className="navbar-toggler-icon"></span>
       </button>
 
       <div className="collapse navbar-collapse " id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto ">
-          {userId !== '' ? (
+          {userId !== "" ? (
             <React.Fragment>
               <li className="nav-item">
                 <Link className="nav-link" to="/Home">
@@ -90,8 +91,16 @@ const Navbar = ({ userId, image, profile, addUserName }) => {
             </React.Fragment>
           )}
         </ul>
-        <a className="float-right text-white" href={`${url}spotifylogin/damon629`}>
-          <img style={{ height: '35px' }} alt="" className="rounded-circle mr-2" src={image} />
+        <a
+          className="float-right text-white"
+          href={`${url}spotifylogin/damon629`}
+        >
+          <img
+            style={{ height: "35px" }}
+            alt=""
+            className="rounded-circle mr-2"
+            src={image}
+          />
           {profile.displayName}
         </a>
       </div>
