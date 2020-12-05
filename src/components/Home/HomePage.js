@@ -14,6 +14,7 @@ import {
   faComments,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useHistory } from 'react-router-dom';
+import Utils from '../../utils/utils';
 
 const HomePage = ({
   findProfile,
@@ -24,6 +25,7 @@ const HomePage = ({
   posts = [],
   findPosts,
   logOut,
+  profile = [],
 }) => {
   const history = useHistory();
 
@@ -153,15 +155,17 @@ const HomePage = ({
                   </span>
                 </h4>
                 <ul className="list-group">
-                  <li className="list-group-item">
-                    <Link to="/Search/rihanna">rihanna</Link>
-                  </li>
-                  <li className="list-group-item">
-                    <Link to="/Search/hip-hop">hip-hop</Link>
-                  </li>
-                  <li className="list-group-item">
-                    <Link to="/Search/2000s%20R&B">2000s R&B</Link>
-                  </li>
+                  {Utils.exist(profile)
+                    ? profile.search.map((item, id) => {
+                        return (
+                          <li className="list-group-item" key={id}>
+                            {Utils.exist(item) ? (
+                              <Link to={`/Search/${item.query}`}>{item.query}</Link>
+                            ) : null}
+                          </li>
+                        );
+                      })
+                    : null}
                 </ul>
               </div>
             ) : (

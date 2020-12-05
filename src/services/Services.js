@@ -97,6 +97,18 @@ export const logOut = () =>
     credentials: 'include',
   }).then((response) => response.json());
 
+export const recordSearch = (id, json) =>
+  fetch(`${url}add-search/${id}`, {
+    method: 'POST',
+    body: JSON.stringify(json),
+    headers: {
+      'content-type': 'application/json',
+    },
+    credentials: 'include',
+  })
+    .then((response) => response.json())
+    .then((result) => console.log(result));
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
@@ -113,6 +125,7 @@ export default {
   removePost,
   findCurrent,
   logOut,
+  recordSearch,
 };
 
 // .then((response) => response.json())

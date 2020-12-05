@@ -3,12 +3,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, User, Playlist } from '../index';
 import { useHistory } from 'react-router-dom';
 
-const Search = ({ playLists = [], findPlayLists, findUsers, users = [], input }) => {
+const Search = ({
+  playLists = [],
+  findPlayLists,
+  findUsers,
+  users = [],
+  input,
+  recordSearch,
+  userId,
+}) => {
   const [query, setQuery] = useState(input);
   const history = useHistory();
 
   const onSearchHandler = (e) => {
     if (e.key === 'Enter') {
+      recordSearch(userId, { query: query });
       history.push(`/Search/${query}`);
     }
   };

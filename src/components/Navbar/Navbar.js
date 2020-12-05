@@ -91,9 +91,8 @@ const Navbar = ({ userId, image, profile, addUserName }) => {
             </React.Fragment>
           )}
         </ul>
-
         <a className="float-right text-white" href={`${url}spotifylogin/damon629`}>
-          <img style={{ height: '35px' }} alt="user" className="rounded-circle mr-2" src={image} />
+          <img style={{ height: '35px' }} alt="" className="rounded-circle mr-2" src={image} />
           {profile.displayName}
         </a>
       </div>

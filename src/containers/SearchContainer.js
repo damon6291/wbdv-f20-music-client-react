@@ -6,6 +6,7 @@ import Service from '../services/Services';
 const stateToPropertyMapper = (state) => ({
   playLists: state.playListReducer.playLists,
   users: state.playListReducer.users,
+  userId: state.LoginReducer.userId,
 });
 
 const propertyToDispatchMapper = (dispatch) => ({
@@ -18,6 +19,7 @@ const propertyToDispatchMapper = (dispatch) => ({
     Service.findUsers(query).then((users) => {
       findUsers(dispatch, users);
     }),
+  recordSearch: (id, query) => Service.recordSearch(id, query),
 });
 
 export default connect(stateToPropertyMapper, propertyToDispatchMapper)(Search);

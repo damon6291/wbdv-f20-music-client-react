@@ -7,6 +7,7 @@ import Service from '../services/Services';
 
 const stateToPropertyMapper = (state) => ({
   userId: state.LoginReducer.userId,
+  profile: state.LoginReducer.profile,
   playlist: state.HomeReducer.playlists,
   posts: state.HomeReducer.posts,
 });
