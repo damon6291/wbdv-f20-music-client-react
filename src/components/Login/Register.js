@@ -12,7 +12,11 @@ const Register = () => {
   const [UserName, setUserName] = useState('');
   const [Password, setPassword] = useState('');
   const [Phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
   const history = useHistory();
+
+  const filled =
+    displayName !== '' && UserName !== '' && Password !== '' && Phone !== '' && email !== '';
 
   const handleRegister = async () => {
     console.log(UserName);
@@ -20,7 +24,8 @@ const Register = () => {
       userName: UserName,
       password: Password,
       displayName: displayName,
-      phoneNum: Phone
+      phone: Phone,
+      email: email,
     }).then((result) => {
       if (result.message === 'success') {
         window.location.assign(`${url}spotifylogin/${UserName}`);
@@ -68,6 +73,7 @@ const Register = () => {
               placeholder="you@mail.org"
               type="email"
               className="form-control shadow"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </div>
@@ -119,7 +125,10 @@ const Register = () => {
         </div>
 
         <div className="form-group row">
-          <button className="m-2 btn btn-block btn-primary" onClick={() => handleRegister()}>
+          <button
+            className="m-2 btn btn-block btn-primary"
+            onClick={() => handleRegister()}
+            disabled={!filled}>
             Create my profile!
           </button>
         </div>

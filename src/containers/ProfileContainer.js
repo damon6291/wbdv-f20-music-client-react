@@ -11,12 +11,22 @@ const stateToPropertyMapper = (state) => ({
 });
 
 const propertyToDispatchMapper = (dispatch) => ({
+  editProfile: (id, json) => {
+    Service.editProfile(id, json).then((profile) => {
+      findProfile(dispatch, profile);
+    });
+  },
   findProfile: (json) => {
     Service.findProfile(json).then((profile) => {
       findProfile(dispatch, profile);
     });
     Service.findImage(json).then((sprofile) => {
-      findImage(dispatch, sprofile.images ? sprofile.images[0].url : "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg");
+      findImage(
+        dispatch,
+        sprofile.images
+          ? sprofile.images[0].url
+          : 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg'
+      );
     });
   },
   findPlaylists: (query) =>

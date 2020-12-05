@@ -6,7 +6,8 @@ import backgroundImg from '../../assets/background.jpg';
 import Utils from '../../utils/utils';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { clienturl } from '../../utils/constant';
 
 const Profile = ({
   ownerId,
@@ -17,11 +18,22 @@ const Profile = ({
   image,
   userId,
   followUser,
+  editProfile,
 }) => {
   const exist = (item) => Utils.exist(item);
   const history = useHistory();
   const [showFollower, setShowFollower] = useState(true);
   const editable = ownerId === undefined || ownerId === userId;
+  const [editState, setEditState] = useState(false);
+  const [displayName, setDisplayName] = useState(profile.displayName);
+  const [phone, setPhone] = useState(profile.phone);
+  const [email, setEmail] = useState(profile.email);
+
+  const stateSetter = (name, phone, email) => {
+    setDisplayName(name);
+    setPhone(phone);
+    setEmail(email);
+  };
 
   const getData = async () => {
     if (ownerId === undefined) {
@@ -48,6 +60,19 @@ const Profile = ({
     history.push(`/Profile/${ownerId}`);
   };
 
+  const editStateHandler = (bool) => {
+    stateSetter(profile.displayName, profile.phone, profile.email);
+    setEditState(bool);
+    if (!bool) {
+      editProfile(userId, {
+        displayName: displayName,
+        phone: phone,
+        email: email,
+      });
+      window.location.assign(`${clienturl}profile`);
+    }
+  };
+
   return (
     <React.Fragment>
       <Navbar />
@@ -58,18 +83,54 @@ const Profile = ({
             <img src={image} alt="profile" className="profile-image border mr-4 shadow" />
             <div className="d-flex flex-column">
               <div className="d-flex align-items-center">
-                <h4 className="mb-2">{profile.displayName}</h4> &nbsp;
+                {editState ? (
+                  <input
+                    id="displayName"
+                    placeholder={displayName === '' ? 'Display Name' : displayName}
+                    type="text"
+                    className="form-control shadow"
+                    onChange={(e) => setDisplayName(e.target.value)}
+                  />
+                ) : (
+                  <h4 className="mb-2">{profile.displayName}</h4>
+                )}
               </div>
               <span className="text-secondary mb-2">
                 <small>Followers: {exist(profile) && profile.followers.length}</small>
               </span>
             </div>
-            <div className="d-flex flex-column ml-5">
-              <span className="mb-2">Email: {exist(profile) && profile.email} </span>
-              <span className="mb-2">Phone: {exist(profile) && profile.phone} </span>
-            </div>
+            {editable ? (
+              editState ? (
+                <div className="d-flex flex-column ml-5">
+                  <input
+                    id="email"
+                    placeholder={email === '' ? 'Email' : email}
+                    type="text"
+                    className="form-control shadow"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <input
+                    id="phone"
+                    placeholder={phone === '' ? 'Phone' : phone}
+                    type="text"
+                    className="form-control shadow"
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </div>
+              ) : (
+                <div className="d-flex flex-column ml-5">
+                  <span className="mb-2">Email: {exist(profile) && profile.email} </span>
+                  <span className="mb-2">Phone: {exist(profile) && profile.phone} </span>
+                </div>
+              )
+            ) : null}
+
             {userId === '' ? null : editable ? (
-              <FontAwesomeIcon icon={faPencilAlt} className="ml-auto mb-4" />
+              <FontAwesomeIcon
+                icon={editState ? faCheck : faPencilAlt}
+                className="ml-auto mb-4"
+                onClick={() => editStateHandler(!editState)}
+              />
             ) : (
               <button
                 className="btn btn-danger h-25 ml-auto px-2 py-1 mb-4"

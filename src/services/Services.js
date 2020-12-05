@@ -15,6 +15,16 @@ export const findProfile = (query) =>
     credentials: 'include',
   }).then((response) => response.json());
 
+export const editProfile = (id, json) =>
+  fetch(`${url}update-user/${id}`, {
+    method: 'POST',
+    body: JSON.stringify(json),
+    headers: {
+      'content-type': 'application/json',
+    },
+    credentials: 'include',
+  }).then((response) => response.json());
+
 export const findPlaylistsForUser = (query) =>
   fetch(`${url}${query}/playlists`, {
     credentials: 'include',
@@ -126,6 +136,7 @@ export default {
   findCurrent,
   logOut,
   recordSearch,
+  editProfile,
 };
 
 // .then((response) => response.json())
