@@ -19,7 +19,7 @@ const User = ({
 
   useEffect(() => {
     Service.findProfile(_id).then((result) => {
-      setName(result.userName);
+      setName(result.displayName);
       setFollowers(result.followers);
     });
     Service.findImage(_id).then((result) => {
