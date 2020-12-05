@@ -15,6 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useHistory } from 'react-router-dom';
 import Utils from '../../utils/utils';
+import { clienturl } from '../../utils/constant';
 
 const HomePage = ({
   findProfile,
@@ -39,7 +40,8 @@ const HomePage = ({
 
   const refreshPost = async () => {
     await findPosts();
-    history.push('/Home');
+    console.log(posts);
+    window.location.assign(`${clienturl}Home`);
   };
 
   const logOutHandler = () => {
@@ -50,6 +52,7 @@ const HomePage = ({
   return (
     <React.Fragment>
       <Navbar />
+      {console.log(posts)}
       <div className="container-fluid animate__animated animate__fadeIn">
         <div className="row">
           <div
@@ -68,7 +71,7 @@ const HomePage = ({
                 <Link
                   style={{ textDecoration: 'none' }}
                   className="shadow-lg btn-lg btn-dark mt-5"
-                  to={`/Profile/${userId}`}>
+                  to={`/Profile`}>
                   <FontAwesomeIcon icon={faUserCircle} />
                   <br />
                   My Profile
@@ -189,6 +192,7 @@ const HomePage = ({
               <hr></hr>
               {/* Replace dummy objects with a mapping over Spotify API call w/ preset search phrase, then parse*/}
               {playlist.map((item, id) => {
+                console.log(item);
                 return <Playlist key={id} playList={item} />;
               })}
             </div>

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Playlist } from '../index';
 import Service from '../../services/Services';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const Post = ({ post, userId, refreshPost }) => {
   const [playlist, setPlaylist] = useState([]);
@@ -24,18 +27,18 @@ const Post = ({ post, userId, refreshPost }) => {
   return (
     <div className="container m-2 webdv-playlist-style">
       <div className="row">
-        <div className="col d-flex flex-row ">
+        <div className="col d-flex flex-row align-items-center">
           <img
             style={{ height: '30px' }}
             alt="user"
             className="rounded-circle mt-1 mr-2"
             src={image}
           />
-          <span className="mt-2 font-weight-bold">{profile.displayName}</span>
+          <Link to={`/Profile/${profile._id}`} className="mt-2 font-weight-bold text-dark">
+            {profile.displayName}
+          </Link>
           {userId === post.userId ? (
-            <button className="ml-auto" onClick={() => onRemoveHandler()}>
-              x
-            </button>
+            <FontAwesomeIcon icon={faTimes} className="ml-auto" onClick={() => onRemoveHandler()} />
           ) : (
             ''
           )}

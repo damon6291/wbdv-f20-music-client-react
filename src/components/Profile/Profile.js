@@ -5,6 +5,8 @@ import { Navbar, Playlist, User } from '../index';
 import backgroundImg from '../../assets/background.jpg';
 import Utils from '../../utils/utils';
 import { useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Profile = ({
   ownerId,
@@ -19,15 +21,20 @@ const Profile = ({
   const exist = (item) => Utils.exist(item);
   const history = useHistory();
   const [showFollower, setShowFollower] = useState(true);
+  const editable = ownerId === undefined || ownerId === userId;
 
   const getData = async () => {
+    if (ownerId === undefined) {
+      ownerId = userId;
+    }
+
     findProfile(ownerId);
     findPlaylists(ownerId);
   };
 
   useEffect(() => {
     getData();
-  }, [ownerId, showFollower]);
+  }, [ownerId, userId, showFollower]);
 
   const onFollowHandler = async () => {
     await followUser(userId, ownerId);
@@ -50,13 +57,19 @@ const Profile = ({
           <div className="d-flex align-items-end px-5">
             <img src={image} alt="profile" className="profile-image border mr-4 shadow" />
             <div className="d-flex flex-column">
-              <h4 className="mb-2">{profile.displayName}</h4>
+              <div className="d-flex align-items-center">
+                <h4 className="mb-2">{profile.displayName}</h4> &nbsp;
+              </div>
               <span className="text-secondary mb-2">
                 <small>Followers: {exist(profile) && profile.followers.length}</small>
               </span>
             </div>
-            {userId === '' || userId === ownerId ? (
-              ''
+            <div className="d-flex flex-column ml-5">
+              <span className="mb-2">Email: {exist(profile) && profile.email} </span>
+              <span className="mb-2">Phone: {exist(profile) && profile.phone} </span>
+            </div>
+            {userId === '' ? null : editable ? (
+              <FontAwesomeIcon icon={faPencilAlt} className="ml-auto mb-4" />
             ) : (
               <button
                 className="btn btn-danger h-25 ml-auto px-2 py-1 mb-4"

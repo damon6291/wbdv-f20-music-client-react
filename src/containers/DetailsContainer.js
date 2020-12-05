@@ -12,6 +12,7 @@ const stateToPropertyMapper = (state) => ({
 const propertyToDispatchMapper = (dispatch) => ({
   findDetails: (json) =>
     Service.getPlaylistInformation(json).then((details) => {
+      console.log(details);
       findDetails(dispatch, details);
     }),
 });

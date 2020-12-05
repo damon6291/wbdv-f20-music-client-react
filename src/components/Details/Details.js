@@ -26,6 +26,7 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId }
   }, []);
   return (
     <React.Fragment>
+      {console.log(details)}
       <Navbar />
       <div className="container mt-4">
         {console.log(details)}
@@ -73,13 +74,15 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId }
               ? details.tracks.items.map((item, id) => {
                   return (
                     <span key={id}>
-                      <PlaylistItem
-                        title={item.track.name}
-                        artist={item.track.artists[0].name}
-                        runtime={item.track.duration_ms}
-                        coverImg={item.track.album.images[0].url}
-                        externalUrl={item.track.external_urls.spotify}
-                      />
+                      {item.track === null ? null : (
+                        <PlaylistItem
+                          title={item.track.name}
+                          artist={item.track.artists[0].name}
+                          runtime={item.track.duration_ms}
+                          coverImg={item.track.album.images[0].url}
+                          externalUrl={item.track.external_urls.spotify}
+                        />
+                      )}
                       <hr />
                     </span>
                   );

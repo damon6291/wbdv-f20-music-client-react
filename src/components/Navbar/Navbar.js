@@ -27,7 +27,6 @@ const Navbar = ({ userId, image, profile, addUserName }) => {
   return (
     <nav className="navbar sticky-top navbar-dark bg-dark navbar-expand-md shadow-lg ">
       <span className="navbar-brand font-weight-bold">(logo)</span>
-      {console.log(userId)}
       <button
         className="navbar-toggler"
         type="button"
@@ -50,7 +49,7 @@ const Navbar = ({ userId, image, profile, addUserName }) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to={`/Profile/${userId}`}>
+                <Link className="nav-link" to={`/Profile`}>
                   <FontAwesomeIcon icon={faUserCircle} />
                   &nbsp; Profile
                 </Link>

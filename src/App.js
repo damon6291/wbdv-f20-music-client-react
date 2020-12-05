@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import { Register, Home } from './components/index';
 import {
@@ -18,7 +18,6 @@ import DetailsReducer from './reducers/DetailsReducer';
 import ProfileReducer from './reducers/ProfileReducer';
 import HomeReducer from './reducers/HomeReducer';
 import LoginReducer from './reducers/LoginReducer';
-import Service from './services/Services';
 
 const allReducer = combineReducers({
   playListReducer,
@@ -31,11 +30,6 @@ const allReducer = combineReducers({
 const store = createStore(allReducer);
 
 function App() {
-  useEffect(() => {
-    // if (Service.findCurrentUser() !== undefined) {
-    //   Service.findCurrentUser().then((result) => console.log(result));
-    // }
-  });
   return (
     <Provider store={store}>
       <Router>
@@ -60,6 +54,7 @@ function App() {
         />
         <Route path="/Login" component={LoginContainer} />
         <Route path="/Register" component={Register} />
+        <Route path="/Profile" exact component={ProfileContainer} />
         <Route
           path="/Profile/:ownerId"
           render={(props) => <ProfileContainer ownerId={props.match.params.ownerId} />}
