@@ -1,6 +1,6 @@
-export const FIND_ALL_USERS = 'FIND_ALL_USERS';
-export const ADMIN_USER = 'ADMIN_USER';
-export const CHANGE_ROLE = 'CHANGE_ROLE';
+export const FIND_ALL_USERS = "FIND_ALL_USERS";
+export const ADMIN_USER = "ADMIN_USER";
+export const CHANGE_ROLE = "CHANGE_ROLE";
 
 export const adminFindAllUsers = (dispatch, users) => {
   dispatch({

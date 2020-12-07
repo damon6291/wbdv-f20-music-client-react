@@ -1,10 +1,15 @@
-import { FIND_ALL_USERS, ADMIN_USER, CHANGE_ROLE } from '../actions/AdminAction';
+import {
+  FIND_ALL_USERS,
+  ADMIN_USER,
+  CHANGE_ROLE,
+  EDIT_USER,
+} from "../actions/AdminAction";
 
 const initialState = {
   users: [],
   user: [],
   count: 0,
-  role: '',
+  role: "",
 };
 
 const AdminReducer = (state = initialState, action) => {
