@@ -119,6 +119,17 @@ export const recordSearch = (id, json) =>
     .then((response) => response.json())
     .then((result) => console.log(result));
 
+export const findAllUsers = () =>
+  fetch(`${url}users`, {
+    credentials: 'include',
+  }).then((response) => response.json());
+
+export const deleteUser = (id) =>
+  fetch(`${url}delete-user/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
+  }).then((response) => response.json());
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
@@ -137,6 +148,8 @@ export default {
   logOut,
   recordSearch,
   editProfile,
+  findAllUsers,
+  deleteUser,
 };
 
 // .then((response) => response.json())

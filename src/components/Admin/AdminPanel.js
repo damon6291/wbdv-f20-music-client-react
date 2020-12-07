@@ -1,16 +1,24 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLock,
-  faTrash,
-  faPencilAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock, faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import Service from '../../services/Services';
+import { adminFindAllUsers } from '../../actions/AdminAction';
+import { clienturl } from '../../utils/constant';
 
-import Navbar from "../Navbar/Navbar";
+import Navbar from '../Navbar/Navbar';
 
-const AdminPanel = ({ userId }) => {
+const AdminPanel = ({ users, findAllUsers, deleteUser, count }) => {
+  useEffect(() => {
+    findAllUsers();
+  }, []);
+
+  const deleteHandler = async (id) => {
+    await deleteUser(id);
+    window.location.assign(`${clienturl}Admin`);
+  };
+
   return (
     <React.Fragment>
       <Navbar />
@@ -18,44 +26,21 @@ const AdminPanel = ({ userId }) => {
         <h2 className="font-weight-bold float-">
           <FontAwesomeIcon icon={faLock} /> Admin Panel
         </h2>
-        <h5 className="text-muted">total registered users: 3</h5>
-        <ul class="list-group">
-          <li class="list-group-item">
-            @<span className="font-weight-bold">user123</span>
-            <button className="btn btn-light float-right">
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-            <Link
-              to="/Admin/edit/:userId"
-              className="float-right btn btn-light"
-            >
-              <FontAwesomeIcon icon={faPencilAlt} />
-            </Link>
-          </li>
-          <li class="list-group-item">
-            @<span className="font-weight-bold">abc_def</span>
-            <button className="btn btn-light float-right">
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-            <Link
-              to="/Admin/edit/:userId"
-              className="float-right btn btn-light"
-            >
-              <FontAwesomeIcon icon={faPencilAlt} />
-            </Link>
-          </li>
-          <li class="list-group-item">
-            @<span className="font-weight-bold">apple_picker</span>
-            <button className="btn btn-light float-right">
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-            <Link
-              to="/Admin/edit/:userId"
-              className="float-right btn btn-light"
-            >
-              <FontAwesomeIcon icon={faPencilAlt} />
-            </Link>
-          </li>
+        <h5 className="text-muted">total registered users: {count}</h5>
+        <ul className="list-group">
+          {users.map((user, id) => {
+            return (
+              <li className="list-group-item" key={id}>
+                @<span className="font-weight-bold">{user.displayName}</span>
+                <button className="btn btn-light float-right">
+                  <FontAwesomeIcon icon={faTrash} onClick={() => deleteHandler(user._id)} />
+                </button>
+                <Link to={`/Admin/edit/${user._id}`} className="float-right btn btn-light">
+                  <FontAwesomeIcon icon={faPencilAlt} />
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </React.Fragment>
@@ -63,24 +48,19 @@ const AdminPanel = ({ userId }) => {
 };
 
 const stateToPropertyMapper = (state) => ({
-  // userId: state.LoginReducer.userId,
-  // image: state.LoginReducer.image,
-  // profile: state.LoginReducer.profile,
+  users: state.AdminReducer.users,
+  count: state.AdminReducer.count,
 });
 
 const propertyToDispatchMapper = (dispatch) => ({
-  // addUserName: (userId) => {
-  //   addUserName(dispatch, userId);
-  //   Service.findProfile(userId).then((profile) => {
-  //     findProfile(dispatch, profile);
-  //   });
-  //   Service.findImage(userId).then((sprofile) => {
-  //     findImage(dispatch, sprofile.images[0].url);
-  //   });
-  // },
+  findAllUsers: () => {
+    Service.findAllUsers().then((response) => {
+      adminFindAllUsers(dispatch, response);
+    });
+  },
+  deleteUser: (id) => {
+    Service.deleteUser(id).then((response) => console.log(response));
+  },
 });
 
-export default connect(
-  stateToPropertyMapper,
-  propertyToDispatchMapper
-)(AdminPanel);
+export default connect(stateToPropertyMapper, propertyToDispatchMapper)(AdminPanel);

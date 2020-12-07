@@ -65,6 +65,7 @@ const Profile = ({
     setEditState(bool);
     if (!bool) {
       editProfile(userId, {
+        userName: profile.userName,
         displayName: displayName,
         phone: phone,
         email: email,
