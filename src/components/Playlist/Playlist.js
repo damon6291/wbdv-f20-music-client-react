@@ -4,6 +4,7 @@ import '../../App.css';
 import Utils from '../../utils/utils';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { clienturl } from '../../utils/constant';
 
 const Playlist = ({ playList: { id, name, description, images, owner } }) => {
   const history = useHistory();
@@ -19,9 +20,10 @@ const Playlist = ({ playList: { id, name, description, images, owner } }) => {
           className="playlist-image m-2 mr-4"
         />
         <div className="d-flex flex-column">
-          <Link to={`/Details/${id}`} className="text-dark">
+          <a className="text-dark" href={`${clienturl}Details/${id}`}>
+            {/* to={`/Details/${id}`} */}
             {name ? name : 'Null Name'}
-          </Link>
+          </a>
           <span>
             <small>
               {description !== undefined

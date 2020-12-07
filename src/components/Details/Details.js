@@ -106,14 +106,15 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId, 
               }}
             />
             {userId !== '' ? (
-              <h4 className="d-flex align-self-center">Posts about this</h4>
+              <div className="d-flex flex-column align-items-center">
+                <h4>Posts about this</h4>
+                {posts.map((post, id) => {
+                  return <Post key={id} post={post} userId={userId} from="details" />;
+                })}
+              </div>
             ) : (
               <span />
             )}
-
-            {posts.map((post, id) => {
-              return <Post key={id} post={post} userId={userId} from="details" />;
-            })}
 
             {/* Need backend to be able to properly fetch posts, dummy posts will cause crash */}
             {/* <Post></Post> */}
