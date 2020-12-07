@@ -33,7 +33,7 @@ const Search = ({
     <React.Fragment>
       <Navbar />
       {console.log(users)}
-      <div className="container animate__animated animate__fadeIn">
+      <div className="container-md animate__animated animate__fadeIn">
         <div className="d-flex flex-column justify-content-center">
           <input
             type="text"

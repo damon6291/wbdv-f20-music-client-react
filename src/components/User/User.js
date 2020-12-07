@@ -44,7 +44,7 @@ const User = ({
           <Link to={`/Profile/${_id}`} className="text-dark">
             {name ? name : 'Null Name'}
           </Link>
-          <span className="text-secondary">
+          <span className="text-secondary text-right">
             <small>{followers.length} followers</small>
           </span>
         </div>

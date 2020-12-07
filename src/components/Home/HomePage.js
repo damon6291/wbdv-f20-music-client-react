@@ -56,7 +56,7 @@ const HomePage = ({
       <div className="container-fluid animate__animated animate__fadeIn">
         <div className="row">
           <div
-            className="col-2 mt-3"
+            className="col-md-2 mt-3"
             style={
               {
                 // borderRight: "solid 2px black",
@@ -67,7 +67,7 @@ const HomePage = ({
               }
             }>
             {userId !== '' ? (
-              <div className="d-flex flex-column align-self-center">
+              <div className="flex-column align-self-center d-none d-md-flex">
                 <Link
                   style={{ textDecoration: 'none' }}
                   className="shadow-lg btn-lg btn-dark mt-5"
@@ -95,7 +95,7 @@ const HomePage = ({
                 </Link>
               </div>
             ) : (
-              <div className="d-flex flex-column align-self-center">
+              <div className=" flex-column align-self-center d-none d-md-flex">
                 <Link
                   style={{ textDecoration: 'none !important' }}
                   className="btn btn-lg btn-primary mt-5"
@@ -116,7 +116,8 @@ const HomePage = ({
               </div>
             )}
           </div>
-          <div className="col-7 mt-3">
+
+          <div className="col-12 col-md-7 mt-3">
             {userId !== '' ? (
               <React.Fragment>
                 <h4 className="text-right font-weight-bold">
@@ -147,7 +148,7 @@ const HomePage = ({
             })}
           </div>
 
-          <div className="col-3 mt-3">
+          <div className="col-md-3 d-none d-md-block mt-3">
             {userId !== '' ? (
               <div className="d-flex flex-column justify-content-start pb-2">
                 <h4 className="text-center font-weight-bold">

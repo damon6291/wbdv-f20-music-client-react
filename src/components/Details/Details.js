@@ -28,10 +28,16 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId, 
     <React.Fragment>
       {console.log(posts)}
       <Navbar />
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-8 shadow-lg webdv-playlist-style animate__animated animate__slideInLeft">
+      <div className="container-md mt-4">
+        <div className="d-flex flex-wrap">
+          <div className="col-12 col-md-8 shadow-lg webdv-playlist-style animate__animated animate__slideInLeft">
             <div className="d-flex flex-column animate__animated animate__fadeIn animate__slow">
+              <Link
+                to={userId !== '' ? `/Home/${playlistId}` : '/Login'}
+                className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX d-md-none">
+                <FontAwesomeIcon icon={faShareSquare} />
+                &nbsp; Share to my feed
+              </Link>
               <div className="d-flex justify-content-between align-items-center">
                 <a
                   className="pr-2"
@@ -44,7 +50,7 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId, 
                       borderRadius: '5px',
                     }}
                     src={exist(details) && exist(images) ? images[0].url : null}
-                    alt="playlist"
+                    alt=""
                   />
                 </a>
                 <div className="d-flex flex-column align-items-end">
@@ -68,6 +74,7 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId, 
                 }}
               />
             </div>
+            {console.log(details)}
 
             {exist(details)
               ? details.tracks.items.map((item, id) => {
@@ -78,7 +85,9 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId, 
                           title={item.track.name}
                           artist={item.track.artists[0].name}
                           runtime={item.track.duration_ms}
-                          coverImg={item.track.album.images[0].url}
+                          coverImg={
+                            exist(item.track.album.images) ? item.track.album.images[0].url : null
+                          }
                           externalUrl={item.track.external_urls.spotify}
                         />
                       )}
@@ -89,7 +98,7 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId, 
               : null}
           </div>
 
-          <div className="col-4 d-flex flex-column mt-5">
+          <div className="col-md-4 d-flex flex-column mt-5">
             <h4 className="d-flex align-self-center">Enjoying this playlist?</h4>
 
             <Link

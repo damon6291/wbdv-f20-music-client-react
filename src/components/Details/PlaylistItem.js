@@ -17,7 +17,7 @@ const PlaylistItem = ({ title, artist, runtime, coverImg, externalUrl }) => {
               border: 'solid 1px black',
               borderRadius: '5px',
             }}
-            alt="playlist"
+            alt=""
           />
         </a>
         <div className="d-flex flex-column ml-2">

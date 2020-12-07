@@ -1,6 +1,8 @@
 .user-circle-image {
   width: 65px;
   height: 65px;
+  min-width: 65px;
+  min-height: 65px;
   border-radius: 100px;
   overflow: hidden;
 }
@@ -8,6 +10,8 @@
 .playlist-image {
   width: 65px;
   height: 65px;
+  min-width: 65px;
+  min-height: 65px;
   border-radius: 10px;
   border: dashed 2px white;
   overflow: hidden;
@@ -70,4 +74,17 @@ body {
   border-bottom: solid 4px #ebebeb;
   border-right: solid 2px #ebebeb;
   border-radius: 13px;
+}
+
+@media (max-width: 768px) {
+  .user-circle-image {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+  }
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
 }

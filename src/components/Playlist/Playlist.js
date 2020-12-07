@@ -24,7 +24,7 @@ const Playlist = ({ playList: { id, name, description, images, owner } }) => {
             {/* to={`/Details/${id}`} */}
             {name ? name : 'Null Name'}
           </a>
-          <span>
+          <span className="d-none d-md-block">
             <small>
               {description !== undefined
                 ? description.length < 55

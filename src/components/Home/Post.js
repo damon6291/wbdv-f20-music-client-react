@@ -27,7 +27,7 @@ const Post = ({ post, userId = '', refreshPost, from = '' }) => {
   };
 
   return (
-    <div className="container m-2 webdv-playlist-style">
+    <div className="container-fluid m-2 webdv-playlist-style">
       <div className="row">
         <div className="col d-flex flex-row align-items-center">
           <img
