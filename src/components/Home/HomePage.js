@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import './HomePage.css';
-import Post from './Post';
-import { Playlist, Navbar } from '../index';
-import PostCreator from './PostCreator';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect } from "react";
+import "./HomePage.css";
+import Post from "./Post";
+import { Playlist, Navbar } from "../index";
+import PostCreator from "./PostCreator";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserCircle,
   faSearch,
@@ -12,10 +12,10 @@ import {
   faArrowAltCircleUp,
   faClipboard,
   faComments,
-} from '@fortawesome/free-solid-svg-icons';
-import { Link, useHistory } from 'react-router-dom';
-import Utils from '../../utils/utils';
-import { clienturl } from '../../utils/constant';
+} from "@fortawesome/free-solid-svg-icons";
+import { Link, useHistory } from "react-router-dom";
+import Utils from "../../utils/utils";
+import { clienturl } from "../../utils/constant";
 
 const HomePage = ({
   findProfile,
@@ -31,10 +31,10 @@ const HomePage = ({
   const history = useHistory();
 
   useEffect(() => {
-    if (userId !== '') {
+    if (userId !== "") {
       findProfile(userId);
     }
-    findPlaylist('top');
+    findPlaylist("top");
     findPosts();
   }, [userId]);
 
@@ -46,7 +46,7 @@ const HomePage = ({
 
   const logOutHandler = () => {
     logOut();
-    history.push('/Home');
+    history.push("/Home");
   };
 
   return (
@@ -65,30 +65,34 @@ const HomePage = ({
                 // backgroundColor: "#D5C5C8",
                 // opacity: "85%"
               }
-            }>
-            {userId !== '' ? (
+            }
+          >
+            {userId !== "" ? (
               <div className="flex-column align-self-center d-none d-md-flex">
                 <Link
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                   className="shadow-lg btn-lg btn-dark mt-5"
-                  to={`/Profile`}>
+                  to={`/Profile`}
+                >
                   <FontAwesomeIcon icon={faUserCircle} />
                   <br />
                   My Profile
                 </Link>
                 <Link
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                   className="shadow-lg btn-lg btn-info mt-2"
-                  to="/Search">
+                  to="/Search"
+                >
                   <FontAwesomeIcon icon={faSearch} />
                   <br />
                   Search
                 </Link>
                 <Link
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                   className=" shadow-lg btn-lg btn-danger mt-2"
                   to="/Home"
-                  onClick={() => logOutHandler()}>
+                  onClick={() => logOutHandler()}
+                >
                   <FontAwesomeIcon icon={faSignOutAlt} />
                   <br />
                   Log out
@@ -97,18 +101,20 @@ const HomePage = ({
             ) : (
               <div className=" flex-column align-self-center d-none d-md-flex">
                 <Link
-                  style={{ textDecoration: 'none !important' }}
+                  style={{ textDecoration: "none !important" }}
                   className="btn btn-lg btn-primary mt-5"
-                  to="/Profile">
+                  to="/Register"
+                >
                   <FontAwesomeIcon icon={faUserCircle} />
                   <br />
                   Register
                 </Link>
 
                 <Link
-                  style={{ textDecoration: 'none !important' }}
+                  style={{ textDecoration: "none !important" }}
                   className="btn btn-lg btn-light mt-2"
-                  to="/Login">
+                  to="/Login"
+                >
                   <FontAwesomeIcon icon={faSignInAlt} />
                   <br />
                   Log in
@@ -118,7 +124,7 @@ const HomePage = ({
           </div>
 
           <div className="col-12 col-md-7 mt-3">
-            {userId !== '' ? (
+            {userId !== "" ? (
               <React.Fragment>
                 <h4 className="text-right font-weight-bold">
                   <span
@@ -130,7 +136,11 @@ const HomePage = ({
                     &nbsp;New post&nbsp;
                   </span>
                 </h4>
-                <PostCreator userId={userId} playlistId={playlistId} refreshPost={refreshPost} />
+                <PostCreator
+                  userId={userId}
+                  playlistId={playlistId}
+                  refreshPost={refreshPost}
+                />
               </React.Fragment>
             ) : (
               <span></span>
@@ -144,12 +154,19 @@ const HomePage = ({
               </span>
             </h4>
             {posts.map((post, id) => {
-              return <Post key={id} post={post} userId={userId} refreshPost={refreshPost} />;
+              return (
+                <Post
+                  key={id}
+                  post={post}
+                  userId={userId}
+                  refreshPost={refreshPost}
+                />
+              );
             })}
           </div>
 
           <div className="col-md-3 d-none d-md-block mt-3">
-            {userId !== '' ? (
+            {userId !== "" ? (
               <div className="d-flex flex-column justify-content-start pb-2">
                 <h4 className="text-center font-weight-bold">
                   <span className="webdv-title-style">
@@ -164,7 +181,9 @@ const HomePage = ({
                         return (
                           <li className="list-group-item" key={id}>
                             {Utils.exist(item) ? (
-                              <Link to={`/Search/${item.query}`}>{item.query}</Link>
+                              <Link to={`/Search/${item.query}`}>
+                                {item.query}
+                              </Link>
                             ) : null}
                           </li>
                         );
@@ -178,10 +197,11 @@ const HomePage = ({
 
             <div
               style={{
-                borderRadius: '40px',
-                backgroundColor: '#D5C5C8',
-                opacity: '85%',
-              }}>
+                borderRadius: "40px",
+                backgroundColor: "#D5C5C8",
+                opacity: "85%",
+              }}
+            >
               <span>&nbsp;</span>
               <h4 className="text-center font-weight-bold">
                 <span className="webdv-title-style">
