@@ -8,23 +8,28 @@ import {
   faUserPlus,
   faUserLock,
   faMusic,
+  faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { url } from '../../utils/constant';
 import { connect } from 'react-redux';
-import { addUserName, findImage, findProfile } from '../../actions/LoginAction';
+import { addUserName, findImage, findProfile, reset } from '../../actions/LoginAction';
 import Service from '../../services/Services';
 
 // Import in this order for responsive nav toggle to work!
 import '../../../node_modules/jquery/dist/jquery.min.js';
 import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
-const Navbar = ({ userId, image, profile, addUserName }) => {
+const Navbar = ({ userId, image, profile, addUserName, logOut }) => {
   useEffect(() => {
     Service.findCurrent().then((result) =>
       result.message !== 'error' ? addUserName(result.message) : null
     );
   }, []);
+
+  const logOutHandler = () => {
+    logOut();
+  };
 
   return (
     <nav className="navbar sticky-top navbar-dark bg-dark navbar-expand-md shadow-lg ">
@@ -72,6 +77,12 @@ const Navbar = ({ userId, image, profile, addUserName }) => {
                   </Link>
                 </li>
               ) : null}
+              <li className="nav-item">
+                <Link className="nav-link" to="/Home" onClick={() => logOutHandler()}>
+                  <FontAwesomeIcon icon={faSignOutAlt} />
+                  &nbsp; Log out
+                </Link>
+              </li>
             </React.Fragment>
           ) : (
             <React.Fragment>
@@ -126,6 +137,10 @@ const propertyToDispatchMapper = (dispatch) => ({
     Service.findImage(userId).then((sprofile) => {
       findImage(dispatch, sprofile.images[0].url);
     });
+  },
+  logOut: () => {
+    Service.logOut().then((response) => console.log(response));
+    reset(dispatch);
   },
 });
 
