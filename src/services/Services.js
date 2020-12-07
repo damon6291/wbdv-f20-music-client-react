@@ -136,6 +136,11 @@ export const changeRole = (id) =>
     credentials: 'include',
   }).then((response) => response.json());
 
+export const findPostsByPlaylistId = (id) =>
+  fetch(`${url}findPosts/${id}`, {
+    credentials: 'include',
+  }).then((response) => response.json());
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
@@ -157,6 +162,7 @@ export default {
   findAllUsers,
   deleteUser,
   changeRole,
+  findPostsByPlaylistId,
 };
 
 // .then((response) => response.json())

@@ -11,7 +11,7 @@ import Post from '../Home/Post';
 import 'animate.css';
 import Utils from '../../utils/utils';
 
-const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId }) => {
+const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId, posts }) => {
   const images = details.images;
   const externalUrl = details.external_urls;
 
@@ -26,10 +26,9 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId }
   }, []);
   return (
     <React.Fragment>
-      {console.log(details)}
+      {console.log(posts)}
       <Navbar />
       <div className="container mt-4">
-        {console.log(details)}
         <div className="row">
           <div className="col-8 shadow-lg webdv-playlist-style animate__animated animate__slideInLeft">
             <div className="d-flex flex-column animate__animated animate__fadeIn animate__slow">
@@ -92,28 +91,30 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId }
 
           <div className="col-4 d-flex flex-column mt-5">
             <h4 className="d-flex align-self-center">Enjoying this playlist?</h4>
-            {userId !== '' ? 
+
             <Link
-              to={`/Home/${playlistId}`}
+              to={userId !== '' ? `/Home/${playlistId}` : '/Login'}
               className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">
               <FontAwesomeIcon icon={faShareSquare} />
               &nbsp; Share to my feed
-            </Link> 
-            :  
-            <Link
-              to={`/Login`}
-              className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">
-              <FontAwesomeIcon icon={faShareSquare} />
-              &nbsp; Share to my feed
-              </Link> }
-           
+            </Link>
+
             <hr
               style={{
                 width: '100%',
                 border: '1px solid #C9E4D1',
               }}
-            />{userId !== '' ? <h4 className="d-flex align-self-center">Posts about this</h4> : <span />}
-            
+            />
+            {userId !== '' ? (
+              <h4 className="d-flex align-self-center">Posts about this</h4>
+            ) : (
+              <span />
+            )}
+
+            {posts.map((post, id) => {
+              return <Post key={id} post={post} userId={userId} from="details" />;
+            })}
+
             {/* Need backend to be able to properly fetch posts, dummy posts will cause crash */}
             {/* <Post></Post> */}
             {/* <button className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">

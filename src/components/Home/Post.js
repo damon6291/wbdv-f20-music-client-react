@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const Post = ({ post, userId, refreshPost }) => {
+const Post = ({ post, userId = '', refreshPost, from = '' }) => {
   const [playlist, setPlaylist] = useState([]);
   const [profile, setProfile] = useState([]);
   const [image, setImage] = useState('');
@@ -49,7 +49,7 @@ const Post = ({ post, userId, refreshPost }) => {
           <hr className="m-2" style={{ color: 'black', size: '1px' }}></hr>
           <p>{post.text}</p>
           {/* {console.log(playlist)} */}
-          <Playlist playList={playlist} />
+          {from === 'details' ? null : <Playlist playList={playlist} />}
         </div>
       </div>
     </div>
