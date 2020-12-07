@@ -1,9 +1,10 @@
-import { FIND_ALL_USERS, ADMIN_USER } from '../actions/AdminAction';
+import { FIND_ALL_USERS, ADMIN_USER, CHANGE_ROLE } from '../actions/AdminAction';
 
 const initialState = {
   users: [],
   user: [],
   count: 0,
+  role: '',
 };
 
 const AdminReducer = (state = initialState, action) => {
@@ -20,6 +21,12 @@ const AdminReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
+        role: action.user.role,
+      };
+    case CHANGE_ROLE:
+      return {
+        ...state,
+        role: action.role,
       };
     default:
       return state;

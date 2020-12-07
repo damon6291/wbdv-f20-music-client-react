@@ -69,6 +69,7 @@ const Profile = ({
         displayName: displayName,
         phone: phone,
         email: email,
+        role: profile.role,
       });
       window.location.assign(`${clienturl}profile`);
     }

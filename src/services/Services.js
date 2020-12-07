@@ -130,6 +130,12 @@ export const deleteUser = (id) =>
     credentials: 'include',
   }).then((response) => response.json());
 
+export const changeRole = (id) =>
+  fetch(`${url}change-role/${id}`, {
+    method: 'POST',
+    credentials: 'include',
+  }).then((response) => response.json());
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
@@ -150,6 +156,7 @@ export default {
   editProfile,
   findAllUsers,
   deleteUser,
+  changeRole,
 };
 
 // .then((response) => response.json())
