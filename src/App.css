@@ -76,11 +76,18 @@ body {
   border-radius: 13px;
 }
 
+.width-75 {
+  width: 75%;
+}
+
 @media (max-width: 768px) {
   .user-circle-image {
     width: 45px;
     height: 45px;
     min-width: 45px;
     min-height: 45px;
+  }
+  .width-75 {
+    width: 100% !important;
   }
 }

@@ -113,10 +113,10 @@ const Navbar = ({ userId, image, profile, addUserName, logOut }) => {
             </React.Fragment>
           )}
         </ul>
-        <a className="float-right text-white" href={`${url}spotifylogin/damon629`}>
+        <Link to={`/Profile`} className="float-right text-white">
           <img style={{ height: '35px' }} alt="" className="rounded-circle mr-2" src={image} />
           {profile.displayName}
-        </a>
+        </Link>
       </div>
     </nav>
   );

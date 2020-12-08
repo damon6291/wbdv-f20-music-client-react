@@ -21,7 +21,7 @@ const PostCreator = ({ userId, playlistId, refreshPost }) => {
   return (
     <div
       // style={{ border: "solid 1px black", borderRadius: "15px" }}
-      className="container webdv-postgen-style my-3">
+      className="container-fluid webdv-postgen-style my-3">
       {userId !== '' ? (
         <React.Fragment>
           <div className="d-flex">
