@@ -6,13 +6,15 @@ import Services from '../../services/Services';
 import { useHistory } from 'react-router-dom';
 import { url } from '../../utils/constant';
 import { Link } from 'react-router-dom';
+import ImageUploader from 'react-images-upload';
 
-const Register = () => {
+const Register = (props) => {
   const [displayName, setDisplayName] = useState('');
   const [UserName, setUserName] = useState('');
   const [Password, setPassword] = useState('');
   const [Phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [pictures, setPictures] = useState([]);
   const history = useHistory();
 
   const filled =
@@ -26,6 +28,7 @@ const Register = () => {
       displayName: displayName,
       phone: Phone,
       email: email,
+      // img: pictures[0],
     }).then((result) => {
       if (result.message === 'success') {
         window.location.assign(`${url}spotifylogin/${UserName}`);
@@ -34,6 +37,10 @@ const Register = () => {
         history.push('/Register');
       }
     });
+  };
+
+  const onDrop = (picture) => {
+    setPictures([...pictures, picture]);
   };
 
   return (
@@ -122,6 +129,17 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {/* <div className="col-sm-10">
+            {console.log(pictures)}
+            <ImageUploader
+              {...props}
+              withIcon={true}
+              buttonText="Choose images"
+              onChange={(e) => onDrop(e)}
+              imgExtension={['.jpg', '.gif', '.png', '.gif', '.jpeg']}
+              maxFileSize={5242880}
+            />
+          </div> */}
         </div>
 
         <div className="form-group row">

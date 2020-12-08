@@ -45,6 +45,8 @@ export const registerUser = (json) =>
     credentials: 'include',
   }).then((response) => response.json());
 
+//x-www-form-urlencoded
+
 export const handleLogin = (json) =>
   fetch(`${url}login`, {
     method: 'POST',
@@ -141,6 +143,12 @@ export const findPostsByPlaylistId = (id) =>
     credentials: 'include',
   }).then((response) => response.json());
 
+export const deletePostByUserId = (id) =>
+  fetch(`${url}deletePosts/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
+  }).then((response) => response.json());
+
 export default {
   searchForPlaylists,
   getPlaylistInformation,
@@ -163,6 +171,7 @@ export default {
   deleteUser,
   changeRole,
   findPostsByPlaylistId,
+  deletePostByUserId,
 };
 
 // .then((response) => response.json())

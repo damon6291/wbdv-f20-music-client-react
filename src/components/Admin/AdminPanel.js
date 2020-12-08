@@ -1,17 +1,13 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLock,
-  faTrash,
-  faPencilAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import Service from "../../services/Services";
-import { adminFindAllUsers } from "../../actions/AdminAction";
-import { clienturl } from "../../utils/constant";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock, faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import Service from '../../services/Services';
+import { adminFindAllUsers } from '../../actions/AdminAction';
+import { clienturl } from '../../utils/constant';
 
-import Navbar from "../Navbar/Navbar";
+import Navbar from '../Navbar/Navbar';
 
 const AdminPanel = ({ users, findAllUsers, deleteUser, count }) => {
   useEffect(() => {
@@ -49,9 +45,7 @@ const AdminPanel = ({ users, findAllUsers, deleteUser, count }) => {
                 return (
                   <tr key={id}>
                     <td>
-                      <span className="font-weight-bold">
-                        @{user.displayName}
-                      </span>
+                      <span className="font-weight-bold">@{user.displayName}</span>
                     </td>
                     <td>
                       <span>{user.role}</span>
@@ -59,15 +53,9 @@ const AdminPanel = ({ users, findAllUsers, deleteUser, count }) => {
                     <td>
                       <div className="float-right">
                         <button className="btn btn-light float-right">
-                          <FontAwesomeIcon
-                            icon={faTrash}
-                            onClick={() => deleteHandler(user._id)}
-                          />
+                          <FontAwesomeIcon icon={faTrash} onClick={() => deleteHandler(user._id)} />
                         </button>
-                        <Link
-                          to={`/Admin/edit/${user._id}`}
-                          className="float-right btn btn-light"
-                        >
+                        <Link to={`/Admin/edit/${user._id}`} className="float-right btn btn-light">
                           <FontAwesomeIcon icon={faPencilAlt} />
                         </Link>
                       </div>
@@ -109,10 +97,8 @@ const propertyToDispatchMapper = (dispatch) => ({
   },
   deleteUser: (id) => {
     Service.deleteUser(id).then((response) => console.log(response));
+    Service.deletePostByUserId(id).then((response) => console.log(response));
   },
 });
 
-export default connect(
-  stateToPropertyMapper,
-  propertyToDispatchMapper
-)(AdminPanel);
+export default connect(stateToPropertyMapper, propertyToDispatchMapper)(AdminPanel);
