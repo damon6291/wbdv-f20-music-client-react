@@ -22,8 +22,8 @@ We plan on using the Spotify and Apple Music API’s in order to gather user dat
 <h2>P2</h2>
 1. UML & Design
 
-![alt text](./readmePicture/uml.png 'uml')
-![alt text](./readmePicture/UMLII.png 'design')
+![alt text](./readmePicture/UMLII.png 'uml')
+![alt text](./readmePicture/design.png 'design')
 </br>
 
 2. API - Spotify API: [https://api.spotify.com/](https://api.spotify.com/)
