@@ -19,6 +19,8 @@ import ProfileReducer from './reducers/ProfileReducer';
 import HomeReducer from './reducers/HomeReducer';
 import LoginReducer from './reducers/LoginReducer';
 import AdminReducer from './reducers/AdminReducer';
+import PrivacyPage from './components/Privacy/PrivacyPage'
+import Privacy from './components/Privacy/Privacy.js'
 
 const allReducer = combineReducers({
   playListReducer,
@@ -67,7 +69,9 @@ function App() {
           exact
           render={(props) => <UserEdit uid={props.match.params.uid} />}
         />
+        <Route path="/Privacy" exact component={PrivacyPage} />
       </Router>
+      <Privacy />
     </Provider>
   );
 }
