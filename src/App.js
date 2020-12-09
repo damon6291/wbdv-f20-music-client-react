@@ -19,8 +19,7 @@ import ProfileReducer from './reducers/ProfileReducer';
 import HomeReducer from './reducers/HomeReducer';
 import LoginReducer from './reducers/LoginReducer';
 import AdminReducer from './reducers/AdminReducer';
-import PrivacyPage from './components/Privacy/PrivacyPage'
-import Privacy from './components/Privacy/Privacy.js'
+import PrivacyPage from './components/Privacy/PrivacyPage';
 
 const allReducer = combineReducers({
   playListReducer,
@@ -71,7 +70,6 @@ function App() {
         />
         <Route path="/Privacy" exact component={PrivacyPage} />
       </Router>
-      <Privacy />
     </Provider>
   );
 }

@@ -9,3 +9,4 @@ export { default as User } from './User/User';
 export { default as Playlist } from './Playlist/Playlist';
 export { default as AdminPanel } from './Admin/AdminPanel';
 export { default as UserEdit } from './Admin/UserEdit';
+export { default as Privacy } from './Privacy/Privacy';

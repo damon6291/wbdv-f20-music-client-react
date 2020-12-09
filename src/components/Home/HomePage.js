@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './HomePage.css';
 import Post from './Post';
-import { Playlist, Navbar } from '../index';
+import { Playlist, Navbar, Privacy } from '../index';
 import PostCreator from './PostCreator';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -198,6 +198,7 @@ const HomePage = ({
             </div>
           </div>
         </div>
+        <Privacy />
       </div>
     </React.Fragment>
   );
