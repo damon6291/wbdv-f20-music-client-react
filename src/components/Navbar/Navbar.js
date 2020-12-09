@@ -11,7 +11,6 @@ import {
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { url } from '../../utils/constant';
 import { connect } from 'react-redux';
 import { addUserName, findImage, findProfile, reset } from '../../actions/LoginAction';
 import Service from '../../services/Services';
@@ -25,6 +24,7 @@ const Navbar = ({ userId, image, profile, addUserName, logOut }) => {
     Service.findCurrent().then((result) =>
       result.message !== 'error' ? addUserName(result.message) : null
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const logOutHandler = () => {

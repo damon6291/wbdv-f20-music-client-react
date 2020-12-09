@@ -17,7 +17,9 @@ const Login = ({ addUserName }) => {
         addUserName(result.message);
         history.push('/Home');
       } else {
-        alert("Your login information was incorrect. Please re-enter your username and/or password and try again.")
+        alert(
+          'Your login information was incorrect. Please re-enter your username and/or password and try again.'
+        );
         history.push('/Login');
       }
     });
@@ -25,10 +27,7 @@ const Login = ({ addUserName }) => {
   return (
     <React.Fragment>
       <Navbar />
-      <div
-        className="container webdv-playlist-style shadow animate__animated animate__fadeIn"
-        // style={{ border: "solid 2px lightgrey", borderRadius: "20px" }}
-      >
+      <div className="container webdv-playlist-style shadow animate__animated animate__fadeIn">
         <div className="d-flex flex-column align-items-center align-content-end m-3">
           <h2 className="mt-3">Login&nbsp;</h2>
 

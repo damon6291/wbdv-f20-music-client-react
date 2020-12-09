@@ -19,6 +19,7 @@ const Post = ({ post, userId = '', refreshPost, from = '' }) => {
       await Service.findImage(post.userId).then((response) => setImage(response.images[0].url));
     };
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onRemoveHandler = async () => {
@@ -57,27 +58,5 @@ const Post = ({ post, userId = '', refreshPost, from = '' }) => {
     </div>
   );
 };
-
-// const stateToPropertyMapper = (state) => ({
-//   profile: state.PostReducer.profile,
-//   playlist: state.PostReducer.playlist,
-//   image: state.PostReducer.image,
-// });
-
-// const propertyToDispatchMapper = (dispatch) => ({
-//   findPost: (userId, playlistId) => {
-//     Service.findProfile(userId).then((profile) => {
-//       postindProfile(dispatch, profile);
-//     });
-//     Service.findImage(userId).then((sprofile) => {
-//       postFindImage(dispatch, sprofile.images[0].url);
-//     });
-//     Service.getPlaylistInformation(playlistId).then((playlist) => {
-//       postFindPlaylist(dispatch, playlist);
-//     });
-//   },
-// });
-
-// export default connect(stateToPropertyMapper, propertyToDispatchMapper)(Post);
 
 export default Post;

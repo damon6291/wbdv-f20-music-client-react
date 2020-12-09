@@ -19,7 +19,8 @@ const propertyToDispatchMapper = (dispatch) => ({
     Service.findUsers(query).then((users) => {
       findUsers(dispatch, users);
     }),
-  recordSearch: (id, query) => Service.recordSearch(id, query),
+  recordSearch: (id, query) =>
+    Service.recordSearch(id, query).then((result) => console.log(result)),
 });
 
 export default connect(stateToPropertyMapper, propertyToDispatchMapper)(Search);

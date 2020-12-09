@@ -46,6 +46,7 @@ const Profile = ({
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ownerId, userId, showFollower]);
 
   const onFollowHandler = async () => {
@@ -155,7 +156,6 @@ const Profile = ({
               </div>
             </div>
             <div className="col-md-4 col-sm-12">
-              {/* <div className="w-100"> */}
               <div
                 className="border-bottom pl-4 pb-3 row"
                 onClick={() => setShowFollower(!showFollower)}>
@@ -180,7 +180,6 @@ const Profile = ({
                       />
                     );
                   })}
-              {/* </div> */}
             </div>
           </div>
         </div>

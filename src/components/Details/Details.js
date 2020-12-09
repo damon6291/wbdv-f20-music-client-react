@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShareSquare, faStar, faMusic } from '@fortawesome/free-solid-svg-icons';
-
+import { faShareSquare, faMusic } from '@fortawesome/free-solid-svg-icons';
 import PlaylistItem from './PlaylistItem.js';
 import Navbar from '../Navbar/Navbar';
 import Post from '../Home/Post';
@@ -23,10 +21,10 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId, 
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <React.Fragment>
-      {console.log(posts)}
       <Navbar />
       <div className="container-md mt-4">
         <div className="d-flex flex-wrap">
@@ -124,16 +122,6 @@ const Details = ({ playlistId, details = [], findDetails, totalRuntime, userId, 
             ) : (
               <span />
             )}
-
-            {/* Need backend to be able to properly fetch posts, dummy posts will cause crash */}
-            {/* <Post></Post> */}
-            {/* <button className="m-1 btn btn-primary shadow font-weight-light animate__animated animate__flipInX">
-              <FontAwesomeIcon icon={faStar} />
-              &nbsp; Import to library
-            </button>
-            <button className="m-1 btn btn-light shadow font-weight-light animate__animated animate__flipInX">
-              ...
-            </button> */}
           </div>
         </div>
       </div>

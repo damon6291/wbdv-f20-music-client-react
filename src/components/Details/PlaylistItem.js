@@ -1,7 +1,5 @@
 import React from 'react';
 import Utils from '../../utils/utils';
-// import { bounceIn } from "animate.css";
-//import "animate.css";
 
 const PlaylistItem = ({ title, artist, runtime, coverImg, externalUrl }) => {
   return (

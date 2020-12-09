@@ -7,3 +7,5 @@ export { default as Search } from './Search/Search';
 export { default as Navbar } from './Navbar/Navbar';
 export { default as User } from './User/User';
 export { default as Playlist } from './Playlist/Playlist';
+export { default as AdminPanel } from './Admin/AdminPanel';
+export { default as UserEdit } from './Admin/UserEdit';

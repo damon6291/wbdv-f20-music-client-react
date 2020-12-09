@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Register, Home } from './components/index';
+import { Register, AdminPanel, UserEdit } from './components/index';
 import {
   SearchContainer,
   DetailsContainer,
@@ -19,8 +19,6 @@ import ProfileReducer from './reducers/ProfileReducer';
 import HomeReducer from './reducers/HomeReducer';
 import LoginReducer from './reducers/LoginReducer';
 import AdminReducer from './reducers/AdminReducer';
-import AdminPanel from './components/Admin/AdminPanel';
-import UserEdit from './components/Admin/UserEdit';
 
 const allReducer = combineReducers({
   playListReducer,
@@ -37,12 +35,6 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        {/* <Link to="/Details">Details</Link>
-        <Link to="/Home">Home</Link>
-        <Link to="/Login">Login</Link>
-        <Link to="/Register">Register</Link>
-        <Link to="/Profile">Profile</Link>
-        <Link to="/Search">Search</Link> */}
         <Route
           path="/Details/:playlistId"
           render={(props) => (

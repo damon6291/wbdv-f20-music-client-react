@@ -2,13 +2,9 @@ import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
 import Utils from '../../utils/utils';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 import { clienturl } from '../../utils/constant';
 
 const Playlist = ({ playList: { id, name, description, images, owner } }) => {
-  const history = useHistory();
-
   useEffect(() => {}, [id]);
 
   return (
@@ -21,7 +17,6 @@ const Playlist = ({ playList: { id, name, description, images, owner } }) => {
         />
         <div className="d-flex flex-column">
           <a className="text-dark" href={`${clienturl}Details/${id}`}>
-            {/* to={`/Details/${id}`} */}
             {name ? name : 'Null Name'}
           </a>
           <span className="d-none d-md-block">

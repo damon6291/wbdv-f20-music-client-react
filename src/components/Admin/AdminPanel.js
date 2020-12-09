@@ -9,9 +9,10 @@ import { clienturl } from '../../utils/constant';
 
 import Navbar from '../Navbar/Navbar';
 
-const AdminPanel = ({ users, findAllUsers, deleteUser, count }) => {
+const AdminPanel = ({ users, findAllUsers, deleteUser, count, userId }) => {
   useEffect(() => {
     findAllUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const deleteHandler = async (id) => {
@@ -27,7 +28,6 @@ const AdminPanel = ({ users, findAllUsers, deleteUser, count }) => {
           <FontAwesomeIcon icon={faLock} />
           &nbsp;Admin Panel
         </h2>
-        {/* <hr style={{ width: "50%" }}></hr> */}
         <h5 className="d-flex justify-content-center text-muted">
           total registered users: {count}
         </h5>
@@ -52,28 +52,20 @@ const AdminPanel = ({ users, findAllUsers, deleteUser, count }) => {
                     </td>
                     <td>
                       <div className="float-right">
-                        <button className="btn btn-light float-right">
-                          <FontAwesomeIcon icon={faTrash} onClick={() => deleteHandler(user._id)} />
-                        </button>
+                        {userId === user._id ? null : (
+                          <button className="btn btn-light float-right">
+                            <FontAwesomeIcon
+                              icon={faTrash}
+                              onClick={() => deleteHandler(user._id)}
+                            />
+                          </button>
+                        )}
                         <Link to={`/Admin/edit/${user._id}`} className="float-right btn btn-light">
                           <FontAwesomeIcon icon={faPencilAlt} />
                         </Link>
                       </div>
                     </td>
                   </tr>
-
-                  // <li className="list-group-item d-flex justify-content-between" key={id}>
-                  //   <span className="font-weight-bold">@{user.displayName}</span>
-                  //   <span>{user.role}</span>
-                  //   <div>
-                  //     <button className="btn btn-light ">
-                  //       <FontAwesomeIcon icon={faTrash} onClick={() => deleteHandler(user._id)} />
-                  //     </button>
-                  //     <Link to={`/Admin/edit/${user._id}`} className="float-right btn btn-light">
-                  //       <FontAwesomeIcon icon={faPencilAlt} />
-                  //     </Link>
-                  //   </div>
-                  // </li>
                 );
               })}
             </tbody>
@@ -87,6 +79,7 @@ const AdminPanel = ({ users, findAllUsers, deleteUser, count }) => {
 const stateToPropertyMapper = (state) => ({
   users: state.AdminReducer.users,
   count: state.AdminReducer.count,
+  userId: state.LoginReducer.userId,
 });
 
 const propertyToDispatchMapper = (dispatch) => ({
