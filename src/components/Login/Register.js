@@ -30,7 +30,7 @@ const Register = () => {
       if (result.message === 'success') {
         window.location.assign(`${url}spotifylogin/${UserName}`);
       } else {
-        alert('There was an error in registering');
+        alert(result.message);
         history.push('/Register');
       }
     });
