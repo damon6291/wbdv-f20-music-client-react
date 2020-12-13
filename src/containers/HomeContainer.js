@@ -1,9 +1,9 @@
-import { connect } from 'react-redux';
-import HomePage from '../components/Home/HomePage';
-import { findProfile, findImage } from '../actions/ProfileAction';
-import { findPlayListsForHome, findPosts } from '../actions/HomeAction';
-import { reset } from '../actions/LoginAction';
-import Service from '../services/Services';
+import { connect } from "react-redux";
+import HomePage from "../components/Home/HomePage";
+import { findProfile, findImage } from "../actions/ProfileAction";
+import { findPlayListsForHome, findPosts } from "../actions/HomeAction";
+import { reset } from "../actions/LoginAction";
+import Service from "../services/Services";
 
 const stateToPropertyMapper = (state) => ({
   userId: state.LoginReducer.userId,
@@ -27,12 +27,14 @@ const propertyToDispatchMapper = (dispatch) => ({
       findProfile(dispatch, profile);
     });
     Service.findImage(json).then((sprofile) => {
-      findImage(
-        dispatch,
-        sprofile.images
-          ? sprofile.images[0].url
-          : 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg'
-      );
+      try {
+        findImage(dispatch, sprofile.images[0].url);
+      } catch (error) {
+        findImage(
+          dispatch,
+          "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg"
+        );
+      }
     });
   },
   findPlaylist: (query) => {
@@ -42,4 +44,7 @@ const propertyToDispatchMapper = (dispatch) => ({
   },
 });
 
-export default connect(stateToPropertyMapper, propertyToDispatchMapper)(HomePage);
+export default connect(
+  stateToPropertyMapper,
+  propertyToDispatchMapper
+)(HomePage);

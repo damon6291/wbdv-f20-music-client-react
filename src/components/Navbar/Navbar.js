@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
   faUserCircle,
@@ -9,20 +9,25 @@ import {
   faUserLock,
   faMusic,
   faSignOutAlt,
-} from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { addUserName, findImage, findProfile, reset } from '../../actions/LoginAction';
-import Service from '../../services/Services';
+} from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import {
+  addUserName,
+  findImage,
+  findProfile,
+  reset,
+} from "../../actions/LoginAction";
+import Service from "../../services/Services";
 
 // Import in this order for responsive nav toggle to work!
-import '../../../node_modules/jquery/dist/jquery.min.js';
-import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js';
+import "../../../node_modules/jquery/dist/jquery.min.js";
+import "../../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 
 const Navbar = ({ userId, image, profile, addUserName, logOut }) => {
   useEffect(() => {
     Service.findCurrent().then((result) =>
-      result.message !== 'error' ? addUserName(result.message) : null
+      result.message !== "error" ? addUserName(result.message) : null
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -43,13 +48,14 @@ const Navbar = ({ userId, image, profile, addUserName, logOut }) => {
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
-        aria-label="Toggle navigation">
+        aria-label="Toggle navigation"
+      >
         <span className="navbar-toggler-icon"></span>
       </button>
 
       <div className="collapse navbar-collapse " id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto ">
-          {userId !== '' ? (
+          {userId !== "" ? (
             <React.Fragment>
               <li className="nav-item">
                 <Link className="nav-link" to="/Home">
@@ -69,7 +75,7 @@ const Navbar = ({ userId, image, profile, addUserName, logOut }) => {
                   &nbsp; Search
                 </Link>
               </li>
-              {profile.role === 'Admin' ? (
+              {profile.role === "Admin" ? (
                 <li className="nav-item">
                   <Link className="nav-link" to="/Admin">
                     <FontAwesomeIcon icon={faUserLock} />
@@ -78,7 +84,11 @@ const Navbar = ({ userId, image, profile, addUserName, logOut }) => {
                 </li>
               ) : null}
               <li className="nav-item">
-                <Link className="nav-link" to="/Home" onClick={() => logOutHandler()}>
+                <Link
+                  className="nav-link"
+                  to="/Home"
+                  onClick={() => logOutHandler()}
+                >
                   <FontAwesomeIcon icon={faSignOutAlt} />
                   &nbsp; Log out
                 </Link>
@@ -114,7 +124,12 @@ const Navbar = ({ userId, image, profile, addUserName, logOut }) => {
           )}
         </ul>
         <Link to={`/Profile`} className="float-right text-white">
-          <img style={{ height: '35px' }} alt="" className="rounded-circle mr-2" src={image} />
+          <img
+            style={{ height: "35px" }}
+            alt=""
+            className="rounded-circle mr-2"
+            src={image}
+          />
           {profile.displayName}
         </Link>
       </div>
@@ -135,7 +150,15 @@ const propertyToDispatchMapper = (dispatch) => ({
       findProfile(dispatch, profile);
     });
     Service.findImage(userId).then((sprofile) => {
-      findImage(dispatch, sprofile.images[0].url);
+      // findImage(dispatch, sprofile.images[0].url);
+      try {
+        findImage(dispatch, sprofile.images[0].url);
+      } catch (error) {
+        findImage(
+          dispatch,
+          "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg"
+        );
+      }
     });
   },
   logOut: () => {
